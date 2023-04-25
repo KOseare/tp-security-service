@@ -2,9 +2,14 @@ package negocio;
 
 
 public class Tarjeta extends MedioDePagoDecorator {
-    private double descuento = -0.05;
+    
+    public Tarjeta(IFactura abonado){
+        this.factura = abonado;
+        this.descuento = -0.05;
+    }
+
     @Override
-    public void generarFactura(Contrataciones contrato) {
+    public void pagarFactura() {
         // TODO Implement this method
     }
 }

@@ -1,9 +1,20 @@
 package negocio;
 
 public class Efectivo extends MedioDePagoDecorator {
-    private double descuento = .2;
+
+
+    public Efectivo(IFactura persona) {
+        super();
+        this.factura = persona;
+        this.descuento = .2;
+    }
+
+    /**
+     * @param contrato
+     */
+
     @Override
-    public void generarFactura(Contrataciones contrato) {
+    public void pagarFactura() {
         // TODO Implement this method
     }
 }

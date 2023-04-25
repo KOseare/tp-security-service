@@ -1,7 +1,9 @@
 package negocio;
 
+import java.util.ArrayList;
 
-public abstract class Persona {
+
+public abstract class Persona{
     /**
      * @aggregation shared
      */
@@ -9,10 +11,7 @@ public abstract class Persona {
     /**
      * @aggregation shared
      */
-    private Contratacion contrato;
-    /**
-     * @aggregation shared
-     */
-    private IFactura factura;
+    private ArrayList<Factura> facturas = new ArrayList<Factura>();
     
+    public abstract void generarFactura();
 }
