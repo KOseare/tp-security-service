@@ -4,8 +4,15 @@ package negocio;
 public class MonitoreoVivienda extends Contratacion {
     
     @Override
-    public double obtenerPrecio() {
-        double precio = 8500.0;
-        return precio + this.obtenerTotalDeServiciosAdicionales();
+    public void setPrecio() {
+        this.precio = 8500.0;
+        this.precio += this.obtenerTotalDeServiciosAdicionales();
+        this.precio-=calculaPromo(this.promo);
+    }
+
+
+    @Override
+    public double calculaPromo(Promocion promocion) {
+        return promocion.PromoVivienda(this.precio);
     }
 }

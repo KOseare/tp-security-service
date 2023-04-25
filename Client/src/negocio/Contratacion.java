@@ -14,10 +14,13 @@ public abstract class Contratacion {
      */
     private ArrayList<ServicioAdicional> serviciosAdicionales = new ArrayList<ServicioAdicional>();
     protected Promocion promo;
+    protected double precio;
     protected int id;
     // TO DO: Agregar agregacion de domicilio
     
-    public abstract double obtenerPrecio();
+    public abstract void setPrecio();
+    
+    public abstract double calculaPromo (Promocion);
 
 
     public Iterator<ServicioAdicional> getServiciosAdicionalesIterator() {
