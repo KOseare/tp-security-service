@@ -1,5 +1,9 @@
 package negocio;
 
+import diagrama.Domicilio;
+
+import java.util.ArrayList;
+
 
 public abstract class Persona {
     /**
@@ -14,5 +18,9 @@ public abstract class Persona {
      * @aggregation shared
      */
     private Factura factura;
-    
+
+    /**
+     * @aggregation composite
+     */
+    private ArrayList<Domicilio> domicilios;
 }
