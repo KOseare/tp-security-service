@@ -2,9 +2,14 @@ package negocio;
 
 
 public class Cheque extends MedioDePagoDecorator {
-    private double descuento = -0.1;
+    
+    public Cheque(IFactura abonado){
+        this.factura = abonado;
+        this.descuento = -0.1;
+    }
+
     @Override
-    public void generarFactura(Contrataciones contrato) {
+    public void pagarFactura() {
         // TODO Implement this method
     }
 }
