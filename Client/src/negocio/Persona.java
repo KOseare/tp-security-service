@@ -9,10 +9,10 @@ public abstract class Persona {
     /**
      * @aggregation shared
      */
-    private Contrataciones contrato;
+    private Contratacion contrato;
     /**
      * @aggregation shared
      */
-    private Factura factura;
+    private IFactura factura;
     
 }
