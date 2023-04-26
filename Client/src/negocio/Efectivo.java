@@ -1,5 +1,7 @@
 package negocio;
 
+import java.util.Date;
+
 public class Efectivo extends MedioDePagoDecorator {
 
 
@@ -16,5 +18,23 @@ public class Efectivo extends MedioDePagoDecorator {
     @Override
     public void pagarFactura() {
         // TODO Implement this method
+    }
+
+    @Override
+    public double getMonto() {
+        // TODO Implement this method
+        return 0.0;
+    }
+
+    @Override
+    public Date getFecha() {
+        // TODO Implement this method
+        return null;
+    }
+
+    @Override
+    public boolean isPagado() {
+        // TODO Implement this method
+        return false;
     }
 }

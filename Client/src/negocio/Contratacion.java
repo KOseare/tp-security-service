@@ -13,6 +13,10 @@ public abstract class Contratacion {
      * @aggregation composite
      */
     private ArrayList<ServicioAdicional> serviciosAdicionales = new ArrayList<ServicioAdicional>();
+
+    /**
+     * @aggregation shared
+     */
     protected Promocion promo;
     protected double precio;
     protected int id;
