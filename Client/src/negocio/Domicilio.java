@@ -1,4 +1,4 @@
-package diagrama;
+package negocio;
 
 public class Domicilio {
     private String calle;
