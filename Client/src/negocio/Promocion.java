@@ -1,7 +1,7 @@
 package negocio;
 
 public interface Promocion {
-    public int PromoVivienda();
+    public double PromoVivienda(double d);
 
-    public int PromoComercio();
+    public double PromoComercio(double d);
 }
