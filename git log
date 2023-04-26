@@ -1,0 +1,42 @@
+[33mcommit 307b05b0acc8bd47df2a641bdafe2e40e936b63f[m[33m ([m[1;36mHEAD -> [m[1;32mActualizacionFactura[m[33m)[m
+Author: Agustin-Perea <51423684+Agustin-Perea@users.noreply.github.com>
+Date:   Tue Apr 25 17:01:02 2023 -0300
+
+[33mcommit 9f4c6d5012523c2d4a9ae6293b0d9ce9a7e9905e[m
+Author: Agustin-Perea <51423684+Agustin-Perea@users.noreply.github.com>
+Date:   Tue Apr 25 17:00:40 2023 -0300
+
+[33mcommit 5b691e8061e362b2b960d6742cef0dc18ac14873[m
+Author: agus2 <agus2@Maquinola>
+Date:   Tue Apr 25 02:56:55 2023 -0300
+
+[33mcommit 01a17d3c4442e2e1dbc398e4e889b163ad94a0fb[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Merge: 953834e def2421
+Author: Dario Funes <52363132+KOseare@users.noreply.github.com>
+Date:   Sun Apr 23 14:06:49 2023 -0300
+
+    Merge pull request #1 from KOseare/diagrama
+    
+    Diagrama
+
+[33mcommit def2421af98e1c29e09c9f09988cdd0fa0e8fbce[m[33m ([m[1;31morigin/diagrama[m[33m, [m[1;32mdiagrama[m[33m)[m
+Author: Agustin-Perea <51423684+Agustin-Perea@users.noreply.github.com>
+Date:   Sat Apr 22 16:57:43 2023 -0300
+
+[33mcommit 953834e3a729a359c686618d7f657dcad0a5ab49[m
+Author: Dario Funes <kdfunes@outlook.com>
+Date:   Wed Apr 19 16:16:07 2023 -0300
+
+    Mejorar .gitignore
+
+[33mcommit 2ecc8da2d87e1a53da647a97a48995709084f0a4[m
+Author: Dario Funes <kdfunes@outlook.com>
+Date:   Wed Apr 19 15:47:59 2023 -0300
+
+    Agregar modelo de 3 capas
+
+[33mcommit 7dfa8595c91971e8780b11877ac997f1536ca094[m
+Author: Dario Funes <kdfunes@outlook.com>
+Date:   Wed Apr 19 15:20:46 2023 -0300
+
+    First commit
