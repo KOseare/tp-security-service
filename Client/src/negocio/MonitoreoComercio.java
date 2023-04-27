@@ -2,6 +2,10 @@ package negocio;
 
 public class MonitoreoComercio extends Contratacion {
     
+    public MonitoreoComercio(Domicilio domicilio){
+        super(domicilio);
+    }
+    
     @Override
     public void setPrecio() {
         this.precio = 8500.0;

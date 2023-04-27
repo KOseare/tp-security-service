@@ -1,5 +1,6 @@
 package negocio;
 
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -9,6 +10,8 @@ import java.util.Iterator;
  * que puede incluir servicios adicionales
  */
 public abstract class Contratacion {
+    private static int lastId;
+
     /**
      * @aggregation composite
      */
@@ -20,7 +23,12 @@ public abstract class Contratacion {
     protected Promocion promo;
     protected double precio;
     protected int id;
-    // TO DO: Agregar agregacion de domicilio
+    private Domicilio domicilio;
+    
+    public Contratacion (Domicilio domicilio) {
+        this.id = ++Contratacion.lastId;
+        this.domicilio = domicilio;
+    }
     
     public abstract void setPrecio();
     
@@ -43,7 +51,36 @@ public abstract class Contratacion {
         return id;
     }
     
+
+    public Domicilio getDomicilio() {
+        return domicilio;
+    }
+
     public void agregarServicioAdicional (ServicioAdicional servicio) {
         serviciosAdicionales.add(servicio);
+    }
+
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+}
+        if (!(object instanceof Contratacion)) {
+            return false;
+        }
+        final Contratacion other = (Contratacion) object;
+        if (id != other.id) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int PRIME = 37;
+        int result = 1;
+        result = PRIME * result + id;
+        return result;
     }
 }

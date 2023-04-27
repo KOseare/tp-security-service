@@ -42,4 +42,15 @@ public class Factura implements Cloneable,IFactura {
         return pagado;
     }
 
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Factura clon;
+        try {
+            clon = (Factura) super.clone();
+            return clon;
+        } catch (CloneNotSupportedException e) {
+            throw e;
+        }
+
+    }
 }
