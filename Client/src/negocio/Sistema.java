@@ -15,19 +15,29 @@ public class Sistema {
     }
     
     public String generarReporte(){
-        return "";
+        String reporte="";
+        for(IFactura factura : this.facturas){
+            reporte += factura.detalle();
+        }
+        return reporte;
     }
-    
-    public IFactura solicitarDuplicado(IFactura factura)throws CloneNotSupportedException{
+    //precondicion factura validada
+    public IFactura solicitarDuplicado(Factura factura)throws CloneNotSupportedException{
         Factura clon;
         try{
-            clon = (Factura) factura.clone();
+            clon = (Factura)factura.clone();
             return clon;
         }catch(CloneNotSupportedException e){
             throw e;
         }
     }
     
+    public void agregarAbonado(Persona p){
+        this.abonados.add(p);
+    }
+    public void agregarFactura(IFactura f){
+        this.facturas.add(f);
+    }
     
     
 }

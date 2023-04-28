@@ -20,8 +20,8 @@ public abstract class Contratacion {
     /**
      * @aggregation shared
      */
-    protected Promocion promo;
-    protected double precio;
+    protected Promocion promo=null;
+    protected double precioDelServicio,precioPromo=0;
     protected int id;
     private Domicilio domicilio;
     
@@ -30,9 +30,8 @@ public abstract class Contratacion {
         this.domicilio = domicilio;
     }
     
-    public abstract void setPrecio();
     
-    public abstract double calculaPromo (Promocion p);
+    public abstract double calculaPromo (Promocion promocion);
 
 
     public Iterator<ServicioAdicional> getServiciosAdicionalesIterator() {
@@ -58,6 +57,10 @@ public abstract class Contratacion {
 
     public void agregarServicioAdicional (ServicioAdicional servicio) {
         serviciosAdicionales.add(servicio);
+    }
+    
+    public void setPromocion(Promocion promo){
+        this.promo = promo;
     }
 
 

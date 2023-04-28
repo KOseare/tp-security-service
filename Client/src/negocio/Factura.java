@@ -53,4 +53,10 @@ public class Factura implements Cloneable,IFactura {
         }
 
     }
+
+    @Override
+    public String detalle() {
+        // TODO Implement this method
+        return null;
+    }
 }

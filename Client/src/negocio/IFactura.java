@@ -7,5 +7,6 @@ public interface IFactura{
     public double getMonto();
     public Date getFecha();
     public boolean isPagado();
+    public String detalle();
 
 }

@@ -32,4 +32,10 @@ public class Tarjeta extends MedioDePagoDecorator {
         // TODO Implement this method
         return false;
     }
+
+    @Override
+    public String detalle() {
+        // TODO Implement this method
+        return null;
+    }
 }
