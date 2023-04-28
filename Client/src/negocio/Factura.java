@@ -24,6 +24,9 @@ public Factura(double importe, Date fecha, Persona cliente, ArrayList<Contrataci
         this.fecha = fecha;
         this.pagado = false;
         this.cliente = cliente;
+        if(cliente.recibeDescuento(contratos)){
+            descuento = descuento * 0.5;
+        }
         this.contratos = contratos;
         this.descuentos = descuento;
         this.importe_neto = importe - (importe * descuento);
