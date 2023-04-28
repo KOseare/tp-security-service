@@ -4,24 +4,35 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Factura implements Cloneable,IFactura {
-    private double monto,descuentos;
+    private double importe_bruto,importe_neto,descuentos;
     private Date fecha;
     private boolean pagado;
 
+    private Persona cliente;
     private ArrayList<Contratacion> contratos = new ArrayList<Contratacion>();
     
 
     public Factura(double importe, Date fecha) {
-        this.monto = importe;
+        this.importe_bruto = importe;
         this.fecha = fecha;
         this.pagado = false;
         this.descuentos = 0;
     }
 
-    public double getMonto() {
-        return monto;
+public Factura(double importe, Date fecha, Persona cliente, ArrayList<Contratacion> contratos,double descuento){
+        this.importe_bruto = importe;
+        this.fecha = fecha;
+        this.pagado = false;
+        this.cliente = cliente;
+        this.contratos = contratos;
+        this.descuentos = descuento;
+        this.importe_neto = importe - (importe * descuento);
     }
 
+    public double getImporteBruto() {
+        return importe_bruto;
+    }
+    public double getImporteNeto() {return importe_neto;}
     public void setDescuentos(double descuentos) {
         this.descuentos = descuentos;
     }
