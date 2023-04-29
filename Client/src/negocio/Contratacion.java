@@ -9,13 +9,18 @@ import java.util.Iterator;
  * que puede incluir servicios adicionales.
  */
 public abstract class Contratacion {
+    private static int lastId;
+
     /**
      * @aggregation composite
      */
     private ArrayList<ServicioAdicional> serviciosAdicionales = new ArrayList<ServicioAdicional>();
-    private static int lastId = 0;
-    protected Promocion promo;
-    protected double precio;
+
+    /**
+     * @aggregation shared
+     */
+    protected Promocion promo=null;
+    protected double precioDelServicio,precioPromo=0;
     protected int id;
     private Domicilio domicilio;
 
@@ -39,13 +44,11 @@ public abstract class Contratacion {
         this.domicilio = domicilio;
     }
     
-    public abstract void setPrecio();
-
     public double getPrecio() {
         return precio;
     }
 
-    public abstract double calculaPromo (Promocion p);
+    public abstract double calculaPromo (Promocion promocion);
 
 
     /**
@@ -69,7 +72,7 @@ public abstract class Contratacion {
     public int getId() {
         return id;
     }
-
+    
 
     public Domicilio getDomicilio() {
         return domicilio;
@@ -93,13 +96,17 @@ public abstract class Contratacion {
     public void agregarServicioAdicional (ServicioAdicional servicio) {
         serviciosAdicionales.add(servicio);
     }
+    
+    public void setPromocion(Promocion promo){
+        this.promo = promo;
+    }
 
 
     @Override
     public boolean equals(Object object) {
         if (this == object) {
             return true;
-        }
+}
         if (!(object instanceof Contratacion)) {
             return false;
         }
@@ -116,5 +123,9 @@ public abstract class Contratacion {
         int result = 1;
         result = PRIME * result + id;
         return result;
+    }
+    public String toSting(){
+        
+        return "id: "+ id +"precioDelServicio: "+this.precioDelServicio + "Servicios adicionales: "+ this.serviciosAdicionales.toString() +", Promocion: " + promo.toString() + ", Descuento de la promocion: " + this.precioPromo + ", domicilio: " + this.domicilio.toString();
     }
 }

@@ -16,4 +16,8 @@ public class PersonaFisica extends Persona {
         }
         return valores;
     }
+    @Override
+    public String toString(){
+        return "Tipo: Persona Fisica";
+    }
 }

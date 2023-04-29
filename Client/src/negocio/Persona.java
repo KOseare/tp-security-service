@@ -15,7 +15,7 @@ public abstract class Persona {
      * @aggregation composite
      */
     private ArrayList<Domicilio> domicilios;
-
+    
     public abstract void generarFactura();
 
     public abstract ArrayList<Double> recibeDescuento(ArrayList<Contratacion> contratos);

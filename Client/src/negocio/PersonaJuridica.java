@@ -20,4 +20,8 @@ public class PersonaJuridica extends Persona {
         }
         return valores;
     }
+    @Override
+    public String toString(){
+        return "Tipo: Persona Juridica";
+    }
 }

@@ -6,21 +6,9 @@ package negocio;
  */
 public class MonitoreoVivienda extends Contratacion {
     
-    /**
-     * Establece el precio de la contratacion.
-     * 
-     * <b>post:</b>
-     * <ul>
-     * <li>Se establece un precio incial de la contratacion.</li>
-     * <li>Se suman los precios de los servicios adicionales.</li>
-     * <li>Se resta el descuento de la promocion (si corresponde).</li>
-     * </ul>
-     */    
-    @Override
-    public void setPrecio() {
-        this.precio = 8500.0;
-        this.precio += this.obtenerTotalDeServiciosAdicionales();
-        this.precio-=calculaPromo(this.promo);
+    public MonitoreoVivienda(Domicilio domicilio){
+        super(domicilio);
+        this.precioDelServicio = 8500.0;
     }
 
 
@@ -37,13 +25,18 @@ public class MonitoreoVivienda extends Contratacion {
      * <li>Se devuelve el descuento correspondiente a la promocion.</li>
      * </ul>
      * 
-     * @param promocion La promoci�n aplicable a la contratacion.
+     * @param promocion La promocion aplicable a la contratacion.
      * @return El descuento correspondiente a la promocion.
      */
     @Override
     public double calculaPromo(Promocion promocion) {
-        assert promocion != null : "La promoci�n es null";
+        assert promocion != null : "La promocion es null";
 
-        return promocion.PromoVivienda(this.precio);
+        return promocion.PromoVivienda(this.precioDelServicio);
     }
+    @Override
+    public String toString(){
+        return "Tipo: Monitoreo de Vivienda" + super.toString();
+    }
+    
 }

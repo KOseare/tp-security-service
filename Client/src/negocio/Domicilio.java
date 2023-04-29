@@ -35,5 +35,10 @@ public class Domicilio {
         result = PRIME * result + ((codPostal == null) ? 0 : codPostal.hashCode());
         return result;
     }
+    
+    @Override
+    public String toString(){
+        return "[Calle: "+this.calle + ", Numero " + this.numero + ", codigo Postal "+ this.codPostal +"]";
+    }
 
 }

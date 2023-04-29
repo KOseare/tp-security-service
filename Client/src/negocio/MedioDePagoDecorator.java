@@ -1,6 +1,6 @@
 package negocio;
 
-public abstract class MedioDePagoDecorator implements IFactura {
+public abstract class MedioDePagoDecorator implements IFactura,Cloneable {
     /**
      * @aggregation composite
      */

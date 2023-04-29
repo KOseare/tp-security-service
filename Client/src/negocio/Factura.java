@@ -3,16 +3,15 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Factura implements Cloneable,IFactura {
-    private double importe_bruto,importe_neto,descuento;
+public class Factura implements Cloneable, IFactura {
+    private double importe_bruto, importe_neto, descuento = 0;
     private Date fecha;
     private boolean pagado;
 
     private Persona cliente;
     private ArrayList<Contratacion> contratos = new ArrayList<Contratacion>();
 
-
-    public Factura(double importe, Date fecha, Persona cliente, ArrayList<Contratacion> contratos,double descuento){
+    public Factura(Date fecha, Persona cliente, ArrayList<Contratacion> contratos, double descuento){
         this.fecha = fecha;
         this.pagado = false;
         this.cliente = cliente;
@@ -33,6 +32,10 @@ public class Factura implements Cloneable,IFactura {
         return importe_bruto;
     }
 
+    public double getImporteNeto() {
+        return importe_neto;
+    }
+
     @Override
     public void pagarFactura() {
 
@@ -43,8 +46,11 @@ public class Factura implements Cloneable,IFactura {
         return this.descuento;
     }
 
-    public double getImporteNeto() {return importe_neto;}
-    public void setDescuentos(double descuento) {
+    public double getImporteNeto() {
+        return importe_neto;
+    }
+
+    public void setDescuento(double descuento) {
         this.descuento = descuento;
     }
 
@@ -59,5 +65,13 @@ public class Factura implements Cloneable,IFactura {
     public boolean isPagado() {
         return pagado;
     }
+
+
+    @Override
+    public String detalle() {
+        
+        return "Fecha: "+ this.fecha + " Abonado: " + this.cliente + "Contratos: "+ this.contratos.toString() + ", Importe Bruto: "+ getImporteBruto() + " Descuentos: " + this.descuento + "Importe Neto: "+ this.getImporteNeto();
+    }
+
 
 }
