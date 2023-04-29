@@ -2,21 +2,14 @@ package negocio;
 
 import java.util.ArrayList;
 
+/**
+ * Clase abstracta que representa a una persona.
+ */
 public abstract class Persona {
     /**
      * @aggregation shared
      */
     private String nombre,dni;
-    /**
-     * @aggregation shared
-     */
-    private ArrayList<Factura> facturas = new ArrayList<Factura>();
-
-    private Contratacion contrato;
-    /**
-     * @aggregation shared
-     */
-    private Factura factura;
 
     /**
      * @aggregation composite
@@ -24,4 +17,6 @@ public abstract class Persona {
     private ArrayList<Domicilio> domicilios;
 
     public abstract void generarFactura();
+
+    public abstract ArrayList<Double> recibeDescuento(ArrayList<Contratacion> contratos);
 }
