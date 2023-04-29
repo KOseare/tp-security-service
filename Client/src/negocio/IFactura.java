@@ -9,4 +9,7 @@ public interface IFactura{
     public boolean isPagado();
     public String detalle();
 
+    double getDescuento();
+    double getImporteNeto();
+    void pagarFactura();
 }

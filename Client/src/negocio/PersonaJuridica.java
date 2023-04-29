@@ -9,8 +9,16 @@ public class PersonaJuridica extends Persona {
     }
 
     @Override
-    public boolean recibeDescuento(ArrayList<Contratacion> contratos) {
-        return contratos.size() > 3;
+    public ArrayList<Double> recibeDescuento(ArrayList<Contratacion> contratos) {
+       ArrayList<Double> valores = new ArrayList<Double>();
+        for(int i = 0;i<contratos.size();i++){
+            if(i>2){
+                valores.add(0.5);
+            }else{
+                valores.add(1.0);
+            }
+        }
+        return valores;
     }
     @Override
     public String toString(){
