@@ -4,7 +4,6 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-
 /**
  * Clase que representa la contratacion de un sistema de monitoreo,
  * que puede incluir servicios adicionales.
@@ -42,7 +41,10 @@ public abstract class Contratacion {
     
     public abstract void setPrecio();
 
-    
+    public double getPrecio() {
+        return precio;
+    }
+
     public abstract double calculaPromo (Promocion p);
 
 

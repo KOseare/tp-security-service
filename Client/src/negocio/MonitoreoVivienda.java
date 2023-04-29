@@ -37,12 +37,12 @@ public class MonitoreoVivienda extends Contratacion {
      * <li>Se devuelve el descuento correspondiente a la promocion.</li>
      * </ul>
      * 
-     * @param promocion La promoción aplicable a la contratacion.
+     * @param promocion La promociï¿½n aplicable a la contratacion.
      * @return El descuento correspondiente a la promocion.
      */
     @Override
     public double calculaPromo(Promocion promocion) {
-        assert promocion != null : "La promoción es null";
+        assert promocion != null : "La promociï¿½n es null";
 
         return promocion.PromoVivienda(this.precio);
     }

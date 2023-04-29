@@ -5,7 +5,16 @@ public class Tarjeta extends MedioDePagoDecorator {
     
     public Tarjeta(IFactura abonado){
         this.factura = abonado;
-        this.descuento = -0.05;
+    }
+
+    @Override
+    public double getDescuento() {
+        return this.factura.getDescuento() * 1.05;
+    }
+
+    @Override
+    public double getImporteNeto() {
+        return this.factura.getImporteNeto() * 1.05;
     }
 
     @Override
