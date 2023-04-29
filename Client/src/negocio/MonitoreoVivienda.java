@@ -15,6 +15,6 @@ public class MonitoreoVivienda extends Contratacion {
     @Override
     public String toString(){
         return "Tipo: Monitoreo de Vivienda" + super.toString();
-    }
+}
     
 }

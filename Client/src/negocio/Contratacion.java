@@ -4,7 +4,6 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-
 /**
  * Clase que representa la contratacion de un sistema de monitoreo,
  * que puede incluir servicios adicionales
@@ -20,25 +19,29 @@ public abstract class Contratacion {
     /**
      * @aggregation shared
      */
-    protected Promocion promo=null;
-    protected double precioDelServicio,precioPromo=0;
+    protected Promocion promo = null;
+    protected double precioDelServicio, precioPromo = 0;
     protected int id;
     private Domicilio domicilio;
-    
-    public Contratacion (Domicilio domicilio) {
+
+    public Contratacion(Domicilio domicilio) {
         this.id = ++Contratacion.lastId;
         this.domicilio = domicilio;
     }
-    
-    
-    public abstract double calculaPromo (Promocion promocion);
+
+
+    public abstract double calculaPromo(Promocion promocion);
+
+    public double getPrecio() {
+        return this.precioDelServicio;
+    }
 
 
     public Iterator<ServicioAdicional> getServiciosAdicionalesIterator() {
         return serviciosAdicionales.iterator();
     }
-    
-    public double obtenerTotalDeServiciosAdicionales () {
+
+    public double obtenerTotalDeServiciosAdicionales() {
         double total = 0;
         for (ServicioAdicional servicio : this.serviciosAdicionales) {
             total += servicio.obtenerPrecio();
@@ -49,17 +52,17 @@ public abstract class Contratacion {
     public int getId() {
         return id;
     }
-    
+
 
     public Domicilio getDomicilio() {
         return domicilio;
     }
 
-    public void agregarServicioAdicional (ServicioAdicional servicio) {
+    public void agregarServicioAdicional(ServicioAdicional servicio) {
         serviciosAdicionales.add(servicio);
     }
-    
-    public void setPromocion(Promocion promo){
+
+    public void setPromocion(Promocion promo) {
         this.promo = promo;
     }
 
@@ -68,7 +71,7 @@ public abstract class Contratacion {
     public boolean equals(Object object) {
         if (this == object) {
             return true;
-}
+        }
         if (!(object instanceof Contratacion)) {
             return false;
         }
@@ -86,8 +89,11 @@ public abstract class Contratacion {
         result = PRIME * result + id;
         return result;
     }
-    public String toSting(){
-        
-        return "id: "+ id +"precioDelServicio: "+this.precioDelServicio + "Servicios adicionales: "+ this.serviciosAdicionales.toString() +", Promocion: " + promo.toString() + ", Descuento de la promocion: " + this.precioPromo + ", domicilio: " + this.domicilio.toString();
+
+    public String toSting() {
+
+        return "id: " + id + "precioDelServicio: " + this.precioDelServicio + "Servicios adicionales: " +
+               this.serviciosAdicionales.toString() + ", Promocion: " + promo.toString() +
+               ", Descuento de la promocion: " + this.precioPromo + ", domicilio: " + this.domicilio.toString();
     }
 }

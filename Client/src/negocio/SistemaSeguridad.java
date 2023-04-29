@@ -51,4 +51,13 @@ public class SistemaSeguridad {
         }
         return reporte;
     }
+    public IFactura solicitarDuplicado(Factura factura)throws CloneNotSupportedException{
+        Factura clon;
+        try{
+            clon = (Factura)factura.clone();
+            return clon;
+        }catch(CloneNotSupportedException e){
+            throw e;
+        }
+    }
 }

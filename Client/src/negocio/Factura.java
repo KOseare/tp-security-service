@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Factura implements Cloneable, IFactura {
-    private double importe_bruto, importe_neto, descuentos = 0;
+    private double importe_bruto, importe_neto, descuento;
     private Date fecha;
     private boolean pagado;
 
@@ -12,40 +12,43 @@ public class Factura implements Cloneable, IFactura {
     private ArrayList<Contratacion> contratos = new ArrayList<Contratacion>();
 
 
-    public Factura(double importe, Date fecha) {
-        this.importe_bruto = importe;
-        this.fecha = fecha;
-        this.pagado = false;
-        this.descuentos = 0;
-    }
-
     public Factura(double importe, Date fecha, Persona cliente, ArrayList<Contratacion> contratos, double descuento) {
-        this.importe_bruto = importe;
         this.fecha = fecha;
         this.pagado = false;
         this.cliente = cliente;
-        if (cliente.recibeDescuento(contratos)) {
-            descuento = descuento * 0.5;
-        }
         this.contratos = contratos;
-        this.descuentos = descuento;
-        this.importe_neto = importe - (importe * descuento);
+    }
+
+    public void calcularImporteBruto() { //Una vez generada la factura, se calcula el importe bruto según la cantidad de contrataciones
+        double importe = 0;
+        ArrayList<Double> descuentos = this.cliente.recibeDescuento(this.contratos);
+        for (int i = 0; i < contratos.size(); i++) {
+            importe += contratos.get(i).getPrecio() * descuentos.get(i);
+        }
+        this.importe_bruto = importe;
+        this.importe_neto = importe; /* El importe neto se calcula según el decorator de tipo de pago */
     }
 
     public double getImporteBruto() {
         return importe_bruto;
     }
 
+    @Override
+    public void pagarFactura() {
+
+    }
+
+    @Override
+    public double getDescuento() {
+        return this.descuento;
+    }
+
     public double getImporteNeto() {
         return importe_neto;
     }
 
-    public void setDescuentos(double descuentos) {
-        this.descuentos = descuentos;
-    }
-
-    public double getDescuentos() {
-        return descuentos;
+    public void setDescuentos(double descuento) {
+        this.descuento = descuento;
     }
 
     public void setFecha(Date fecha) {
@@ -63,9 +66,16 @@ public class Factura implements Cloneable, IFactura {
 
     @Override
     public String detalle() {
-        
-        return "Fecha: "+ this.fecha + " Abonado: " + this.cliente + "Contratos: "+ this.contratos.toString() + ", Importe Bruto: "+ getImporteBruto() + " Descuentos: " + this.descuentos + "Importe Neto: "+ this.getImporteNeto();
+
+        return "Fecha: " + this.fecha + " Abonado: " + this.cliente + "Contratos: " + this.contratos.toString() +
+               ", Importe Bruto: " + getImporteBruto() + " Descuentos: " + this.descuento + "Importe Neto: " +
+               this.getImporteNeto();
     }
 
+    @Override
+    public Factura clone()throws CloneNotSupportedException {
+        
+        return (Factura) super.clone();
+    }
 
 }

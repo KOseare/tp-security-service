@@ -8,8 +8,19 @@ public class Efectivo extends MedioDePagoDecorator {
     public Efectivo(IFactura persona) {
         super();
         this.factura = persona;
-        this.descuento = .2;
     }
+
+    @Override
+    public double getDescuento() {
+        return this.factura.getDescuento() * 0.2;
+    }
+
+    @Override
+    public double getImporteNeto() {
+        return this.factura.getImporteNeto() * 0.2;
+    }
+
+
 
     /**
      * @param contrato
@@ -38,4 +49,6 @@ public class Efectivo extends MedioDePagoDecorator {
         
         return this.factura.detalle() + " Pago en Efectivo, descuento de " + this.descuento*100 + "%";
     }
+
+
 }

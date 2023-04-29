@@ -16,5 +16,5 @@ public abstract class Persona {
     
     public abstract void generarFactura();
 
-    public abstract boolean recibeDescuento(ArrayList<Contratacion> contratos);
+    public abstract ArrayList<Double> recibeDescuento(ArrayList<Contratacion> contratos);
 }

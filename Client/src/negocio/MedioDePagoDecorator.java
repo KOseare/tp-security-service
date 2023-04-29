@@ -6,6 +6,8 @@ public abstract class MedioDePagoDecorator implements IFactura,Cloneable {
      */
     protected IFactura factura;
     protected double descuento;
-    
+
+    public abstract double getDescuento();
+
     public abstract void pagarFactura();
 }
