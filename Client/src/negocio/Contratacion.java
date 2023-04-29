@@ -86,4 +86,8 @@ public abstract class Contratacion {
         result = PRIME * result + id;
         return result;
     }
+    public String toSting(){
+        
+        return "id: "+ id +"precioDelServicio: "+this.precioDelServicio + "Servicios adicionales: "+ this.serviciosAdicionales.toString() +", Promocion: " + promo.toString() + ", Descuento de la promocion: " + this.precioPromo + ", domicilio: " + this.domicilio.toString();
+    }
 }

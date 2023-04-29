@@ -12,4 +12,8 @@ public class PersonaJuridica extends Persona {
     public boolean recibeDescuento(ArrayList<Contratacion> contratos) {
         return contratos.size() > 3;
     }
+    @Override
+    public String toString(){
+        return "Tipo: Persona Juridica";
+    }
 }

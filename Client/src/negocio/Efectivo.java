@@ -20,11 +20,6 @@ public class Efectivo extends MedioDePagoDecorator {
         // TODO Implement this method
     }
 
-    @Override
-    public double getMonto() {
-        // TODO Implement this method
-        return 0.0;
-    }
 
     @Override
     public Date getFecha() {
@@ -36,5 +31,11 @@ public class Efectivo extends MedioDePagoDecorator {
     public boolean isPagado() {
         // TODO Implement this method
         return false;
+    }
+
+    @Override
+    public String detalle() {
+        
+        return this.factura.detalle() + " Pago en Efectivo, descuento de " + this.descuento*100 + "%";
     }
 }

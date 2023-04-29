@@ -2,6 +2,7 @@ package negocio;
 
 import java.util.ArrayList;
 
+
 public abstract class Persona {
     /**
      * @aggregation shared
@@ -12,7 +13,7 @@ public abstract class Persona {
      * @aggregation composite
      */
     private ArrayList<Domicilio> domicilios;
-
+    
     public abstract void generarFactura();
 
     public abstract boolean recibeDescuento(ArrayList<Contratacion> contratos);

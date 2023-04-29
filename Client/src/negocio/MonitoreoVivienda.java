@@ -12,4 +12,9 @@ public class MonitoreoVivienda extends Contratacion {
     public double calculaPromo(Promocion promocion) {
         return promocion.PromoVivienda(this.precioDelServicio);
     }
+    @Override
+    public String toString(){
+        return "Tipo: Monitoreo de Vivienda" + super.toString();
+    }
+    
 }

@@ -12,4 +12,8 @@ public class PersonaFisica extends Persona {
     public boolean recibeDescuento(ArrayList<Contratacion> contratos) {
         return false;
     }
+    @Override
+    public String toString(){
+        return "Tipo: Persona Fisica";
+    }
 }

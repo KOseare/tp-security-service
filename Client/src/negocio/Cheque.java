@@ -15,11 +15,6 @@ public class Cheque extends MedioDePagoDecorator {
         // TODO Implement this method
     }
 
-    @Override
-    public double getMonto() {
-        // TODO Implement this method
-        return 0.0;
-    }
 
     @Override
     public Date getFecha() {
@@ -35,7 +30,7 @@ public class Cheque extends MedioDePagoDecorator {
 
     @Override
     public String detalle() {
-        // TODO Implement this method
-        return null;
+        
+        return this.factura.detalle() + " Pago en Cheque, incremento de " + this.descuento*100 + "%";
     }
 }

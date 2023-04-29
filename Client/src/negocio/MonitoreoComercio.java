@@ -13,4 +13,9 @@ public class MonitoreoComercio extends Contratacion {
     public double calculaPromo(Promocion promocion) {
         return promocion.PromoComercio(this.precioDelServicio);
     }
+    
+    @Override
+    public String toSting(){
+        return "Tipo: Monitoreo de Comercio" + super.toSting();
+    }
 }
