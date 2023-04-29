@@ -11,7 +11,7 @@ public class Factura implements Cloneable, IFactura {
     private Persona cliente;
     private ArrayList<Contratacion> contratos = new ArrayList<Contratacion>();
 
-    public Factura(Date fecha, Persona cliente, ArrayList<Contratacion> contratos, double descuento){
+    public Factura(Date fecha, Persona cliente, ArrayList<Contratacion> contratos){
         this.fecha = fecha;
         this.pagado = false;
         this.cliente = cliente;
@@ -30,10 +30,6 @@ public class Factura implements Cloneable, IFactura {
 
     public double getImporteBruto() {
         return importe_bruto;
-    }
-
-    public double getImporteNeto() {
-        return importe_neto;
     }
 
     @Override
