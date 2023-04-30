@@ -44,6 +44,11 @@ public class SistemaSeguridad {
         nueva_factura.calcularImporteBruto();
         agregarFactura(nueva_factura);
     }
+    public void generarFactura(Date fecha, Persona cliente, Contratacion contrato){
+        Factura nueva_factura = new Factura(fecha,cliente,contrato);
+        nueva_factura.calcularImporteBruto();
+        agregarFactura(nueva_factura);
+    }
 
     public void pagarFactura(Factura factura, String tipo_de_pago){
         MedioDePagoFactory factory = new MedioDePagoFactory();
@@ -57,5 +62,14 @@ public class SistemaSeguridad {
             reporte += factura.detalle();
         }
         return reporte;
+    }
+    public IFactura solicitarDuplicado(Factura factura)throws CloneNotSupportedException{
+        Factura clon;
+        try{
+            clon = (Factura)factura.clone();
+            return clon;
+        }catch(CloneNotSupportedException e){
+            throw e;
+        }
     }
 }
