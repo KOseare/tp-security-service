@@ -20,44 +20,28 @@ public class Tarjeta extends MedioDePagoDecorator {
         assert factura != null : "La persona es null";
 
         this.factura = factura;
+        this.descuento = -0.05;
     }
 
     @Override
     public double getDescuento() {
-        return this.factura.getDescuento() * 1.05;
+        return this.descuento;
     }
 
     @Override
     public double getImporteNeto() {
-        return this.factura.getImporteNeto() * 1.05;
-    }
-
-    @Override
-    public void pagarFactura() {
-        // TODO Implement this method
+        return this.factura.getImporteNeto() * (1-this.descuento);
     }
 
 
     @Override
-    public Date getFecha() {
-        // TODO Implement this method
-        return null;
-    }
-
-    @Override
-    public boolean isPagado() {
-        // TODO Implement this method
-        return false;
+    public boolean isPagado(){
+        return this.factura.isPagado();
     }
 
     @Override
     public String detalle() {
-        return this.factura.detalle() + " Pago en Tarjeta, incremento de " + this.descuento*100 + "%";
+        return this.factura.detalle() + " Pago en Tarjeta, incremento de " + -this.descuento*100 + "%, total a pagar: " + this.getImporteNeto();
     }
 
-    @Override
-    public Factura clone() {
-        // TODO Implement this method
-        return null;
-}
 }

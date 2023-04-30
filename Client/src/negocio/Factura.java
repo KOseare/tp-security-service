@@ -9,11 +9,19 @@ import java.util.Date;
  * relevante para la facturacion.
  */
 public class Factura implements Cloneable, IFactura {
-    private double importe_bruto, importe_neto, descuento = 0;
+    private double importe_bruto, importe_neto, descuento = 0,importeDePago=0;
     private Date fecha;
     private boolean pagado;
+    
 
+    /**
+     * @aggregation shared
+     */
     private Persona cliente;
+
+    /**
+     * @aggregation composite
+     */
     private ArrayList<Contratacion> contratos = new ArrayList<Contratacion>();
 
     /**
@@ -90,11 +98,11 @@ public class Factura implements Cloneable, IFactura {
     }
 
     @Override
-    public void pagarFactura() {
-
+    public void pagarFactura(double importeDePago) {
+        pagado = true;
+        this.importeDePago = importeDePago;
     }
 
-    @Override
     public double getDescuento() {
         return this.descuento;
     }
@@ -127,8 +135,7 @@ public class Factura implements Cloneable, IFactura {
         try {
             facturaClonada.cliente=(Persona) this.cliente.clone();
         } catch (PersonaJuridicaCloneException e) {
-            System.out.println("La factura contiene a la persona juridica " + e.getNombre() + ", no puede ser clonada");
-            facturaClonada.cliente = null;
+            throw e;
         }
         
         facturaClonada.contratos = new ArrayList<Contratacion>();

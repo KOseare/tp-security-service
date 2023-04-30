@@ -19,6 +19,8 @@ import negocio.Platino;
 import negocio.Promocion;
 import negocio.SistemaSeguridad;
 
+import negocio.excepciones.SaldoInsuficienteExeception;
+
 public class Prueba {
     public Prueba() {
         super();
@@ -31,11 +33,12 @@ public class Prueba {
         Promocion platino = new Platino();
 
         Persona personaFisica = new PersonaFisica("Juan", "42415305");
-        Persona personaJuridica = new PersonaJuridica("Luis", "25416352");
+        Persona personaJuridica = new PersonaJuridica("Sancho", "25416352");
 
         Contratacion contratacionAuxiliar;
         ArrayList<Contratacion> contratos = new ArrayList<Contratacion>();
 
+        //creacion de facturas
 
         personaFisica.agregarDomicilio(new Domicilio("Corrientes", "3215", "7600")); //2 domicilios
         personaFisica.agregarDomicilio(new Domicilio("Moreno", "1215", "7600"));
@@ -62,13 +65,14 @@ public class Prueba {
                .agregarContrato(contratacionAuxiliar);
 
         //persona juridica
-        personaJuridica.agregarDomicilio(new Domicilio("Corrientes", "1542", "7602"));
-        personaJuridica.agregarDomicilio(new Domicilio("Formosa", "1682", "7602"));
-        personaJuridica.agregarDomicilio(new Domicilio("Misiones", "942", "7602"));
-        personaJuridica.agregarDomicilio(new Domicilio("Rawson", "9652", "7602")); //con descuento
+        personaJuridica.agregarDomicilio(new Domicilio("Almirante Brown", "1542", "7602"));
+        personaJuridica.agregarDomicilio(new Domicilio("Primera Junta", "1682", "7602"));
+        personaJuridica.agregarDomicilio(new Domicilio("Rawson", "942", "7602"));
+        personaJuridica.agregarDomicilio(new Domicilio("Ortis", "9652", "7602")); //con descuento
 
         contratacionAuxiliar = new MonitoreoComercio(personaJuridica.getDomicilios().get(0));
         contratacionAuxiliar.agregarServicioAdicional(new Camara(3));
+        contratacionAuxiliar.setPromocion(platino);
 
         contratos.add(contratacionAuxiliar);
 
@@ -76,13 +80,14 @@ public class Prueba {
         contratacionAuxiliar.agregarServicioAdicional(new MovilDeAcompaniamiento(LocalTime.of(9, 30),
                                                                                  LocalTime.of(13, 0)));
         contratacionAuxiliar.agregarServicioAdicional(new BotonAntiPanico(3));
-        
+
         contratacionAuxiliar.setPromocion(platino);
 
-        contratos.add(contratacionAuxiliar);//promo platino
+        contratos.add(contratacionAuxiliar); //promo platino
 
         contratacionAuxiliar = new MonitoreoComercio(personaJuridica.getDomicilios().get(2));
         contratacionAuxiliar.agregarServicioAdicional(new BotonAntiPanico(1));
+        contratacionAuxiliar.setPromocion(dorada);
 
         contratos.add(contratacionAuxiliar);
 
@@ -90,13 +95,118 @@ public class Prueba {
         contratacionAuxiliar.agregarServicioAdicional(new BotonAntiPanico(3));
         contratacionAuxiliar.agregarServicioAdicional(new Camara(1));
         contratacionAuxiliar.setPromocion(dorada);
-        
+
         contratos.add(contratacionAuxiliar);
 
         sistema.generarFactura(new Date(), personaJuridica, contratos);
-        
+
+
+        contratos.clear();
+
+        personaFisica = new PersonaFisica("Pepito", "35214256");
+        sistema.agregarCliente(personaFisica);
+        personaFisica.agregarDomicilio(new Domicilio("Belgrano", "1512", "7602"));
+        personaFisica.agregarDomicilio(new Domicilio("Almirante Brown", "1432", "7602"));
+        personaFisica.agregarDomicilio(new Domicilio("Moreno", "8612", "7602"));
+        personaFisica.agregarDomicilio(new Domicilio("Entre Rios", "8453", "7602"));
+
+
+        contratacionAuxiliar = new MonitoreoComercio(personaFisica.getDomicilios().get(0));
+        contratacionAuxiliar.setPromocion(platino);
+        contratos.add(contratacionAuxiliar);
+
+
+        contratacionAuxiliar = new MonitoreoVivienda(personaFisica.getDomicilios().get(1));
+        contratacionAuxiliar.setPromocion(platino);
+        contratacionAuxiliar.agregarServicioAdicional(new Camara(3));
+        contratos.add(contratacionAuxiliar);
+
+        contratacionAuxiliar = new MonitoreoVivienda(personaFisica.getDomicilios().get(2));
+        contratacionAuxiliar.setPromocion(dorada);
+        contratacionAuxiliar.agregarServicioAdicional(new Camara(1));
+        contratacionAuxiliar.agregarServicioAdicional(new BotonAntiPanico(1));
+        contratos.add(contratacionAuxiliar);
+
+        contratacionAuxiliar = new MonitoreoComercio(personaFisica.getDomicilios().get(3));
+        contratacionAuxiliar.setPromocion(dorada);
+        contratacionAuxiliar.agregarServicioAdicional(new Camara(1));
+        contratacionAuxiliar.agregarServicioAdicional(new BotonAntiPanico(6));
+        contratacionAuxiliar.agregarServicioAdicional(new MovilDeAcompaniamiento(LocalTime.of(9, 30),
+                                                                                 LocalTime.of(13, 0)));
+        contratos.add(contratacionAuxiliar);
+
+
+        sistema.generarFactura(new Date(), personaFisica, contratos);
+
+        //pago de facturas
+        MedioDePagoFactory mpf = new MedioDePagoFactory();
+
+        IFactura facturaAPagar = mpf.getMedioDePago("Efectivo", sistema.getFacturas().get(2));
+
+        System.out.print("Factura a pagar :" + facturaAPagar.detalle());
+
+        try {
+            facturaAPagar.pagarFactura(10000);
+            System.out.print(" Factura Pagada");
+        } catch (SaldoInsuficienteExeception e) {
+            System.out.print(" No se pudo pagar la factura, faltan : " + (e.getValor() - e.getImporte()));
+        }
         
 
+        facturaAPagar = mpf.getMedioDePago("Tarjeta", sistema.getFacturas().get(1)); //apareceran 2 facturas, una pagada y otra no
+
+        System.out.print("\n\nFactura a pagar :" + facturaAPagar.detalle());
+
+        try {
+            facturaAPagar.pagarFactura(100000);
+            System.out.print(" Factura Pagada");
+        } catch (SaldoInsuficienteExeception e) {
+            System.out.print(" No se pudo pagar la factura, faltan : " + (e.getValor() - e.getImporte()));
+        }
+
+
+        //clonacion de factura
+        System.out.print("\n\n\nClonacion de Facturas: ");
+
+
+        try { 
+            Factura f = (Factura) sistema.getFacturas()
+                                         .get(1)
+                                         .clone();
+            System.out.print("\n\tClonacion Exitosa");
+
+        } catch (CloneNotSupportedException e) {
+            System.out.print("\n" + e.getMessage());
+            
+        }
+        try {
+            Factura f = (Factura) sistema.getFacturas()
+                                         .get(0)
+                                         .clone();
+            System.out.print("\n\nClonacion Exitosa");
+            System.out.print("\n\nPago de Factura clonada(en el reporte habran 2 facturas una de ellas pagada)");
+            facturaAPagar = mpf.getMedioDePago("Cheque", f); //apareceran 2 facturas, una pagada y otra no
+
+            System.out.print("\n\tFactura a pagar :" + facturaAPagar.detalle());
+
+            try {
+                facturaAPagar.pagarFactura(100000);
+                System.out.print(" Factura Pagada");
+            } catch (SaldoInsuficienteExeception e) {
+                System.out.print(" No se pudo pagar la factura, faltan : " + (e.getValor() - e.getImporte()));
+            }
+            sistema.agregarFactura(f);
+            
+        } catch (CloneNotSupportedException e) {
+            System.out.print("\n" + e.getMessage());
+
+        }
+
+        System.out.print("\n\n\nReporte de Facturas: \n");
         System.out.print(sistema.generarReporte());
     }
+
+
 }
+
+

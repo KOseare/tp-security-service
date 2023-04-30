@@ -16,4 +16,8 @@ public class PersonaJuridicaCloneException extends CloneNotSupportedException {
     public String getNombre() {
         return nombre;
     }
+    @Override
+    public String getMessage(){
+        return "La factura contiene a la persona juridica " + this.nombre + ", no puede ser clonada";
+    }
 }

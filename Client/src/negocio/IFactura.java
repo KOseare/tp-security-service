@@ -2,12 +2,13 @@ package negocio;
 
 import java.util.Date;
 
+import negocio.excepciones.SaldoInsuficienteExeception;
+
 
 public interface IFactura{
-    double getDescuento();
+
     double getImporteNeto();
-    void pagarFactura();
-    public Date getFecha();
+    void pagarFactura(double importe)throws SaldoInsuficienteExeception;
     public boolean isPagado();
     public String detalle();
 

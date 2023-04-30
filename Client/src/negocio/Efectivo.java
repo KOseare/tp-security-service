@@ -2,6 +2,8 @@ package negocio;
 
 import java.util.Date;
 
+import negocio.excepciones.SaldoInsuficienteExeception;
+
 /**
  * Clase que representa un medio de pago de tipo Efectivo que se aplica sobre la factura.
  */
@@ -17,50 +19,35 @@ public class Efectivo extends MedioDePagoDecorator {
      */
     public Efectivo(IFactura factura) {
         super();
-        assert factura != null : "La persona es null";
+        assert factura != null : "La factura es null";
 
         this.factura = factura;
+        this.descuento = 0.2;
     }
 
     @Override
     public double getDescuento() {
-        return this.factura.getDescuento() * 0.2;
+        return this.descuento;
     }
 
     @Override
     public double getImporteNeto() {
-        return this.factura.getImporteNeto() * 0.2;
+        return this.factura.getImporteNeto() * (1-this.descuento);
     }
 
+ 
 
 
-    /**
-     * @param contrato
-     */
-
-    @Override
-    public void pagarFactura() {
-        // TODO Implement this method
-    }
-
-
-    @Override
-    public Date getFecha() {
-        // TODO Implement this method
-        return null;
-    }
-
-    @Override
-    public boolean isPagado() {
-        // TODO Implement this method
-        return false;
-    }
 
     @Override
     public String detalle() {
-        
-        return this.factura.detalle() + " Pago en Efectivo, descuento de " + this.descuento*100 + "%";
+        return  super.detalle() + " Pago en Efectivo, descuento de " + this.descuento*100 + "%, total a pagar: " + this.getImporteNeto();
     }
 
+
+    @Override
+    public boolean isPagado() {
+        return this.factura.isPagado();
+    }
 
 }
