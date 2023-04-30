@@ -35,12 +35,6 @@ public class Efectivo extends MedioDePagoDecorator {
         return this.factura.getImporteNeto() * (1-this.descuento);
     }
 
-
-
-    /**
-     * @param contrato
-     */
-
  
 
 

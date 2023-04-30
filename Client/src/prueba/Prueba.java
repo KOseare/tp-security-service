@@ -176,7 +176,7 @@ public class Prueba {
 
             sistema.agregarFactura(f);
         } catch (CloneNotSupportedException e) {
-            System.out.print("No pudo clonarse");
+            System.out.print("\nNo pudo clonarse");
         }
         try {
             Factura f = (Factura) sistema.getFacturas()
@@ -197,7 +197,7 @@ public class Prueba {
 
             sistema.agregarFactura(f);
         } catch (CloneNotSupportedException e) {
-            System.out.print("No pudo clonarse");
+            System.out.print("\nNo pudo clonarse");
         }
 
         System.out.print("\n\n\nReporte de Facturas: \n");

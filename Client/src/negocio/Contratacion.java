@@ -109,7 +109,21 @@ public abstract class Contratacion implements Cloneable {
     public void agregarServicioAdicional (ServicioAdicional servicio) {
         serviciosAdicionales.add(servicio);
     }
-    
+    /**
+     * Agrega a la contratacion una promocion.
+     * 
+     * <b>pre:</b>
+     * <ul>
+     * <li>La promocion debe estar instanciada (no es null).</li>
+     * </ul>
+     * 
+     * <b>post:</b>
+     * <ul>
+     * <li>Se agrega una Promocion al servicio.</li>
+     * </ul>
+     * 
+     * @param promo Promocion que se le quiera agregar a la contratacion
+     */
     public void setPromocion(Promocion promo){
         this.promo = promo;
         this.precioPromo = this.calculaPromo(this.promo);
