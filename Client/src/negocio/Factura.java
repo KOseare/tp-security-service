@@ -36,7 +36,7 @@ public class Factura implements Cloneable, IFactura {
      * <li>Se inicializa la factura como "no pagada".</li>
      * </ul>
      * 
-     * @param fecha La fecha de emisión de la factura
+     * @param fecha La fecha de emisiï¿½n de la factura
      * @param cliente El cliente al que pertenece la factura
      * @param contratos La lista de contrataciones realizadas por la persona
      */
@@ -60,7 +60,7 @@ public class Factura implements Cloneable, IFactura {
         }
 
     /**
-     * Calcula el importe bruto de la factura en función de la lista de contrataciones y los descuentos del cliente.
+     * Calcula el importe bruto de la factura en funciï¿½n de la lista de contrataciones y los descuentos del cliente.
      * 
      * <b>pre:</b>
      * <ul>
