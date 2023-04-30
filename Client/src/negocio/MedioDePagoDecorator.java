@@ -1,6 +1,8 @@
 package negocio;
 
-public abstract class MedioDePagoDecorator implements IFactura,Cloneable {
+import negocio.excepciones.SaldoInsuficienteExeception;
+
+public abstract class MedioDePagoDecorator implements IFactura {
     /**
      * @aggregation composite
      */
@@ -9,5 +11,15 @@ public abstract class MedioDePagoDecorator implements IFactura,Cloneable {
 
     public abstract double getDescuento();
 
-    public abstract void pagarFactura();
+    public void pagarFactura(double importe) throws SaldoInsuficienteExeception{
+        if(importe > this.getImporteNeto()){
+            this.factura.pagarFactura(importe);
+        }else{
+            throw new SaldoInsuficienteExeception(this.getImporteNeto(),importe);
+        }
+    }
+    
+    public String detalle(){
+        return this.factura.detalle();
+    }
 }

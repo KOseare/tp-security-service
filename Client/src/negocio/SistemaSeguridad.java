@@ -3,6 +3,8 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Date;
 
+import negocio.excepciones.SaldoInsuficienteExeception;
+
 public class SistemaSeguridad {
     private ArrayList<Persona> clientes = new ArrayList<Persona>();
     private ArrayList<Factura> facturas = new ArrayList<Factura>();
@@ -50,10 +52,10 @@ public class SistemaSeguridad {
         agregarFactura(nueva_factura);
     }
 
-    public void pagarFactura(Factura factura, String tipo_de_pago){
+    public void pagarFactura(Factura factura, String tipo_de_pago,double importe)throws SaldoInsuficienteExeception{
         MedioDePagoFactory factory = new MedioDePagoFactory();
         MedioDePagoDecorator medio = factory.getMedioDePago(tipo_de_pago,factura);
-        medio.factura.pagarFactura();
+        medio.factura.pagarFactura(importe);
     }
 
     public String generarReporte(){
