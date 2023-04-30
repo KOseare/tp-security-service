@@ -1,5 +1,8 @@
 package negocio;
 
+/**
+ * Clase que representa un domicilio.
+ */
 public class Domicilio {
     private String calle;
     private String numero;

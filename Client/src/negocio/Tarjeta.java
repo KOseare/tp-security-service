@@ -2,11 +2,24 @@ package negocio;
 
 import java.util.Date;
 
-
+/**
+ * Clase que representa un medio de pago de tipo Tarjeta que se aplica sobre la factura.
+ */
 public class Tarjeta extends MedioDePagoDecorator {
     
-    public Tarjeta(IFactura abonado){
-        this.factura = abonado;
+    /**
+     * <b>pre:</b>
+     * <ul>
+     * <li>La factura no debe ser null.</li>
+     * </ul>
+     * 
+     * @param factura Factura a la que se le aplicara el medio de pago tarjeta.
+     */
+    public Tarjeta(IFactura factura){
+        super();
+        assert factura != null : "La persona es null";
+
+        this.factura = factura;
     }
 
     @Override

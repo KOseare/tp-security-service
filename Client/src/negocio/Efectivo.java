@@ -2,12 +2,24 @@ package negocio;
 
 import java.util.Date;
 
+/**
+ * Clase que representa un medio de pago de tipo Efectivo que se aplica sobre la factura.
+ */
 public class Efectivo extends MedioDePagoDecorator {
 
-
-    public Efectivo(IFactura persona) {
+    /**
+     * <b>pre:</b>
+     * <ul>
+     * <li>La factura no debe ser null.</li>
+     * </ul>
+     * 
+     * @param factura Factura a la que se le aplicara el medio de pago efectivo.
+     */
+    public Efectivo(IFactura factura) {
         super();
-        this.factura = persona;
+        assert factura != null : "La persona es null";
+
+        this.factura = factura;
     }
 
     @Override

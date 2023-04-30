@@ -6,9 +6,6 @@ package negocio;
  */
 public class MonitoreoComercio extends Contratacion {
     
-    public MonitoreoComercio(Domicilio domicilio){
-        super(domicilio);
-        this.precioDelServicio = 10000.0;
     /**
      * Establece el precio de la contratacion.
      * 
