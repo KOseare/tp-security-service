@@ -135,8 +135,7 @@ public class Factura implements Cloneable, IFactura {
         try {
             facturaClonada.cliente=(Persona) this.cliente.clone();
         } catch (PersonaJuridicaCloneException e) {
-            System.out.println("La factura contiene a la persona juridica " + e.getNombre() + ", no puede ser clonada");
-            facturaClonada.cliente = null;
+            throw e;
         }
         
         facturaClonada.contratos = new ArrayList<Contratacion>();

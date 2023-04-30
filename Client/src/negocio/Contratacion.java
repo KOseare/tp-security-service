@@ -167,7 +167,7 @@ public abstract class Contratacion implements Cloneable {
     public Object clone() throws CloneNotSupportedException {
         Contratacion contratoClonado = null;
         contratoClonado=(Contratacion) super.clone();
-        contratoClonado.promo=(Promocion) this.promo.clone();
+        //contratoClonado.promo=(Promocion) this.promo.clone(); no se clona, esta por agregacion 
         contratoClonado.domicilio=(Domicilio) this.domicilio.clone();
         
         contratoClonado.serviciosAdicionales = new ArrayList<ServicioAdicional>();

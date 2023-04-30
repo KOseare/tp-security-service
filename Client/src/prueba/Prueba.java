@@ -151,18 +151,40 @@ public class Prueba {
         } catch (SaldoInsuficienteExeception e) {
             System.out.print(" No se pudo pagar la factura, faltan : " + (e.getValor() - e.getImporte()));
         }
+        
+
+        facturaAPagar = mpf.getMedioDePago("Tarjeta", sistema.getFacturas().get(1)); //apareceran 2 facturas, una pagada y otra no
+
+        System.out.print("\n\nFactura a pagar :" + facturaAPagar.detalle());
+
+        try {
+            facturaAPagar.pagarFactura(100000);
+            System.out.print(" Factura Pagada");
+        } catch (SaldoInsuficienteExeception e) {
+            System.out.print(" No se pudo pagar la factura, faltan : " + (e.getValor() - e.getImporte()));
+        }
 
 
         //clonacion de factura
         System.out.print("\n\n\nClonacion de Facturas: ");
-        
-        
-        try { //no deberia poder clonarse por ser persona juridica?
+
+
+        try { 
             Factura f = (Factura) sistema.getFacturas()
                                          .get(1)
                                          .clone();
             System.out.print("\n\tClonacion Exitosa");
+
+        } catch (CloneNotSupportedException e) {
+            System.out.print("\n" + e.getMessage());
             
+        }
+        try {
+            Factura f = (Factura) sistema.getFacturas()
+                                         .get(0)
+                                         .clone();
+            System.out.print("\n\nClonacion Exitosa");
+            System.out.print("\n\nPago de Factura clonada(en el reporte habran 2 facturas una de ellas pagada)");
             facturaAPagar = mpf.getMedioDePago("Cheque", f); //apareceran 2 facturas, una pagada y otra no
 
             System.out.print("\n\tFactura a pagar :" + facturaAPagar.detalle());
@@ -173,31 +195,11 @@ public class Prueba {
             } catch (SaldoInsuficienteExeception e) {
                 System.out.print(" No se pudo pagar la factura, faltan : " + (e.getValor() - e.getImporte()));
             }
-
             sistema.agregarFactura(f);
-        } catch (CloneNotSupportedException e) {
-            System.out.print("\nNo pudo clonarse");
-        }
-        try {
-            Factura f = (Factura) sistema.getFacturas()
-                                         .get(0)
-                                         .clone();
-            System.out.print("\nClonacion Exitosa");
             
-            facturaAPagar = mpf.getMedioDePago("Tarjeta", f); //apareceran 2 facturas, una pagada y otra no
-
-            System.out.print("\n\tFactura a pagar :" + facturaAPagar.detalle());
-
-            try {
-                facturaAPagar.pagarFactura(1000);
-                System.out.print(" Factura Pagada");
-            } catch (SaldoInsuficienteExeception e) {
-                System.out.print(" No se pudo pagar la factura, faltan : " + (e.getValor() - e.getImporte()));
-            }
-
-            sistema.agregarFactura(f);
         } catch (CloneNotSupportedException e) {
-            System.out.print("\nNo pudo clonarse");
+            System.out.print("\n" + e.getMessage());
+
         }
 
         System.out.print("\n\n\nReporte de Facturas: \n");
