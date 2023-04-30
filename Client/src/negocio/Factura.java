@@ -3,6 +3,8 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Date;
 
+import negocio.excepciones.SaldoInsuficienteExeception;
+
 /**
  * Clase que representa una factura generada para una persona.
  * Contiene las contrataciones realizadas por la persona e informacion
@@ -97,8 +99,24 @@ public class Factura implements Cloneable, IFactura {
         this.calcularImporteBruto();
     }
 
+    /**
+     * Intenta pagar la factura con el importe especificado.
+     *
+     * <b>pre:</b>
+     * <ul>
+     * <li>El importe debe ser mayor a 0.</li>
+     * </ul>
+     *
+     * <b>post:</b>
+     * <ul>
+     * <li>Se paga la factura o se lanza una excepcion.</li>
+     * </ul>
+     * 
+     * @param importeDePago 
+     * @throws SaldoInsuficienteExeception
+     */
     @Override
-    public void pagarFactura(double importeDePago) {
+    public void pagarFactura(double importeDePago) throws SaldoInsuficienteExeception {
         pagado = true;
         this.importeDePago = importeDePago;
     }
