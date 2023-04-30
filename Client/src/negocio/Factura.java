@@ -124,7 +124,11 @@ public class Factura implements Cloneable, IFactura {
         facturaClonada = (Factura) super.clone();
         facturaClonada.fecha=(Date) this.fecha.clone();
         facturaClonada.cliente=(Persona) this.cliente.clone();
-        facturaClonada.contratos = (ArrayList<Contratacion>) this.contratos.clone(); 
+        
+        facturaClonada.contratos = new ArrayList<Contratacion>();
+        for(Contratacion contrato : this.contratos){
+            facturaClonada.contratos.add((Contratacion) contrato.clone());
+        }
 
         return facturaClonada;
     }

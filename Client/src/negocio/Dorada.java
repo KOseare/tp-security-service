@@ -38,7 +38,7 @@ public class Dorada implements Promocion, Cloneable {
     }
     @Override
     public Object clone () throws CloneNotSupportedException {
-        return super.clone();
+        return (Dorada) super.clone();
     }
     
     @Override
