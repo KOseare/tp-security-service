@@ -3,7 +3,7 @@ package negocio;
 /**
  * Clase abstracta que representa un servicio adicional.
  */
-public abstract class ServicioAdicional {
+public abstract class ServicioAdicional implements Cloneable {
     protected int cantidad;
     
     /**
@@ -28,4 +28,9 @@ public abstract class ServicioAdicional {
     
     public abstract double obtenerPrecio();
     public abstract String toString();
+    
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return (ServicioAdicional) super.clone();
+    }
 }
