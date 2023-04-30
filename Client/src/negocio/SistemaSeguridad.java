@@ -41,13 +41,21 @@ public class SistemaSeguridad {
 
     public void generarFactura(Date fecha, Persona cliente, ArrayList<Contratacion> contratos){
         Factura nueva_factura = new Factura(fecha,cliente,contratos);
+        nueva_factura.calcularImporteBruto();
         agregarFactura(nueva_factura);
     }
     public void generarFactura(Date fecha, Persona cliente, Contratacion contrato){
         Factura nueva_factura = new Factura(fecha,cliente,contrato);
+        nueva_factura.calcularImporteBruto();
         agregarFactura(nueva_factura);
     }
-    
+
+    public void pagarFactura(Factura factura, String tipo_de_pago){
+        MedioDePagoFactory factory = new MedioDePagoFactory();
+        MedioDePagoDecorator medio = factory.getMedioDePago(tipo_de_pago,factura);
+        medio.factura.pagarFactura();
+    }
+
     public String generarReporte(){
         String reporte="";
         for(IFactura factura : this.facturas){
