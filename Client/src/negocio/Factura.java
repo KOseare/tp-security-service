@@ -3,6 +3,11 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Clase que representa una factura generada para una persona.
+ * Contiene las contrataciones realizadas por la persona e informacion
+ * relevante para la facturacion.
+ */
 public class Factura implements Cloneable, IFactura {
     private double importe_bruto, importe_neto, descuento = 0;
     private Date fecha;
@@ -11,21 +16,57 @@ public class Factura implements Cloneable, IFactura {
     private Persona cliente;
     private ArrayList<Contratacion> contratos = new ArrayList<Contratacion>();
 
-    public Factura(Date fecha, Persona cliente, ArrayList<Contratacion> contratos, double descuento){
+    /**
+     * <b>pre:</b>
+     * <ul>
+     * <li>La fecha y el cliento no son null.</li>
+     * <li>La lista de contratos esta inicializada (no es null).</li>
+     * </ul>
+     * 
+     * <b>post:</b>
+     * <ul>
+     * <li>Se crea una nueva factura con los datos proporcionados.</li>
+     * <li>Se inicializa la factura como "no pagada".</li>
+     * </ul>
+     * 
+     * @param fecha La fecha de emisión de la factura
+     * @param cliente El cliente al que pertenece la factura
+     * @param contratos La lista de contrataciones realizadas por la persona
+     */
+    public Factura(Date fecha, Persona cliente, ArrayList<Contratacion> contratos){
+        assert fecha != null : "La fecha es nula";
+        assert cliente != null : "El cliente es nulo";
+        assert contratos != null : "La lista de contrataciones es nula";
+                
         this.fecha = fecha;
         this.pagado = false;
         this.cliente = cliente;
         this.contratos = contratos;
     }
 
-    public void calcularImporteBruto(){ //Una vez generada la factura, se calcula el importe bruto segÃºn la cantidad de contrataciones
+    /**
+     * Calcula el importe bruto de la factura en función de la lista de contrataciones y los descuentos del cliente.
+     * 
+     * <b>pre:</b>
+     * <ul>
+     * <li>La lista de contratos esta inicializada (no es null).</li>
+     * </ul>
+     * 
+     * <b>post:</b>
+     * <ul>
+     * <li>Se estable el importe_bruto (atributo).</li>
+     * </ul>
+     */
+    public void calcularImporteBruto(){ //Una vez generada la factura, se calcula el importe bruto segun la cantidad de contrataciones
+        assert this.contratos != null : "La lista de contrataciones es nula";
+    
         double importe = 0;
         ArrayList<Double> descuentos = this.cliente.recibeDescuento(this.contratos);
         for(int i = 0;i<contratos.size();i++){
             importe += contratos.get(i).getPrecio() * descuentos.get(i);
         }
         this.importe_bruto = importe;
-        this.importe_neto = importe; /* El importe neto se calcula segÃºn el decorator de tipo de pago */
+        this.importe_neto = importe; /* El importe neto se calcula segun el decorator de tipo de pago */
     }
 
     public double getImporteBruto() {
@@ -44,10 +85,6 @@ public class Factura implements Cloneable, IFactura {
     @Override
     public double getDescuento() {
         return this.descuento;
-    }
-
-    public double getImporteNeto() {
-        return importe_neto;
     }
 
     public void setDescuento(double descuento) {

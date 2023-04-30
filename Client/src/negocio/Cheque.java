@@ -2,11 +2,24 @@ package negocio;
 
 import java.util.Date;
 
-
+/**
+ * Clase que representa un medio de pago de tipo Cheque que se aplica sobre la factura.
+ */
 public class Cheque extends MedioDePagoDecorator {
     
-    public Cheque(IFactura abonado){
-        this.factura = abonado;
+    /**
+     * <b>pre:</b>
+     * <ul>
+     * <li>La factura no debe ser null.</li>
+     * </ul>
+     * 
+     * @param factura Factura a la que se le aplicara el medio de pago cheque.
+     */
+    public Cheque(IFactura factura){
+        super();
+        assert factura != null : "La persona es null";
+
+        this.factura = factura;
     }
 
     @Override
