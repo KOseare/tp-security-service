@@ -9,7 +9,6 @@ public class PersonaJuridica extends Persona {
 
 
     public PersonaJuridica(String nombre, String dni) {
-        // TODO Implement this method
         super(nombre, dni);
     }
 
@@ -42,5 +41,10 @@ public class PersonaJuridica extends Persona {
     @Override
     public String toString(){
         return super.toString() + " Tipo: Persona Juridica ";
+    }
+    
+    @Override
+    public Object clone() throws PersonaJuridicaCloneException {
+        throw new PersonaJuridicaCloneException("Una persona puridica no puede ser clonada.", this.getNombre());
     }
 }

@@ -46,6 +46,6 @@ public class Platino implements Promocion {
     }
     @Override
     public Object clone () throws CloneNotSupportedException {
-        return super.clone();
+        return (Platino) super.clone();
     }
 }
