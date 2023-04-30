@@ -3,7 +3,4 @@
 Grupo 4 - Programación III
 
 Integrantes:
-  Leonardo Motylicki
-  Agustin Perea
-  Tomas Larsen
-  Dario Funes
+  Leonardo Motylicki - Agustin Perea - Tomas Larsen - Dario Funes
