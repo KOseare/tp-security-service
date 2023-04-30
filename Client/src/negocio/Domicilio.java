@@ -1,9 +1,18 @@
 package negocio;
 
-public class Domicilio {
+/**
+ * Clase que representa un domicilio.
+ */
+public class Domicilio implements Cloneable{
     private String calle;
     private String numero;
     private String codPostal;
+
+    public Domicilio(String calle, String numero, String codPostal) {
+        this.calle = calle;
+        this.numero = numero;
+        this.codPostal = codPostal;
+    }
 
     @Override
     public boolean equals(Object object) {
@@ -34,6 +43,11 @@ public class Domicilio {
         result = PRIME * result + ((numero == null) ? 0 : numero.hashCode());
         result = PRIME * result + ((codPostal == null) ? 0 : codPostal.hashCode());
         return result;
+    }
+    
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
     
     @Override

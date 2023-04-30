@@ -22,7 +22,7 @@ public class Sistema {
         return reporte;
     }
     //precondicion factura validada
-    public IFactura solicitarDuplicado(Factura factura)throws CloneNotSupportedException{
+    public Factura solicitarDuplicado(Factura factura)throws CloneNotSupportedException{
         Factura clon;
         try{
             clon = (Factura)factura.clone();

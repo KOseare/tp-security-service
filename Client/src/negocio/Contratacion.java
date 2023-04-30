@@ -8,19 +8,19 @@ import java.util.Iterator;
  * Clase que representa la contratacion de un sistema de monitoreo,
  * que puede incluir servicios adicionales.
  */
-public abstract class Contratacion {
-    private static int lastId;
-
+public abstract class Contratacion implements Cloneable {
     /**
      * @aggregation composite
      */
     private ArrayList<ServicioAdicional> serviciosAdicionales = new ArrayList<ServicioAdicional>();
+    private static int lastId = 0;
 
     /**
      * @aggregation shared
      */
     protected Promocion promo=null;
     protected double precioDelServicio,precioPromo=0;
+    protected double precio;
     protected int id;
     private Domicilio domicilio;
 
@@ -44,11 +44,12 @@ public abstract class Contratacion {
         this.domicilio = domicilio;
     }
     
-    public double getPrecio() {
-        return precio;
-    }
-
+    
     public abstract double calculaPromo (Promocion promocion);
+
+    public double getPrecio() {
+        return this.precioDelServicio;
+    }
 
 
     /**
@@ -73,6 +74,18 @@ public abstract class Contratacion {
         return id;
     }
     
+    public ArrayList<ServicioAdicional> getServiciosAdicionales() {
+        return serviciosAdicionales;
+    }
+
+    public Promocion getPromo() {
+        return promo;
+    }
+
+    public double getPrecioPromo() {
+        return precioPromo;
+    }
+
 
     public Domicilio getDomicilio() {
         return domicilio;
@@ -99,6 +112,7 @@ public abstract class Contratacion {
     
     public void setPromocion(Promocion promo){
         this.promo = promo;
+        this.precioPromo = this.calculaPromo(this.promo);
     }
 
 
@@ -124,8 +138,23 @@ public abstract class Contratacion {
         result = PRIME * result + id;
         return result;
     }
+
     public String toSting(){
+        String detalle = "[ id: " + id + ", precioDelServicio: " + this.precioDelServicio + ", Servicios adicionales: " +
+               this.serviciosAdicionales.toString();
+        if(promo!=null){
+            detalle +=  ", Promocion: " + promo.toString() + ", Descuento de la promocion: " + calculaPromo(this.promo); 
+}
+            detalle += ", domicilio: " + this.domicilio.toString()+"]\n ";
         
-        return "id: "+ id +"precioDelServicio: "+this.precioDelServicio + "Servicios adicionales: "+ this.serviciosAdicionales.toString() +", Promocion: " + promo.toString() + ", Descuento de la promocion: " + this.precioPromo + ", domicilio: " + this.domicilio.toString();
+        return detalle;
     }
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Contratacion contratoClonado = null;
+        contratoClonado=(Contratacion) super.clone();
+        contratoClonado.promo=(Promocion) this.clone();
+        contratoClonado.domicilio=(Domicilio) this.clone();
+        return contratoClonado;
+}
 }
