@@ -3,9 +3,10 @@ package negocio;
 import java.util.ArrayList;
 
 public class PersonaFisica extends Persona {
-    @Override
-    public void generarFactura() {
+
+    public PersonaFisica(String nombre, String dni) {
         // TODO Implement this method
+        super(nombre, dni);
     }
 
     @Override
@@ -18,6 +19,6 @@ public class PersonaFisica extends Persona {
     }
     @Override
     public String toString(){
-        return "Tipo: Persona Fisica";
+        return super.toString() + " Tipo: Persona Fisica ";
     }
 }

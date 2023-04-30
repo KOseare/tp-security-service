@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 /**
  * Clase que representa la contratacion de un sistema de monitoreo,
- * que puede incluir servicios adicionales
+ * que puede incluir servicios adicionales.
  */
 public abstract class Contratacion {
     private static int lastId;
@@ -23,12 +23,27 @@ public abstract class Contratacion {
     protected double precioDelServicio, precioPromo = 0;
     protected int id;
     private Domicilio domicilio;
-
-    public Contratacion(Domicilio domicilio) {
+    
+    /**
+     * <b>pre:</b>
+     * <ul>
+     * <li>El domicilio deb estar instanciado (no es null).</li>
+     * <li>El domicilio no debe estar incluido en otra contratacion.</li>
+     * </ul>
+     * 
+     * <b>post:</b>
+     * <ul>
+     * <li>Se crea una nueva contratacion asociada a un domicilio.</li>
+     * <li>La contratacion obtiene un id unico generado automaticamente.</li>
+     * </ul>
+     * 
+     * @param domicilio Docimilio asociado a la contratacion de monitoreo.
+     */
+    public Contratacion (Domicilio domicilio) {
         this.id = ++Contratacion.lastId;
         this.domicilio = domicilio;
     }
-
+    
 
     public abstract double calculaPromo(Promocion promocion);
 
@@ -37,20 +52,38 @@ public abstract class Contratacion {
     }
 
 
+    /**
+     * @return el iterador de los servicios adicionales agregados a la contratacion.
+     */
     public Iterator<ServicioAdicional> getServiciosAdicionalesIterator() {
         return serviciosAdicionales.iterator();
     }
-
-    public double obtenerTotalDeServiciosAdicionales() {
+    
+    /**
+     * @return la suma total de los precios de los servicios adicionales.
+     */
+    public double obtenerTotalDeServiciosAdicionales () {
         double total = 0;
         for (ServicioAdicional servicio : this.serviciosAdicionales) {
             total += servicio.obtenerPrecio();
         }
         return total;
     }
-
+    
     public int getId() {
         return id;
+    }
+
+    public ArrayList<ServicioAdicional> getServiciosAdicionales() {
+        return serviciosAdicionales;
+    }
+
+    public Promocion getPromo() {
+        return promo;
+    }
+
+    public double getPrecioPromo() {
+        return precioPromo;
     }
 
 
@@ -58,7 +91,22 @@ public abstract class Contratacion {
         return domicilio;
     }
 
-    public void agregarServicioAdicional(ServicioAdicional servicio) {
+    /**
+     * Agrega a la contratacion un nuevo servicio adicional.
+     * 
+     * <b>pre:</b>
+     * <ul>
+     * <li>El servicio debe estar instanciado (no es null).</li>
+     * </ul>
+     * 
+     * <b>post:</b>
+     * <ul>
+     * <li>Se agrega un servicio mas a la lista de servicios de la contratacion.</li>
+     * </ul>
+     * 
+     * @param servicio Servicio adicional que se le quiera agregar a la contratacion
+     */
+    public void agregarServicioAdicional (ServicioAdicional servicio) {
         serviciosAdicionales.add(servicio);
     }
 
@@ -91,9 +139,13 @@ public abstract class Contratacion {
     }
 
     public String toSting() {
-
-        return "id: " + id + "precioDelServicio: " + this.precioDelServicio + "Servicios adicionales: " +
-               this.serviciosAdicionales.toString() + ", Promocion: " + promo.toString() +
-               ", Descuento de la promocion: " + this.precioPromo + ", domicilio: " + this.domicilio.toString();
-    }
+        String detalle = "[ id: " + id + ", precioDelServicio: " + this.precioDelServicio + ", Servicios adicionales: " +
+               this.serviciosAdicionales.toString();
+        if(promo!=null){
+            detalle +=  ", Promocion: " + promo.toString() + ", Descuento de la promocion: " + this.precioPromo; 
+        }
+            detalle += ", domicilio: " + this.domicilio.toString()+"], ";
+        
+        return detalle;
+}
 }

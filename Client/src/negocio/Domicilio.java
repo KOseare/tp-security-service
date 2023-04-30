@@ -5,6 +5,12 @@ public class Domicilio {
     private String numero;
     private String codPostal;
 
+    public Domicilio(String calle, String numero, String codPostal) {
+        this.calle = calle;
+        this.numero = numero;
+        this.codPostal = codPostal;
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) {
