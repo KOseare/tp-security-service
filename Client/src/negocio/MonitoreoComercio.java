@@ -19,6 +19,9 @@ public class MonitoreoComercio extends Contratacion {
      * <li>Se resta el descuento de la promocion (si corresponde).</li>
      * </ul>
      */   
+    public MonitoreoComercio(Domicilio domicilio){
+        super(domicilio);
+        this.precioDelServicio = 10000.0;
     }
 
     /**

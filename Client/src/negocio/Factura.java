@@ -3,14 +3,14 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Factura implements Cloneable, IFactura {
+public class Factura implements Cloneable,IFactura {
     private double importe_bruto, importe_neto, descuento = 0;
     private Date fecha;
     private boolean pagado;
 
     private Persona cliente;
     private ArrayList<Contratacion> contratos = new ArrayList<Contratacion>();
-
+    
     public Factura(Date fecha, Persona cliente, ArrayList<Contratacion> contratos){
         this.fecha = fecha;
         this.pagado = false;
@@ -24,7 +24,7 @@ public class Factura implements Cloneable, IFactura {
         this.cliente = cliente;
         this.contratos.add(contrato);
         this.calcularImporteBruto();
-    }
+        }
 
     public void calcularImporteBruto(){ //Una vez generada la factura, se calcula el importe bruto según la cantidad de contrataciones
         double importe = 0,importeNeto = 0;
@@ -87,7 +87,7 @@ public class Factura implements Cloneable, IFactura {
         detalle += "Importe Bruto: "+ getImporteBruto() + " Descuentos: " + this.descuento + " Importe Neto: "+ this.getImporteNeto() + ", Pagado: "+ this.isPagado() + "\n\n";
         
         return detalle; 
-    }
+}
     @Override
     public Factura clone() throws CloneNotSupportedException {
         return (Factura)super.clone();

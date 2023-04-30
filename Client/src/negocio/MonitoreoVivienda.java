@@ -5,7 +5,7 @@ package negocio;
  * Hereda de la clase abstracta Contratacion.
  */
 public class MonitoreoVivienda extends Contratacion {
-
+    
     public MonitoreoVivienda(Domicilio domicilio){
         super(domicilio);
         this.precioDelServicio = 8500.0;
@@ -46,6 +46,6 @@ public class MonitoreoVivienda extends Contratacion {
     @Override
     public String toSting(){
         return "\tTipo: Monitoreo de Vivienda" + super.toSting();
-    }
+}
     
 }

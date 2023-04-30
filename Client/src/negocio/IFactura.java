@@ -10,6 +10,6 @@ public interface IFactura {
     public Date getFecha();
     public boolean isPagado();
     public String detalle();
-
+    
 
 }

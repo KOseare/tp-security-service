@@ -19,8 +19,8 @@ public abstract class Contratacion {
     /**
      * @aggregation shared
      */
-    protected Promocion promo = null;
-    protected double precioDelServicio, precioPromo = 0;
+    protected Promocion promo=null;
+    protected double precioDelServicio,precioPromo=0;
     protected int id;
     private Domicilio domicilio;
     
@@ -44,8 +44,8 @@ public abstract class Contratacion {
         this.domicilio = domicilio;
     }
     
-
-    public abstract double calculaPromo(Promocion promocion);
+    
+    public abstract double calculaPromo (Promocion promocion);
 
     public double getPrecio() {
         return this.precioDelServicio;
@@ -69,7 +69,7 @@ public abstract class Contratacion {
         }
         return total;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -144,7 +144,7 @@ public abstract class Contratacion {
                this.serviciosAdicionales.toString();
         if(promo!=null){
             detalle +=  ", Promocion: " + promo.toString() + ", Descuento de la promocion: " + calculaPromo(this.promo); 
-        }
+}
             detalle += ", domicilio: " + this.domicilio.toString()+"]\n ";
         
         return detalle;
