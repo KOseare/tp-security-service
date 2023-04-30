@@ -31,17 +31,18 @@ public class Prueba {
         Promocion platino = new Platino();
 
         Persona personaFisica = new PersonaFisica("Juan", "42415305");
-        Persona personaJuridica = new PersonaJuridica("Luis", "25416352");
+        Persona personaJuridica = new PersonaJuridica("Sancho", "25416352");
 
         Contratacion contratacionAuxiliar;
         ArrayList<Contratacion> contratos = new ArrayList<Contratacion>();
-
+        
+        //creacion de facturas
 
         personaFisica.agregarDomicilio(new Domicilio("Corrientes", "3215", "7600")); //2 domicilios
         personaFisica.agregarDomicilio(new Domicilio("Moreno", "1215", "7600"));
 
         personaJuridica.agregarDomicilio(new Domicilio("Entre Rios", "1215", "7600")); //1 domicilio
-
+    
         //la persona debe tener al menos un domicilio, ingresar assert?
         sistema.agregarCliente(personaFisica);
         sistema.agregarCliente(personaJuridica);
@@ -62,14 +63,15 @@ public class Prueba {
                .agregarContrato(contratacionAuxiliar);
 
         //persona juridica
-        personaJuridica.agregarDomicilio(new Domicilio("Corrientes", "1542", "7602"));
-        personaJuridica.agregarDomicilio(new Domicilio("Formosa", "1682", "7602"));
-        personaJuridica.agregarDomicilio(new Domicilio("Misiones", "942", "7602"));
-        personaJuridica.agregarDomicilio(new Domicilio("Rawson", "9652", "7602")); //con descuento
+        personaJuridica.agregarDomicilio(new Domicilio("Almirante Brown", "1542", "7602"));
+        personaJuridica.agregarDomicilio(new Domicilio("Primera Junta", "1682", "7602"));
+        personaJuridica.agregarDomicilio(new Domicilio("Rawson", "942", "7602"));
+        personaJuridica.agregarDomicilio(new Domicilio("Ortis", "9652", "7602")); //con descuento
 
         contratacionAuxiliar = new MonitoreoComercio(personaJuridica.getDomicilios().get(0));
         contratacionAuxiliar.agregarServicioAdicional(new Camara(3));
-
+        contratacionAuxiliar.setPromocion(platino);
+        
         contratos.add(contratacionAuxiliar);
 
         contratacionAuxiliar = new MonitoreoVivienda(personaJuridica.getDomicilios().get(1));
@@ -83,6 +85,7 @@ public class Prueba {
 
         contratacionAuxiliar = new MonitoreoComercio(personaJuridica.getDomicilios().get(2));
         contratacionAuxiliar.agregarServicioAdicional(new BotonAntiPanico(1));
+        contratacionAuxiliar.setPromocion(dorada);
 
         contratos.add(contratacionAuxiliar);
 
@@ -96,7 +99,72 @@ public class Prueba {
         sistema.generarFactura(new Date(), personaJuridica, contratos);
         
         
-
+        
+        contratos.clear();
+        
+        personaFisica = new PersonaFisica("Pepito", "35214256");
+        sistema.agregarCliente(personaFisica);
+        personaFisica.agregarDomicilio(new Domicilio("Belgrano", "1512", "7602"));
+        personaFisica.agregarDomicilio(new Domicilio("Almirante Brown", "1432", "7602"));
+        personaFisica.agregarDomicilio(new Domicilio("Moreno", "8612", "7602"));
+        personaFisica.agregarDomicilio(new Domicilio("Entre Rios", "8453", "7602"));
+        
+        
+        contratacionAuxiliar = new MonitoreoComercio(personaFisica.getDomicilios().get(0));
+        contratacionAuxiliar.setPromocion(platino);
+        contratos.add(contratacionAuxiliar);
+        
+        
+        contratacionAuxiliar = new MonitoreoVivienda(personaFisica.getDomicilios().get(1));
+        contratacionAuxiliar.setPromocion(platino);
+        contratacionAuxiliar.agregarServicioAdicional(new Camara(3));
+        contratos.add(contratacionAuxiliar);
+        
+        contratacionAuxiliar = new MonitoreoVivienda(personaFisica.getDomicilios().get(2));
+        contratacionAuxiliar.setPromocion(dorada);
+        contratacionAuxiliar.agregarServicioAdicional(new Camara(1));
+        contratacionAuxiliar.agregarServicioAdicional(new BotonAntiPanico(1));
+        contratos.add(contratacionAuxiliar);
+        
+        contratacionAuxiliar = new MonitoreoComercio(personaFisica.getDomicilios().get(3));
+        contratacionAuxiliar.setPromocion(dorada);
+        contratacionAuxiliar.agregarServicioAdicional(new Camara(1));
+        contratacionAuxiliar.agregarServicioAdicional(new BotonAntiPanico(6));
+        contratacionAuxiliar.agregarServicioAdicional(new MovilDeAcompaniamiento(LocalTime.of(9, 30),
+                                                                                 LocalTime.of(13, 0)));
+        contratos.add(contratacionAuxiliar);
+        
+        
+        sistema.generarFactura(new Date(), personaFisica, contratos);
+        
+        //pago de facturas
+        
+        
+        
+        
+        //clonacion de factura
+        try{//no deberia poder clonarse por ser persona juridica?
+            Factura f = (Factura) sistema.getFacturas()
+                                           .get(1)
+                                           .clone();
+            f.pagarFactura();//apareceran 2 facturas, una pagada y otra no
+            
+            sistema.agregarFactura(f);
+        }catch (CloneNotSupportedException e){
+            System.out.print("No pudo clonarse");
+        }
+        try{
+            Factura f = (Factura) sistema.getFacturas()
+                                           .get(0)
+                                           .clone();
+            f.pagarFactura();//apareceran 2 facturas, una pagada y otra no
+            
+            sistema.agregarFactura(f);
+        }catch (CloneNotSupportedException e){
+            System.out.print("No pudo clonarse");
+        }
+        
+        
         System.out.print(sistema.generarReporte());
     }
 }

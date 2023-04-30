@@ -13,7 +13,14 @@ public class Factura implements Cloneable, IFactura {
     private Date fecha;
     private boolean pagado;
 
+    /**
+     * @aggregation shared
+     */
     private Persona cliente;
+
+    /**
+     * @aggregation composite
+     */
     private ArrayList<Contratacion> contratos = new ArrayList<Contratacion>();
 
     /**
@@ -91,7 +98,7 @@ public class Factura implements Cloneable, IFactura {
 
     @Override
     public void pagarFactura() {
-
+        pagado = true;
     }
 
     @Override
