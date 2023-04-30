@@ -73,6 +73,7 @@
       <list n="technologyScope">
          <string v="Java"/>
          <string v="Java-Modeling"/>
+         <string v="Maven"/>
          <string v="UML"/>
          <string v="XML"/>
       </list>
