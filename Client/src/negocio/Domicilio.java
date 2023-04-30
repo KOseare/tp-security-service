@@ -1,6 +1,6 @@
 package negocio;
 
-public class Domicilio {
+public class Domicilio implements Cloneable{
     private String calle;
     private String numero;
     private String codPostal;
@@ -34,6 +34,11 @@ public class Domicilio {
         result = PRIME * result + ((numero == null) ? 0 : numero.hashCode());
         result = PRIME * result + ((codPostal == null) ? 0 : codPostal.hashCode());
         return result;
+    }
+    
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
     
     @Override

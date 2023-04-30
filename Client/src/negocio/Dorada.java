@@ -1,16 +1,18 @@
 package negocio;
 
 
-public class Dorada implements Promocion {
+public class Dorada implements Promocion, Cloneable {
 
-    @Override
     public double PromoVivienda(double d) {
         return 1500;
 }
 
-    @Override
     public double PromoComercio(double d) {
         return 2500;
+    }
+    @Override
+    public Object clone () throws CloneNotSupportedException {
+        return super.clone();
     }
     
     @Override

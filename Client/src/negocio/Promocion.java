@@ -1,8 +1,8 @@
 package negocio;
 
 
-}
-public interface Promocion {
-    public double PromoVivienda(double d);
 
+public interface Promocion implements Cloneable {
+    public double PromoVivienda(double d);
     public double PromoComercio(double d);
+}

@@ -65,8 +65,16 @@ public class Factura implements Cloneable, IFactura {
     public boolean isPagado() {
         return pagado;
     }
-
-
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Factura facturaClonada = null;
+        facturaClonada = (Factura) super.clone();
+        facturaClonada.fecha=(Date) this.fecha.clone();
+        facturaClonada.cliente=(Persona) this.cliente.clone();
+        facturaClonada.contratos = (ArrayList<Contratacion>) this.contratos.clone(); 
+       
+        return facturaClonada;
+    }
     @Override
     public String detalle() {
         

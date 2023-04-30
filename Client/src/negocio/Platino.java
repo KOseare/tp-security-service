@@ -14,4 +14,8 @@ public class Platino implements Promocion {
     public String toString(){
         return "Platino";
     }
+    @Override
+    public Object clone () throws CloneNotSupportedException {
+        return super.clone();
+    }
 }

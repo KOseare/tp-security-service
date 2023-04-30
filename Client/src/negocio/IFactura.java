@@ -3,7 +3,7 @@ package negocio;
 import java.util.Date;
 
 
-public interface IFactura {
+public interface IFactura  implements Cloneable{
 
     public Date getFecha();
     public boolean isPagado();

@@ -8,7 +8,7 @@ import java.util.Iterator;
  * Clase que representa la contratacion de un sistema de monitoreo,
  * que puede incluir servicios adicionales.
  */
-public abstract class Contratacion {
+public abstract class Contratacion implements Cloneable {
     private static int lastId;
 
     /**
@@ -126,8 +126,17 @@ public abstract class Contratacion {
         result = PRIME * result + id;
         return result;
     }
+
     public String toSting(){
         
         return "id: "+ id +"precioDelServicio: "+this.precioDelServicio + "Servicios adicionales: "+ this.serviciosAdicionales.toString() +", Promocion: " + promo.toString() + ", Descuento de la promocion: " + this.precioPromo + ", domicilio: " + this.domicilio.toString();
+    }
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Contratacion contratoClonado = null;
+        contratoClonado=(Contratacion) super.clone();
+        contratoClonado.promo=(Promocion) this.clone();
+        contratoClonado.domicilio=(Domicilio) this.clone();
+        return contratoClonado;
     }
 }
