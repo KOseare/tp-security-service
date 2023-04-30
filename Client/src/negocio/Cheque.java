@@ -60,5 +60,5 @@ public class Cheque extends MedioDePagoDecorator {
     public Factura clone() {
         // TODO Implement this method
         return null;
-    }
+}
 }

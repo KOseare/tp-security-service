@@ -20,7 +20,7 @@ public class MonitoreoComercio extends Contratacion {
         super(domicilio);
         this.precioDelServicio = 10000.0;
     }
-
+    
     /**
      * Calcula el descuento de la promocion aplicable a la contratacion.
      * 
@@ -45,5 +45,5 @@ public class MonitoreoComercio extends Contratacion {
     @Override
     public String toSting(){
         return "\tTipo: Monitoreo de Comercio" + super.toSting();
-}
+    }
 }

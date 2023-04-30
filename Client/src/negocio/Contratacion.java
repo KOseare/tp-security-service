@@ -8,22 +8,22 @@ import java.util.Iterator;
  * Clase que representa la contratacion de un sistema de monitoreo,
  * que puede incluir servicios adicionales.
  */
-public abstract class Contratacion {
-    private static int lastId;
-
+public abstract class Contratacion implements Cloneable {
     /**
      * @aggregation composite
      */
     private ArrayList<ServicioAdicional> serviciosAdicionales = new ArrayList<ServicioAdicional>();
+    private static int lastId = 0;
 
     /**
      * @aggregation shared
      */
     protected Promocion promo=null;
     protected double precioDelServicio,precioPromo=0;
+    protected double precio;
     protected int id;
     private Domicilio domicilio;
-    
+
     /**
      * <b>pre:</b>
      * <ul>
@@ -58,7 +58,7 @@ public abstract class Contratacion {
     public Iterator<ServicioAdicional> getServiciosAdicionalesIterator() {
         return serviciosAdicionales.iterator();
     }
-    
+
     /**
      * @return la suma total de los precios de los servicios adicionales.
      */
@@ -73,7 +73,7 @@ public abstract class Contratacion {
     public int getId() {
         return id;
     }
-
+    
     public ArrayList<ServicioAdicional> getServiciosAdicionales() {
         return serviciosAdicionales;
     }
@@ -109,8 +109,8 @@ public abstract class Contratacion {
     public void agregarServicioAdicional (ServicioAdicional servicio) {
         serviciosAdicionales.add(servicio);
     }
-
-    public void setPromocion(Promocion promo) {
+    
+    public void setPromocion(Promocion promo){
         this.promo = promo;
         this.precioPromo = this.calculaPromo(this.promo);
     }
@@ -120,7 +120,7 @@ public abstract class Contratacion {
     public boolean equals(Object object) {
         if (this == object) {
             return true;
-        }
+}
         if (!(object instanceof Contratacion)) {
             return false;
         }
@@ -139,7 +139,7 @@ public abstract class Contratacion {
         return result;
     }
 
-    public String toSting() {
+    public String toSting(){
         String detalle = "[ id: " + id + ", precioDelServicio: " + this.precioDelServicio + ", Servicios adicionales: " +
                this.serviciosAdicionales.toString();
         if(promo!=null){
@@ -148,5 +148,13 @@ public abstract class Contratacion {
             detalle += ", domicilio: " + this.domicilio.toString()+"]\n ";
         
         return detalle;
+    }
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Contratacion contratoClonado = null;
+        contratoClonado=(Contratacion) super.clone();
+        contratoClonado.promo=(Promocion) this.clone();
+        contratoClonado.domicilio=(Domicilio) this.clone();
+        return contratoClonado;
 }
 }

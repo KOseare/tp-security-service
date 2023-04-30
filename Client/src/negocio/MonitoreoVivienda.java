@@ -46,6 +46,6 @@ public class MonitoreoVivienda extends Contratacion {
     @Override
     public String toSting(){
         return "\tTipo: Monitoreo de Vivienda" + super.toSting();
-}
+    }
     
 }
