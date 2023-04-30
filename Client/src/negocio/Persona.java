@@ -43,7 +43,6 @@ public abstract class Persona implements Cloneable {
     public abstract ArrayList<Double> recibeDescuento(ArrayList<Contratacion> contratos);
 
     @Override
-
     public Object clone() throws CloneNotSupportedException {
         Persona personaClonada = null;
         personaClonada = (Persona) super.clone();
