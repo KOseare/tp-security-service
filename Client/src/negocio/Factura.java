@@ -27,16 +27,16 @@ public class Factura implements Cloneable, IFactura {
     }
 
     public void calcularImporteBruto(){ //Una vez generada la factura, se calcula el importe bruto según la cantidad de contrataciones
-        double importe = 0;
+        double importe = 0,importeNeto = 0;
         ArrayList<Double> descuentos = this.cliente.recibeDescuento(this.contratos);
         for(int i = 0;i<contratos.size();i++){
-            importe += contratos.get(i).getPrecio() * descuentos.get(i);
-            for(ServicioAdicional s : contratos.get(i).getServiciosAdicionales())
-                importe += s.obtenerPrecio();
+            importe += contratos.get(i).getPrecio() + contratos.get(i).obtenerTotalDeServiciosAdicionales();
+            this.descuento +=  contratos.get(i).getPrecio() * (1-descuentos.get(i)) + contratos.get(i).getPrecioPromo();//1-desc porque agrega el porcentaje a descontar
         }
 
+
         this.importe_bruto = importe;
-        this.importe_neto = importe; /* El importe neto se calcula según el decorator de tipo de pago */
+        this.importe_neto = importe - descuento; /* El importe neto se calcula según el decorator de tipo de pago */
     }
 
     public double getImporteBruto() {
@@ -81,10 +81,10 @@ public class Factura implements Cloneable, IFactura {
 
     @Override
     public String detalle() {
-        String detalle="Fecha: "+ this.fecha + " Abonado: " + this.cliente + " Contratos: ";
+        String detalle="Fecha: "+ this.fecha + " Abonado: " + this.cliente + "\n Contratos: \n";
         for(Contratacion contrato:contratos)
             detalle += contrato.toSting();
-        detalle += ", Importe Bruto: "+ getImporteBruto() + " Descuentos: " + this.descuento + " Importe Neto: "+ this.getImporteNeto() + "\n";
+        detalle += "Importe Bruto: "+ getImporteBruto() + " Descuentos: " + this.descuento + " Importe Neto: "+ this.getImporteNeto() + ", Pagado: "+ this.isPagado() + "\n\n";
         
         return detalle; 
     }
@@ -92,5 +92,4 @@ public class Factura implements Cloneable, IFactura {
     public Factura clone() throws CloneNotSupportedException {
         return (Factura)super.clone();
     }
-
 }

@@ -44,6 +44,6 @@ public class MonitoreoComercio extends Contratacion {
     
     @Override
     public String toSting(){
-        return "Tipo: Monitoreo de Comercio" + super.toSting();
+        return "\tTipo: Monitoreo de Comercio" + super.toSting();
 }
 }

@@ -112,6 +112,7 @@ public abstract class Contratacion {
 
     public void setPromocion(Promocion promo) {
         this.promo = promo;
+        this.precioPromo = this.calculaPromo(this.promo);
     }
 
 
@@ -142,9 +143,9 @@ public abstract class Contratacion {
         String detalle = "[ id: " + id + ", precioDelServicio: " + this.precioDelServicio + ", Servicios adicionales: " +
                this.serviciosAdicionales.toString();
         if(promo!=null){
-            detalle +=  ", Promocion: " + promo.toString() + ", Descuento de la promocion: " + this.precioPromo; 
+            detalle +=  ", Promocion: " + promo.toString() + ", Descuento de la promocion: " + calculaPromo(this.promo); 
         }
-            detalle += ", domicilio: " + this.domicilio.toString()+"], ";
+            detalle += ", domicilio: " + this.domicilio.toString()+"]\n ";
         
         return detalle;
 }
