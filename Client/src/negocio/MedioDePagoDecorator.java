@@ -2,6 +2,10 @@ package negocio;
 
 import negocio.excepciones.SaldoInsuficienteExeception;
 
+/**
+ * Clase abstracta para poder implementar metodos del patron Decorator que 
+ * modelara de manera dinamica la factura en funcion de su forma de pago. 
+ */
 public abstract class MedioDePagoDecorator implements IFactura {
     /**
      * @aggregation composite

@@ -1,5 +1,8 @@
 package negocio;
 
+/**
+ * Clase que implementa el Patron Factory para un Medio de Pago.
+ */
 public class MedioDePagoFactory {
     public MedioDePagoDecorator getMedioDePago(String tipo, IFactura factura){
         if(tipo == null)
