@@ -45,18 +45,69 @@ public class SistemaSeguridad {
         return facturas;
     }
 
+    /**
+     * Genera adecuadamente una factura.
+     * 
+     * <b>pre:</b>
+     * <ul>
+     * <li>Tanto la fecha, como el cliente y el contrato deben estar inicializados (no ser null).</li>
+     * </ul>
+     * 
+     * <b>post:</b>
+     * <ul>
+     * <li>Genera una factura y es agregada al sistema.</li>
+     * </ul>
+     * 
+     * @param fecha Fecha de creacion de la factura
+     * @param cliente Cliente asociado a la factura
+     * @param contratos Contratos asociados a la factura
+     */
     public void generarFactura(Date fecha, Persona cliente, ArrayList<Contratacion> contratos){
+        assert fecha != null : "La fecha es null";
+        assert cliente != null : "El cliente es null";
+        assert contratos != null : "La lista de contratos es null";
+        
         Factura nueva_factura = new Factura(fecha,cliente,contratos);
         nueva_factura.calcularImporteBruto();
         agregarFactura(nueva_factura);
+        
+        assert this.facturas.contains(nueva_factura) : "La factura no fue agregada al sistema";
     }
     
+    /**
+     * Genera adecuadamente una factura.
+     * 
+     * <b>pre:</b>
+     * <ul>
+     * <li>Tanto la fecha, como el cliente y el contrato deben estar inicializados (no ser null).</li>
+     * </ul>
+     * 
+     * <b>post:</b>
+     * <ul>
+     * <li>Genera una factura y es agregada al sistema.</li>
+     * </ul>
+     * 
+     * @param fecha Fecha de creacion de la factura
+     * @param cliente Cliente asociado a la factura
+     * @param contrato Contrato asociado a la factura
+     */
     public void generarFactura(Date fecha, Persona cliente, Contratacion contrato){
+        assert fecha != null : "La fecha es null";
+        assert cliente != null : "El cliente es null";
+        assert contrato != null : "El contrato es null";
+        
         Factura nueva_factura = new Factura(fecha,cliente,contrato);
         nueva_factura.calcularImporteBruto();
         agregarFactura(nueva_factura);
+        
+        assert this.facturas.contains(nueva_factura) : "La factura no fue agregada al sistema";
     }
 
+    /**
+     * Genera el reporte detallado de la factura.
+     * 
+     * @return Reporte de la factura
+     */
     public String generarReporte(){
         String reporte="";
         for(IFactura factura : this.facturas){
@@ -64,8 +115,9 @@ public class SistemaSeguridad {
         }
         return reporte;
     }
+    
     /**
-     * Agrega a la contratacion un nuevo servicio adicional.
+     * Genera el clon de una factura.
      * 
      * <b>pre:</b>
      * <ul>
@@ -77,7 +129,8 @@ public class SistemaSeguridad {
      * <li>regresa un clon de la factura solicitada o regresa una excepcion.</li>
      * </ul>
      * 
-     * @param servicio Duplicado de Factura
+     * @param factura Factura a duplicar
+     * @return Factura duplicada
      */
     public IFactura solicitarDuplicado(Factura factura)throws CloneNotSupportedException{
         Factura clon;
