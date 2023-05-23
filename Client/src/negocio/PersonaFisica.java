@@ -2,14 +2,31 @@ package negocio;
 
 import java.util.ArrayList;
 
+import javax.swing.plaf.nimbus.State;
+
 /**
  * Clase que representa a una persona fisica.
  */
 public class PersonaFisica extends Persona {
 
+
+    private States estado;
+
     public PersonaFisica(String nombre, String dni) {
         // TODO Implement this method
         super(nombre, dni);
+        this.setEstado(new SinContratacionState(this)); 
+    }
+    //nuevo, llamar a los metodos de factura y agregarlos en persona
+    public void pagarFactura(){
+        }
+    public void contratarServicio(){
+        }
+    public void darBajaServicio(){
+        }
+
+    public void actualizarEstado(){
+       this.estado.actualizarEstado(); 
     }
 
     /**
@@ -33,7 +50,10 @@ public class PersonaFisica extends Persona {
         }
         return valores;
     }
-
+    
+    public void setEstado(States estado) {
+        this.estado = estado;
+    }
     @Override
     public String toString(){
         return super.toString() + " Tipo: Persona Fisica ";

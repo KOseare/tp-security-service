@@ -16,7 +16,8 @@ public abstract class Persona implements Cloneable {
      * @aggregation composite
      */
     private ArrayList<Domicilio> domicilios = new ArrayList<Domicilio>();
-
+    private ArrayList<Factura> facturas = new ArrayList<Factura>();
+    private ArrayList<Contratacion> contrataciones = new ArrayList<Contratacion>();
 
     public Persona(String nombre, String dni) {
         this.nombre = nombre;
@@ -39,6 +40,13 @@ public abstract class Persona implements Cloneable {
         this.domicilios.add(domicilio);
     }
 
+    public ArrayList<Contratacion> getContrataciones() {
+        return contrataciones;
+    }
+
+    public ArrayList<Factura> getFacturas() {
+        return facturas;
+    }
 
     public abstract ArrayList<Double> recibeDescuento(ArrayList<Contratacion> contratos);
 
