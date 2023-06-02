@@ -36,7 +36,6 @@ public class Prueba {
         Persona personaJuridica = new PersonaJuridica("Sancho", "25416352");
 
         Contratacion contratacionAuxiliar;
-        ArrayList<Contratacion> contratos = new ArrayList<Contratacion>();
 
         //creacion de facturas
 
@@ -56,13 +55,10 @@ public class Prueba {
         contratacionAuxiliar.agregarServicioAdicional(new BotonAntiPanico(1));
         contratacionAuxiliar.agregarServicioAdicional(new MovilDeAcompaniamiento(LocalTime.of(10, 30),
                                                                                  LocalTime.of(14, 30)));
-        sistema.generarFactura(new Date(122, 2, 3), personaFisica, contratacionAuxiliar);
+        personaFisica.agregarContrato(contratacionAuxiliar);
 
         contratacionAuxiliar = new MonitoreoVivienda(personaFisica.getDomicilios().get(1)); //sin adicionales
-
-        sistema.getFacturas()
-               .get(0)
-               .agregarContrato(contratacionAuxiliar);
+        personaFisica.agregarContrato(contratacionAuxiliar);
 
         //persona juridica
         personaJuridica.agregarDomicilio(new Domicilio("Almirante Brown", "1542", "7602"));
@@ -73,8 +69,8 @@ public class Prueba {
         contratacionAuxiliar = new MonitoreoComercio(personaJuridica.getDomicilios().get(0));
         contratacionAuxiliar.agregarServicioAdicional(new Camara(3));
         contratacionAuxiliar.setPromocion(platino);
-
-        contratos.add(contratacionAuxiliar);
+        
+        personaJuridica.agregarContrato(contratacionAuxiliar);
 
         contratacionAuxiliar = new MonitoreoVivienda(personaJuridica.getDomicilios().get(1));
         contratacionAuxiliar.agregarServicioAdicional(new MovilDeAcompaniamiento(LocalTime.of(9, 30),
@@ -83,25 +79,22 @@ public class Prueba {
 
         contratacionAuxiliar.setPromocion(platino);
 
-        contratos.add(contratacionAuxiliar); //promo platino
+        personaJuridica.agregarContrato(contratacionAuxiliar); //promo platino
 
         contratacionAuxiliar = new MonitoreoComercio(personaJuridica.getDomicilios().get(2));
         contratacionAuxiliar.agregarServicioAdicional(new BotonAntiPanico(1));
         contratacionAuxiliar.setPromocion(dorada);
 
-        contratos.add(contratacionAuxiliar);
+        personaJuridica.agregarContrato(contratacionAuxiliar);
 
         contratacionAuxiliar = new MonitoreoVivienda(personaJuridica.getDomicilios().get(3));
         contratacionAuxiliar.agregarServicioAdicional(new BotonAntiPanico(3));
         contratacionAuxiliar.agregarServicioAdicional(new Camara(1));
         contratacionAuxiliar.setPromocion(dorada);
 
-        contratos.add(contratacionAuxiliar);
-
-        sistema.generarFactura(new Date(), personaJuridica, contratos);
-
-
-        contratos.clear();
+        personaJuridica.agregarContrato(contratacionAuxiliar);
+        
+        // -------------
 
         personaFisica = new PersonaFisica("Pepito", "35214256");
         sistema.agregarCliente(personaFisica);
@@ -113,19 +106,19 @@ public class Prueba {
 
         contratacionAuxiliar = new MonitoreoComercio(personaFisica.getDomicilios().get(0));
         contratacionAuxiliar.setPromocion(platino);
-        contratos.add(contratacionAuxiliar);
+        personaFisica.agregarContrato(contratacionAuxiliar);
 
 
         contratacionAuxiliar = new MonitoreoVivienda(personaFisica.getDomicilios().get(1));
         contratacionAuxiliar.setPromocion(platino);
         contratacionAuxiliar.agregarServicioAdicional(new Camara(3));
-        contratos.add(contratacionAuxiliar);
+        personaFisica.agregarContrato(contratacionAuxiliar);
 
         contratacionAuxiliar = new MonitoreoVivienda(personaFisica.getDomicilios().get(2));
         contratacionAuxiliar.setPromocion(dorada);
         contratacionAuxiliar.agregarServicioAdicional(new Camara(1));
         contratacionAuxiliar.agregarServicioAdicional(new BotonAntiPanico(1));
-        contratos.add(contratacionAuxiliar);
+        personaFisica.agregarContrato(contratacionAuxiliar);
 
         contratacionAuxiliar = new MonitoreoComercio(personaFisica.getDomicilios().get(3));
         contratacionAuxiliar.setPromocion(dorada);
@@ -133,15 +126,12 @@ public class Prueba {
         contratacionAuxiliar.agregarServicioAdicional(new BotonAntiPanico(6));
         contratacionAuxiliar.agregarServicioAdicional(new MovilDeAcompaniamiento(LocalTime.of(9, 30),
                                                                                  LocalTime.of(13, 0)));
-        contratos.add(contratacionAuxiliar);
-
-
-        sistema.generarFactura(new Date(), personaFisica, contratos);
+        personaFisica.agregarContrato(contratacionAuxiliar);
 
         //pago de facturas
         MedioDePagoFactory mpf = new MedioDePagoFactory();
 
-        IFactura facturaAPagar = mpf.getMedioDePago("Efectivo", sistema.getFacturas().get(2));
+        IFactura facturaAPagar = mpf.getMedioDePago("Efectivo", sistema.getClientes().get(2).ultimaFactura());
 
         System.out.print("Factura a pagar :" + facturaAPagar.detalle());
 
@@ -153,7 +143,7 @@ public class Prueba {
         }
         
 
-        facturaAPagar = mpf.getMedioDePago("Tarjeta", sistema.getFacturas().get(1)); //apareceran 2 facturas, una pagada y otra no
+        facturaAPagar = mpf.getMedioDePago("Tarjeta", sistema.getClientes().get(1).ultimaFactura()); //apareceran 2 facturas, una pagada y otra no
 
         System.out.print("\n\nFactura a pagar :" + facturaAPagar.detalle());
 
@@ -170,9 +160,7 @@ public class Prueba {
 
 
         try { 
-            Factura f = (Factura) sistema.getFacturas()
-                                         .get(1)
-                                         .clone();
+            Factura f = (Factura) sistema.getClientes().get(1).ultimaFactura().clone();
             System.out.print("\n\tClonacion Exitosa");
 
         } catch (CloneNotSupportedException e) {
@@ -180,22 +168,12 @@ public class Prueba {
             
         }
         try {
-            Factura f = (Factura) sistema.getFacturas()
-                                         .get(0)
-                                         .clone();
+            Factura f = (Factura) sistema.getClientes().get(0).ultimaFactura().clone();
             System.out.print("\n\nClonacion Exitosa");
             System.out.print("\n\nPago de Factura clonada(en el reporte habran 2 facturas una de ellas pagada)");
             facturaAPagar = mpf.getMedioDePago("Cheque", f); //apareceran 2 facturas, una pagada y otra no
 
             System.out.print("\n\tFactura a pagar :" + facturaAPagar.detalle());
-
-            try {
-                facturaAPagar.pagarFactura(100000);
-                System.out.print(" Factura Pagada");
-            } catch (SaldoInsuficienteExeception e) {
-                System.out.print(" No se pudo pagar la factura, faltan : " + (e.getValor() - e.getImporte()));
-            }
-            sistema.agregarFactura(f);
             
         } catch (CloneNotSupportedException e) {
             System.out.print("\n" + e.getMessage());
