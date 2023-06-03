@@ -10,7 +10,7 @@ import negocio.excepciones.SaldoInsuficienteExeception;
  * Contiene las contrataciones realizadas por la persona e informacion
  * relevante para la facturacion.
  */
-public class Factura implements Cloneable, IFactura {
+public class Factura implements Cloneable, IFactura, Comparable<Factura> {
     private double importe_bruto, importe_neto, descuento = 0,importeDePago=0;
     private Date fecha;
     private boolean pagado;
@@ -29,7 +29,7 @@ public class Factura implements Cloneable, IFactura {
     /**
      * <b>pre:</b>
      * <ul>
-     * <li>La fecha y el cliento no son null.</li>
+     * <li>La fecha y el cliente no son null.</li>
      * <li>La lista de contratos esta inicializada (no es null).</li>
      * </ul>
      * 
@@ -60,7 +60,13 @@ public class Factura implements Cloneable, IFactura {
         this.cliente = cliente;
         this.contratos.add(contrato);
         this.calcularImporteBruto();
-        }
+    }
+    public Factura(Date fecha, Persona cliente){
+        this.fecha = fecha;
+        this.pagado = false;
+        this.cliente = cliente;
+        this.calcularImporteBruto();
+    }
 
     /**
      * Calcula el importe bruto de la factura en funci�n de la lista de contrataciones y los descuentos del cliente.
@@ -173,4 +179,8 @@ public class Factura implements Cloneable, IFactura {
         return detalle; 
     }
 
+    @Override
+    public int compareTo(Factura factura) {
+        return this.getFecha().compareTo(factura.getFecha());
+    }
 }

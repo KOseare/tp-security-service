@@ -9,7 +9,6 @@ import negocio.excepciones.SaldoInsuficienteExeception;
  */
 public class SistemaSeguridad {
     private ArrayList<Persona> clientes = new ArrayList<Persona>();
-    private ArrayList<Factura> facturas = new ArrayList<Factura>();
     private static SistemaSeguridad _instancia = null;
     
     private SistemaSeguridad () {}
@@ -25,82 +24,12 @@ public class SistemaSeguridad {
         clientes.add(cliente);
     }
 
-    public void agregarFactura(Factura factura){
-        facturas.add(factura);
-    }
-
     public void eliminarCliente(Persona cliente){
         clientes.remove(cliente);
     }
 
-    public void eliminarFactura(Factura factura){
-        facturas.remove(factura);
-    }
-
     public ArrayList<Persona> getClientes(){
         return clientes;
-    }
-
-    public ArrayList<Factura> getFacturas(){
-        return facturas;
-    }
-
-    /**
-     * Genera adecuadamente una factura.
-     * 
-     * <b>pre:</b>
-     * <ul>
-     * <li>Tanto la fecha, como el cliente y el contrato deben estar inicializados (no ser null).</li>
-     * </ul>
-     * 
-     * <b>post:</b>
-     * <ul>
-     * <li>Genera una factura y es agregada al sistema.</li>
-     * </ul>
-     * 
-     * @param fecha Fecha de creacion de la factura
-     * @param cliente Cliente asociado a la factura
-     * @param contratos Contratos asociados a la factura
-     */
-    public void generarFactura(Date fecha, Persona cliente, ArrayList<Contratacion> contratos){
-        assert fecha != null : "La fecha es null";
-        assert cliente != null : "El cliente es null";
-        assert contratos != null : "La lista de contratos es null";
-        
-        Factura nueva_factura = new Factura(fecha,cliente,contratos);
-        nueva_factura.calcularImporteBruto();
-        agregarFactura(nueva_factura);
-        
-        assert this.facturas.contains(nueva_factura) : "La factura no fue agregada al sistema";
-    }
-    
-    /**
-     * Genera adecuadamente una factura.
-     * 
-     * <b>pre:</b>
-     * <ul>
-     * <li>Tanto la fecha, como el cliente y el contrato deben estar inicializados (no ser null).</li>
-     * </ul>
-     * 
-     * <b>post:</b>
-     * <ul>
-     * <li>Genera una factura y es agregada al sistema.</li>
-     * </ul>
-     * 
-     * @param fecha Fecha de creacion de la factura
-     * @param cliente Cliente asociado a la factura
-     * @param contrato Contrato asociado a la factura
-     */
-    public void generarFactura(Date fecha, Persona cliente, Contratacion contrato){
-        assert fecha != null : "La fecha es null";
-        assert cliente != null : "El cliente es null";
-        assert contrato != null : "El contrato es null";
-        
-        Factura nueva_factura = new Factura(fecha,cliente,contrato);
-        nueva_factura.calcularImporteBruto();
-        agregarFactura(nueva_factura);
-        
-        assert this.facturas.contains(nueva_factura) : "La factura no fue agregada al sistema";
     }
 
     /**
@@ -110,8 +39,8 @@ public class SistemaSeguridad {
      */
     public String generarReporte(){
         String reporte="";
-        for(IFactura factura : this.facturas){
-            reporte += factura.detalle();
+        for(Persona cliente : this.clientes){
+            reporte += cliente.ultimaFactura().detalle();
         }
         return reporte;
     }
