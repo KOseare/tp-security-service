@@ -9,7 +9,7 @@ import negocio.excepciones.SaldoInsuficienteExeception;
  */
 public class SistemaSeguridad {
     private ArrayList<Persona> clientes = new ArrayList<Persona>();
-    private ArrayList<Factura> facturas = new ArrayList<Factura>();
+    private ArrayList<Factura> facturas = new ArrayList<Factura>();//ahora los abonados tienen facturas, es necesario el array en sistema?
     private static SistemaSeguridad _instancia = null;
     
     private SistemaSeguridad () {}

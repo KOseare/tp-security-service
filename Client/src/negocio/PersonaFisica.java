@@ -21,6 +21,7 @@ public class PersonaFisica extends Persona {
     public void pagarFactura(){
         }
     public void contratarServicio(){
+        
         }
     public void darBajaServicio(){
         }
