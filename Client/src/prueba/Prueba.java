@@ -4,6 +4,8 @@ import datos.PersistenciaXML;
 
 import datos.SistemaSeguridadDTO;
 
+import datos.UtilSerializacionSistema;
+
 import java.beans.XMLEncoder;
 
 import java.io.BufferedOutputStream;
@@ -203,7 +205,7 @@ public class Prueba {
         try
         {
             idao.abrirOutput("sistemaSeguridad.xml");
-            SistemaSeguridadDTO sistemadto = SistemaDTOFromSistema();
+            SistemaSeguridadDTO sistemadto = UtilSerializacionSistema.SistemaDTOFromSistema();
             idao.escribir(sistemadto);
             idao.cerrarOutput();
         } catch (Exception e)
@@ -219,7 +221,7 @@ public class Prueba {
         {
             idao.abrirInput("sistemaSeguridad.xml");
             SistemaSeguridadDTO sistemaSeguridadDTO = (SistemaSeguridadDTO) idao.leer();
-            sistemaFromSistemaSeguridadDTO(sistemaSeguridadDTO);
+            UtilSerializacionSistema.sistemaFromSistemaSeguridadDTO(sistemaSeguridadDTO);
             idao.cerrarInput();
             System.out.println("Sistema Recuperado?: ");
             System.out.print(SistemaSeguridad.getSistema().generarReporte());   
@@ -233,20 +235,6 @@ public class Prueba {
         
     }
 
-
-    public static SistemaSeguridadDTO SistemaDTOFromSistema() 
-    {
-        SistemaSeguridadDTO respuesta = new SistemaSeguridadDTO();
-        respuesta.setClientes(SistemaSeguridad.getSistema().getClientes());
-        respuesta.setServiciotecnico(SistemaSeguridad.getSistema().getServiciotecnico());
-        return respuesta;
-    }
-    
-    public static void sistemaFromSistemaSeguridadDTO(SistemaSeguridadDTO sistemaSeguridadDTO) 
-    {
-        SistemaSeguridad.getSistema().setClientes(sistemaSeguridadDTO.getClientes());
-        SistemaSeguridad.getSistema().setServiciotecnico(sistemaSeguridadDTO.getServiciotecnico());
-    }
 
 }
 
