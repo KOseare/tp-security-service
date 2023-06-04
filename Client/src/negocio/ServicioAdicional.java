@@ -20,6 +20,7 @@ public abstract class ServicioAdicional implements Cloneable {
      * 
      * @param cantidad La cantidad del servicio adicional.
      */
+
     public ServicioAdicional (int cantidad) {
         assert cantidad > 0 : "La cantidad debe ser mayor a cero.";
         

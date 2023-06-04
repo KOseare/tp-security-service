@@ -3,6 +3,18 @@ package negocio;
 public class Moroso implements States {
     private PersonaFisica personaFisica;
 
+
+    public Moroso() {
+    }
+
+    public void setPersonaFisica(PersonaFisica personaFisica) {
+        this.personaFisica = personaFisica;
+    }
+
+    public PersonaFisica getPersonaFisica() {
+        return personaFisica;
+    }
+    //
     public Moroso(PersonaFisica personaFisica) {
         this.personaFisica = personaFisica;
     }
@@ -28,7 +40,7 @@ public class Moroso implements States {
     @Override
     public void actualizarEstado() {
         //chequea si se pago la factura, pasa a con contratacion
-        if(personaFisica.getFacturas().size() > 2 && personaFisica.getFacturas().get(personaFisica.getFacturas().size()-2).isPagado())
-            personaFisica.setEstado(new ConContratacionesState(this.personaFisica));
+        //if(personaFisica.getFacturas().size() > 2 && personaFisica.getFacturas().get(personaFisica.getFacturas().size()-2).isPagado())
+        //    personaFisica.setEstado(new ConContratacionesState(this.personaFisica));
     }
 }

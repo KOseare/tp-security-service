@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_211" class="java.beans.XMLDecoder">
+ <object class="datos.SistemaSeguridadDTO" id="SistemaSeguridadDTO0">
+  <void property="clientes">
+   <void method="add">
+    <object class="negocio.PersonaFisica" id="PersonaFisica0">
+     <void property="dni">
+      <string>42415305</string>
+     </void>
+     <void property="domicilios">
+      <void method="add">
+       <object class="negocio.Domicilio">
+        <void property="calle">
+         <string>Corrientes</string>
+        </void>
+        <void property="codPostal">
+         <string>7600</string>
+        </void>
+        <void property="numero">
+         <string>3215</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="negocio.Domicilio">
+        <void property="calle">
+         <string>Moreno</string>
+        </void>
+        <void property="codPostal">
+         <string>7600</string>
+        </void>
+        <void property="numero">
+         <string>1215</string>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="estado">
+      <object class="negocio.SinContratacionState">
+       <void property="personaFisica">
+        <object idref="PersonaFisica0"/>
+       </void>
+      </object>
+     </void>
+     <void property="facturas">
+      <void method="add">
+       <object class="negocio.Factura">
+        <void property="cliente">
+         <object idref="PersonaFisica0"/>
+        </void>
+        <void property="fecha">
+         <object class="java.util.Date">
+          <long>1685852857489</long>
+         </object>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="nombre">
+      <string>Juan</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="negocio.PersonaJuridica" id="PersonaJuridica0">
+     <void property="dni">
+      <string>25416352</string>
+     </void>
+     <void property="domicilios">
+      <void method="add">
+       <object class="negocio.Domicilio">
+        <void property="calle">
+         <string>Entre Rios</string>
+        </void>
+        <void property="codPostal">
+         <string>7600</string>
+        </void>
+        <void property="numero">
+         <string>1215</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="negocio.Domicilio">
+        <void property="calle">
+         <string>Almirante Brown</string>
+        </void>
+        <void property="codPostal">
+         <string>7602</string>
+        </void>
+        <void property="numero">
+         <string>1542</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="negocio.Domicilio">
+        <void property="calle">
+         <string>Primera Junta</string>
+        </void>
+        <void property="codPostal">
+         <string>7602</string>
+        </void>
+        <void property="numero">
+         <string>1682</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="negocio.Domicilio">
+        <void property="calle">
+         <string>Rawson</string>
+        </void>
+        <void property="codPostal">
+         <string>7602</string>
+        </void>
+        <void property="numero">
+         <string>942</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="negocio.Domicilio">
+        <void property="calle">
+         <string>Ortis</string>
+        </void>
+        <void property="codPostal">
+         <string>7602</string>
+        </void>
+        <void property="numero">
+         <string>9652</string>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="facturas">
+      <void method="add">
+       <object class="negocio.Factura">
+        <void property="cliente">
+         <object idref="PersonaJuridica0"/>
+        </void>
+        <void property="descuento">
+         <double>32400.0</double>
+        </void>
+        <void property="fecha">
+         <object class="java.util.Date">
+          <long>1685852857489</long>
+         </object>
+        </void>
+        <void property="importeDePago">
+         <double>100000.0</double>
+        </void>
+        <void property="pagado">
+         <boolean>true</boolean>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="nombre">
+      <string>Sancho</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="negocio.PersonaFisica" id="PersonaFisica1">
+     <void property="dni">
+      <string>35214256</string>
+     </void>
+     <void property="domicilios">
+      <void method="add">
+       <object class="negocio.Domicilio">
+        <void property="calle">
+         <string>Belgrano</string>
+        </void>
+        <void property="codPostal">
+         <string>7602</string>
+        </void>
+        <void property="numero">
+         <string>1512</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="negocio.Domicilio">
+        <void property="calle">
+         <string>Almirante Brown</string>
+        </void>
+        <void property="codPostal">
+         <string>7602</string>
+        </void>
+        <void property="numero">
+         <string>1432</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="negocio.Domicilio">
+        <void property="calle">
+         <string>Moreno</string>
+        </void>
+        <void property="codPostal">
+         <string>7602</string>
+        </void>
+        <void property="numero">
+         <string>8612</string>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="negocio.Domicilio">
+        <void property="calle">
+         <string>Entre Rios</string>
+        </void>
+        <void property="codPostal">
+         <string>7602</string>
+        </void>
+        <void property="numero">
+         <string>8453</string>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="estado">
+      <object class="negocio.SinContratacionState">
+       <void property="personaFisica">
+        <object idref="PersonaFisica1"/>
+       </void>
+      </object>
+     </void>
+     <void property="facturas">
+      <void method="add">
+       <object class="negocio.Factura">
+        <void property="cliente">
+         <object idref="PersonaFisica1"/>
+        </void>
+        <void property="descuento">
+         <double>27150.0</double>
+        </void>
+        <void property="fecha">
+         <object class="java.util.Date">
+          <long>1685852857489</long>
+         </object>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="nombre">
+      <string>Pepito</string>
+     </void>
+    </object>
+   </void>
+  </void>
+ </object>
+</java>

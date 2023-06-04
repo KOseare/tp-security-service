@@ -15,6 +15,43 @@ public abstract class Contratacion implements Cloneable {
     private ArrayList<ServicioAdicional> serviciosAdicionales = new ArrayList<ServicioAdicional>();
     private static int lastId = 0;
 
+
+    public void setServiciosAdicionales(ArrayList<ServicioAdicional> serviciosAdicionales) {
+        this.serviciosAdicionales = serviciosAdicionales;
+    }
+
+    public static void setLastId(int lastId) {
+        Contratacion.lastId = lastId;
+    }
+
+    public static int getLastId() {
+        return lastId;
+    }
+
+    public void setPrecioDelServicio(double precioDelServicio) {
+        this.precioDelServicio = precioDelServicio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public double getPrecio1() {
+        return precio;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setDomicilio(Domicilio domicilio) {
+        this.domicilio = domicilio;
+    }
+
+    public Contratacion () {
+    }
+    //
+
     /**
      * @aggregation shared
      */

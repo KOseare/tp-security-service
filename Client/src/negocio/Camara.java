@@ -4,6 +4,7 @@ package negocio;
  * Clase que representa un servicio adicional de camara para una contratacion de monitoreo.
  */
 public class Camara extends ServicioAdicional {
+    
 
     public Camara(int cantidad) {
         super(cantidad);

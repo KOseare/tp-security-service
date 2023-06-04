@@ -3,6 +3,19 @@ package negocio;
 public class ConContratacionesState implements States {
     private PersonaFisica personaFisica;
 
+
+    public ConContratacionesState() {
+
+    }
+
+    public void setPersonaFisica(PersonaFisica personaFisica) {
+        this.personaFisica = personaFisica;
+    }
+
+    public PersonaFisica getPersonaFisica() {
+        return personaFisica;
+    }
+    //
     public ConContratacionesState(PersonaFisica personaFisica) {
         this.personaFisica = personaFisica;
     }
@@ -36,7 +49,7 @@ public class ConContratacionesState implements States {
     public void actualizarEstado() {
         //chequea si se pago 2 veces consecutivas y cambia o no a moroso
         //tirar excepcion?
-        if(personaFisica.getFacturas().size() > 2 && !personaFisica.getFacturas().get(personaFisica.getFacturas().size()-2).isPagado())
-            personaFisica.setEstado(new Moroso(this.personaFisica));
+        //if(personaFisica.getFacturas().size() > 2 && !personaFisica.getFacturas().get(personaFisica.getFacturas().size()-2).isPagado())
+         //   personaFisica.setEstado(new Moroso(this.personaFisica));
     }
 }

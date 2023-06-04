@@ -3,6 +3,17 @@ package negocio;
 public class SinContratacionState implements States {
     private PersonaFisica personaFisica;
 
+    public SinContratacionState() {
+
+    }
+
+    public void setPersonaFisica(PersonaFisica personaFisica) {
+        this.personaFisica = personaFisica;
+    }
+
+    public PersonaFisica getPersonaFisica() {
+        return personaFisica;
+    }
 
     public SinContratacionState(PersonaFisica personaFisica) {
         this.personaFisica = personaFisica;
@@ -11,7 +22,7 @@ public class SinContratacionState implements States {
     @Override
     public void pagarFactura() {
         // no puede pagar factura exeption?
-        
+
     }
 
     @Override
@@ -29,6 +40,6 @@ public class SinContratacionState implements States {
     @Override
     public void actualizarEstado() {
         // no hace nada
-        
+
     }
 }
