@@ -39,7 +39,7 @@ public class Prueba {
     }
 
     public static void main(String[] args) {
-        /*SistemaSeguridad sistema = SistemaSeguridad.getSistema();
+        SistemaSeguridad sistema = SistemaSeguridad.getSistema();
 
         Promocion dorada = new Dorada();
         Promocion platino = new Platino();
@@ -195,10 +195,10 @@ public class Prueba {
         System.out.print("\n\n\nReporte de Facturas: \n");
         System.out.print(sistema.generarReporte());
         
-        */
+        
         
 
-        /*
+        
         PersistenciaXML idao = new PersistenciaXML();
         try
         {
@@ -210,11 +210,11 @@ public class Prueba {
         {
             System.out.println("Exception " + e.getMessage());
         }
-        */
         
         
-        //no guarda las contrataciones
-        PersistenciaXML idao = new PersistenciaXML();
+        
+        //no guarda las horas de movil de acompañamiento
+        //PersistenciaXML idao = new PersistenciaXML();
         try
         {
             idao.abrirInput("sistemaSeguridad.xml");
@@ -222,18 +222,12 @@ public class Prueba {
             sistemaFromSistemaSeguridadDTO(sistemaSeguridadDTO);
             idao.cerrarInput();
             System.out.println("Sistema Recuperado?: ");
-            System.out.print(SistemaSeguridad.getSistema().generarReporte());
+            System.out.print(SistemaSeguridad.getSistema().generarReporte());   
         } catch (Exception e)
         {
             // TODO Auto-generated catch block
             System.out.println("Exception " + e.getMessage());
         }
-        
-        
-        
-        
-        
-        
         
         
         
@@ -248,10 +242,10 @@ public class Prueba {
         return respuesta;
     }
     
-    public static void sistemaFromSistemaSeguridadDTO(SistemaSeguridadDTO clinicaDTO) 
+    public static void sistemaFromSistemaSeguridadDTO(SistemaSeguridadDTO sistemaSeguridadDTO) 
     {
-        SistemaSeguridad.getSistema().setClientes(clinicaDTO.getClientes());
-        SistemaSeguridad.getSistema().setServiciotecnico(clinicaDTO.getServiciotecnico());
+        SistemaSeguridad.getSistema().setClientes(sistemaSeguridadDTO.getClientes());
+        SistemaSeguridad.getSistema().setServiciotecnico(sistemaSeguridadDTO.getServiciotecnico());
     }
 
 }

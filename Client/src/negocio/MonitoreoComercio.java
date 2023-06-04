@@ -1,11 +1,18 @@
 package negocio;
 
+import java.util.ArrayList;
+
 /**
  * Clase que representa la contratacion de monitoreo para un comercio.
  * Hereda de la clase abstracta Contratacion.
  */
 public class MonitoreoComercio extends Contratacion {
     
+    public MonitoreoComercio(){
+    }
+    
+    
+    //
     /**
      * Establece el precio de la contratacion.
      * 

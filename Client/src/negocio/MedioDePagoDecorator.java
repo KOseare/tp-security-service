@@ -33,10 +33,10 @@ public abstract class MedioDePagoDecorator implements IFactura {
      * @throws SaldoInsuficienteExeception
      */
     public void pagarFactura(double importe) throws SaldoInsuficienteExeception{
-        if(importe > this.getImporteNeto()){
+        if(importe > this.getImporte_neto()){
             this.factura.pagarFactura(importe);
         }else{
-            throw new SaldoInsuficienteExeception(this.getImporteNeto(),importe);
+            throw new SaldoInsuficienteExeception(this.getImporte_neto(),importe);
         }
     }
     

@@ -5,7 +5,9 @@ package negocio;
  */
 public class Camara extends ServicioAdicional {
     
-
+    public Camara(){
+        
+    }
     public Camara(int cantidad) {
         super(cantidad);
     }

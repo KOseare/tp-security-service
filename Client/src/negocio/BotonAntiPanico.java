@@ -5,7 +5,8 @@ package negocio;
  */
 public class BotonAntiPanico extends ServicioAdicional {
 
-
+    public BotonAntiPanico() {
+    }
 
     public BotonAntiPanico(int cantidad) {
         super(cantidad);

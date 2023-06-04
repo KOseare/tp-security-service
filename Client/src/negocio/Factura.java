@@ -20,12 +20,36 @@ public class Factura implements Cloneable, IFactura, Comparable<Factura> {
 
     }
 
+    public void setContratos(ArrayList<Contratacion> contratos) {
+        this.contratos = contratos;
+    }
+
+    public ArrayList<Contratacion> getContratos() {
+        return contratos;
+    }
+
     public void setImporte_bruto(double importe_bruto) {
         this.importe_bruto = importe_bruto;
     }
 
+    public double getImporte_bruto() {
+        return importe_bruto;
+    }
+
     public void setImporte_neto(double importe_neto) {
         this.importe_neto = importe_neto;
+    }
+
+    public double getImporte_neto() {
+        return importe_neto;
+    }
+
+    public void setDescuento(double descuento) {
+        this.descuento = descuento;
+    }
+
+    public double getDescuento() {
+        return descuento;
     }
 
     public void setImporteDePago(double importeDePago) {
@@ -36,8 +60,20 @@ public class Factura implements Cloneable, IFactura, Comparable<Factura> {
         return importeDePago;
     }
 
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
     public void setPagado(boolean pagado) {
         this.pagado = pagado;
+    }
+
+    public boolean isPagado() {
+        return pagado;
     }
 
     public void setCliente(Persona cliente) {
@@ -47,14 +83,8 @@ public class Factura implements Cloneable, IFactura, Comparable<Factura> {
     public Persona getCliente() {
         return cliente;
     }
-
-    public void setContratos(ArrayList<Contratacion> contratos) {
-        this.contratos = contratos;
-    }
-
-    public ArrayList<Contratacion> getContratos() {
-        return contratos;
-    }
+    
+    
     //
 
     /**
@@ -141,9 +171,8 @@ public class Factura implements Cloneable, IFactura, Comparable<Factura> {
         this.importe_neto = importe - descuento; /* El importe neto se calcula según el decorator de tipo de pago */
     }
 
-    public double getImporteBruto() {
-        return importe_bruto;
-    }
+
+
 
     public void agregarContrato(Contratacion contrato) {
         this.contratos.add(contrato);
@@ -172,30 +201,6 @@ public class Factura implements Cloneable, IFactura, Comparable<Factura> {
         this.importeDePago = importeDePago;
     }
 
-    public double getDescuento() {
-        return this.descuento;
-    }
-
-    public double getImporteNeto() {
-        return this.importe_neto;
-    }
-
-    public void setDescuento(double descuento) {
-        this.descuento = descuento;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public boolean isPagado() {
-        return pagado;
-    }
-
     @Override
     public Object clone() throws CloneNotSupportedException {
         Factura facturaClonada = null;
@@ -222,8 +227,8 @@ public class Factura implements Cloneable, IFactura, Comparable<Factura> {
         for (Contratacion contrato : contratos)
             detalle += contrato.toSting();
         detalle +=
-            "Importe Bruto: " + getImporteBruto() + " Descuentos: " + this.descuento + " Importe Neto: " +
-            this.getImporteNeto() + ", Pagado: " + this.isPagado() + "\n\n";
+            "Importe Bruto: " + this.importe_bruto + " Descuentos: " + this.descuento + " Importe Neto: " +
+            this.importe_neto + ", Pagado: " + this.isPagado() + "\n\n";
 
         return detalle;
     }
@@ -232,4 +237,6 @@ public class Factura implements Cloneable, IFactura, Comparable<Factura> {
     public int compareTo(Factura factura) {
         return this.getFecha().compareTo(factura.getFecha());
     }
+
+
 }
