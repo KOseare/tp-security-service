@@ -6,12 +6,9 @@ import java.util.ArrayList;
 
 import java.util.Date;
 
-import java.util.GregorianCalendar;
-
 import negocio.*; //importa todas las clases del paquete
 
 import negocio.Dorada;
-import negocio.Efectivo;
 import negocio.Factura;
 import negocio.IFactura;
 import negocio.Persona;
@@ -20,6 +17,7 @@ import negocio.Promocion;
 import negocio.SistemaSeguridad;
 
 import negocio.excepciones.SaldoInsuficienteExeception;
+import presentacion.VistaSistema;
 
 public class Prueba {
     public Prueba() {
@@ -27,6 +25,9 @@ public class Prueba {
     }
 
     public static void main(String[] args) {
+
+        VistaSistema vista = new VistaSistema();
+
         SistemaSeguridad sistema = SistemaSeguridad.getSistema();
 
         Promocion dorada = new Dorada();
