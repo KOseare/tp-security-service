@@ -1,5 +1,17 @@
 package prueba;
 
+import datos.PersistenciaXML;
+
+import datos.SistemaSeguridadDTO;
+
+import datos.UtilSerializacionSistema;
+
+import java.beans.XMLEncoder;
+
+import java.io.BufferedOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
 import java.time.LocalTime;
 
 import java.util.ArrayList;
@@ -7,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import java.util.GregorianCalendar;
+
+import javax.rmi.CORBA.Util;
 
 import negocio.*; //importa todas las clases del paquete
 
@@ -182,9 +196,47 @@ public class Prueba {
 
         System.out.print("\n\n\nReporte de Facturas: \n");
         System.out.print(sistema.generarReporte());
+        
+        
+        
+
+        
+        PersistenciaXML idao = new PersistenciaXML();
+        try
+        {
+            idao.abrirOutput("sistemaSeguridad.xml");
+            SistemaSeguridadDTO sistemadto = UtilSerializacionSistema.SistemaDTOFromSistema();
+            idao.escribir(sistemadto);
+            idao.cerrarOutput();
+        } catch (Exception e)
+        {
+            System.out.println("Exception " + e.getMessage());
+        }
+        
+        
+        
+        //no guarda las horas de movil de acompañamiento
+        //PersistenciaXML idao = new PersistenciaXML();
+        try
+        {
+            idao.abrirInput("sistemaSeguridad.xml");
+            SistemaSeguridadDTO sistemaSeguridadDTO = (SistemaSeguridadDTO) idao.leer();
+            UtilSerializacionSistema.sistemaFromSistemaSeguridadDTO(sistemaSeguridadDTO);
+            idao.cerrarInput();
+            System.out.println("Sistema Recuperado?: ");
+            System.out.print(SistemaSeguridad.getSistema().generarReporte());   
+        } catch (Exception e)
+        {
+            // TODO Auto-generated catch block
+            System.out.println("Exception " + e.getMessage());
+        }
+        
+        
+        
     }
 
 
 }
+
 
 

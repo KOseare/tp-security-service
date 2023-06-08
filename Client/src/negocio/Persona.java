@@ -17,12 +17,35 @@ public abstract class Persona implements Cloneable {
      * @aggregation composite
      */
     private ArrayList<Domicilio> domicilios = new ArrayList<Domicilio>();
+    private ArrayList<Contratacion> contrataciones = new ArrayList<Contratacion>();
 
     /**
      * @aggregation composite
      */
     private TreeSet<Factura> facturas = new TreeSet<Factura>();
+    
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public void setDomicilios(ArrayList<Domicilio> domicilios) {
+        this.domicilios = domicilios;
+    }
+
+    public void setContrataciones(ArrayList<Contratacion> contrataciones) {
+        this.contrataciones = contrataciones;
+    }
+
+    public void setFacturas(TreeSet<Factura> facturas) {
+        this.facturas = facturas;
+    }
+    public Persona() {
+    }
+    //
 
     public Persona(String nombre, String dni) {
         this.nombre = nombre;
@@ -55,6 +78,9 @@ public abstract class Persona implements Cloneable {
         this.domicilios.add(domicilio);
     }
 
+    public ArrayList<Contratacion> getContrataciones() {
+        return contrataciones;
+    }
 
     public abstract ArrayList<Double> recibeDescuento(ArrayList<Contratacion> contratos);
 
@@ -71,7 +97,7 @@ public abstract class Persona implements Cloneable {
         return personaClonada;
 
     }
-    
+
     public void facturacionMensual () {
         // TO DO: Implementar
         // Debe generar una copia de la ultima factura, pasarla al siguiente mes

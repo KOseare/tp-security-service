@@ -10,7 +10,7 @@ import negocio.excepciones.SaldoInsuficienteExeception;
  */
 public interface IFactura{
 
-    double getImporteNeto();
+    double getImporte_neto();
     void pagarFactura(double importe)throws SaldoInsuficienteExeception;
     public boolean isPagado();
     public String detalle();
