@@ -17,7 +17,6 @@ public abstract class Persona implements Cloneable {
      * @aggregation composite
      */
     private ArrayList<Domicilio> domicilios = new ArrayList<Domicilio>();
-    private ArrayList<Contratacion> contrataciones = new ArrayList<Contratacion>();
 
     /**
      * @aggregation composite
@@ -34,10 +33,6 @@ public abstract class Persona implements Cloneable {
 
     public void setDomicilios(ArrayList<Domicilio> domicilios) {
         this.domicilios = domicilios;
-    }
-
-    public void setContrataciones(ArrayList<Contratacion> contrataciones) {
-        this.contrataciones = contrataciones;
     }
 
     public void setFacturas(TreeSet<Factura> facturas) {
@@ -79,7 +74,7 @@ public abstract class Persona implements Cloneable {
     }
 
     public ArrayList<Contratacion> getContrataciones() {
-        return contrataciones;
+        return this.ultimaFactura().getContratos();
     }
 
     public abstract ArrayList<Double> recibeDescuento(ArrayList<Contratacion> contratos);

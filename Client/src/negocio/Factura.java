@@ -14,12 +14,64 @@ public class Factura implements Cloneable, IFactura, Comparable<Factura> {
     private double importe_bruto, importe_neto, descuento = 0, importeDePago = 0;
     private Date fecha;
     private boolean pagado;
+    /**
+     * @aggregation shared
+     */
+    private Persona cliente;
 
+    /**
+     * @aggregation composite
+     */
+    private ArrayList<Contratacion> contratos = new ArrayList<Contratacion>();
 
+    /**
+     * <b>pre:</b>
+     * <ul>
+     * <li>La fecha y el cliente no son null.</li>
+     * <li>La lista de contratos esta inicializada (no es null).</li>
+     * </ul>
+     *
+     * <b>post:</b>
+     * <ul>
+     * <li>Se crea una nueva factura con los datos proporcionados.</li>
+     * <li>Se inicializa la factura como "no pagada".</li>
+     * </ul>
+     *
+     * @param fecha La fecha de emisi�n de la factura
+     * @param cliente El cliente al que pertenece la factura
+     * @param contratos La lista de contrataciones realizadas por la persona
+     */
+    public Factura(Date fecha, Persona cliente, ArrayList<Contratacion> contratos) {
+        assert fecha != null : "La fecha es nula";
+        assert cliente != null : "El cliente es nulo";
+        assert contratos != null : "La lista de contrataciones es nula";
+
+        this.fecha = fecha;
+        this.pagado = false;
+        this.cliente = cliente;
+        this.contratos = contratos;
+        this.calcularImporteBruto();
+    }
+
+    public Factura(Date fecha, Persona cliente, Contratacion contrato) {
+        this.fecha = fecha;
+        this.pagado = false;
+        this.cliente = cliente;
+        this.contratos.add(contrato);
+        this.calcularImporteBruto();
+    }
+
+    public Factura(Date fecha, Persona cliente) {
+        this.fecha = fecha;
+        this.pagado = false;
+        this.cliente = cliente;
+        this.calcularImporteBruto();
+    }
+    
     public Factura() {
 
     }
-
+    
     public void setContratos(ArrayList<Contratacion> contratos) {
         this.contratos = contratos;
     }
@@ -82,63 +134,6 @@ public class Factura implements Cloneable, IFactura, Comparable<Factura> {
 
     public Persona getCliente() {
         return cliente;
-    }
-    
-    
-    //
-
-    /**
-     * @aggregation shared
-     */
-    private Persona cliente;
-
-    /**
-     * @aggregation composite
-     */
-    private ArrayList<Contratacion> contratos = new ArrayList<Contratacion>();
-
-    /**
-     * <b>pre:</b>
-     * <ul>
-     * <li>La fecha y el cliente no son null.</li>
-     * <li>La lista de contratos esta inicializada (no es null).</li>
-     * </ul>
-     *
-     * <b>post:</b>
-     * <ul>
-     * <li>Se crea una nueva factura con los datos proporcionados.</li>
-     * <li>Se inicializa la factura como "no pagada".</li>
-     * </ul>
-     *
-     * @param fecha La fecha de emisi�n de la factura
-     * @param cliente El cliente al que pertenece la factura
-     * @param contratos La lista de contrataciones realizadas por la persona
-     */
-    public Factura(Date fecha, Persona cliente, ArrayList<Contratacion> contratos) {
-        assert fecha != null : "La fecha es nula";
-        assert cliente != null : "El cliente es nulo";
-        assert contratos != null : "La lista de contrataciones es nula";
-
-        this.fecha = fecha;
-        this.pagado = false;
-        this.cliente = cliente;
-        this.contratos = contratos;
-        this.calcularImporteBruto();
-    }
-
-    public Factura(Date fecha, Persona cliente, Contratacion contrato) {
-        this.fecha = fecha;
-        this.pagado = false;
-        this.cliente = cliente;
-        this.contratos.add(contrato);
-        this.calcularImporteBruto();
-    }
-
-    public Factura(Date fecha, Persona cliente) {
-        this.fecha = fecha;
-        this.pagado = false;
-        this.cliente = cliente;
-        this.calcularImporteBruto();
     }
 
     /**
