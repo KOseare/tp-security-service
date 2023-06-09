@@ -26,7 +26,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="menuAbonados" max="32767" attributes="0"/>
+                  <Component id="comboAbonados" max="32767" attributes="0"/>
                   <Component id="zonaRespuesta" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="zonaPrincipal" min="-2" max="-2" attributes="0"/>
@@ -41,7 +41,7 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="menuAbonados" min="-2" max="-2" attributes="0"/>
+              <Component id="comboAbonados" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="zonaBotones" max="32767" attributes="0"/>
@@ -61,40 +61,21 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="panelFacturas" min="-2" pref="420" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="413" max="-2" attributes="0"/>
+                  <Component id="panelFacturas" min="-2" pref="424" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="panelTecnicos" min="-2" pref="413" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <Component id="panelFacturas" min="-2" pref="450" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
-              <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+              <Component id="panelTecnicos" pref="450" max="32767" attributes="0"/>
+              <Component id="panelFacturas" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JScrollPane" name="panelFacturas">
-          <AuxValues>
-            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-          </AuxValues>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-          <SubComponents>
-            <Component class="javax.swing.JTextArea" name="facturasHistoricas">
-              <Properties>
-                <Property name="editable" type="boolean" value="false"/>
-                <Property name="columns" type="int" value="20"/>
-                <Property name="rows" type="int" value="5"/>
-              </Properties>
-            </Component>
-          </SubComponents>
-        </Container>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+        <Container class="javax.swing.JScrollPane" name="panelTecnicos">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
@@ -107,6 +88,32 @@
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
               </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JScrollPane" name="panelFacturas">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JList" name="listaFacturas">
+              <Properties>
+                <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
+                  <StringArray count="5">
+                    <StringItem index="0" value="Item 1"/>
+                    <StringItem index="1" value="Item 2"/>
+                    <StringItem index="2" value="Item 3"/>
+                    <StringItem index="3" value="Item 4"/>
+                    <StringItem index="4" value="Item 5"/>
+                  </StringArray>
+                </Property>
+                <Property name="selectionMode" type="int" value="0"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -124,12 +131,12 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="botonFactura" max="32767" attributes="0"/>
               <Component id="botonContratación" alignment="0" pref="113" max="32767" attributes="0"/>
-              <Component id="botonAltaTecnico" alignment="0" max="32767" attributes="0"/>
-              <Component id="botonAltaAbonado" alignment="0" max="32767" attributes="0"/>
-              <Component id="botonAltaFactura" alignment="0" max="32767" attributes="0"/>
-              <Component id="botonActualizarMes" alignment="0" max="32767" attributes="0"/>
               <Component id="botonBajaContratación" alignment="0" max="32767" attributes="0"/>
               <Component id="botonSolicitarTecnico" alignment="0" max="32767" attributes="0"/>
+              <Component id="botonActualizarMes" alignment="0" max="32767" attributes="0"/>
+              <Component id="botonNuevaFactura" alignment="0" max="32767" attributes="0"/>
+              <Component id="botonNuevoAbonado" alignment="0" max="32767" attributes="0"/>
+              <Component id="botonAltaTecnico" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -142,14 +149,14 @@
                   <Component id="botonContratación" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Component id="botonSolicitarTecnico" min="-2" pref="40" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="botonAltaTecnico" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                  <Component id="botonAltaAbonado" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="botonNuevoAbonado" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                  <Component id="botonAltaFactura" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="botonNuevaFactura" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="botonActualizarMes" min="-2" pref="39" max="-2" attributes="0"/>
+                  <Component id="botonActualizarMes" min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -178,32 +185,44 @@
             <Property name="actionCommand" type="java.lang.String" value=""/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="botonAltaTecnico">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Alta T&#xe9;cnico"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="botonAltaAbonado">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Alta Abonado"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="botonAltaFactura">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Alta Factura"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="botonActualizarMes">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Actualizar Mes"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="botonBajaContrataci&#xf3;n">
           <Properties>
             <Property name="text" type="java.lang.String" value="Baja Contrataci&#xf3;n"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonBajaContrataci&#xf3;nMouseClicked"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="botonAltaTecnico">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Alta T&#xe9;cnico"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonAltaTecnicoMouseClicked"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="botonNuevoAbonado">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nuevo Abonado"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonNuevoAbonadoMouseClicked"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="botonNuevaFactura">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nueva Factura"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonNuevaFacturaMouseClicked"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="botonActualizarMes">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Actualizar Mes"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonActualizarMesMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>
@@ -241,7 +260,7 @@
         </Container>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JComboBox" name="menuAbonados">
+    <Component class="javax.swing.JComboBox" name="comboAbonados">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
