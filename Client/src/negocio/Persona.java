@@ -2,6 +2,7 @@ package negocio;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.TreeSet;
 
 /**
  * Clase abstracta que representa a una persona.
@@ -17,10 +18,35 @@ public abstract class Persona implements Cloneable {
      */
     private ArrayList<Domicilio> domicilios = new ArrayList<Domicilio>();
 
+    /**
+     * @aggregation composite
+     */
+    private TreeSet<Factura> facturas = new TreeSet<Factura>();
+    
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public void setDomicilios(ArrayList<Domicilio> domicilios) {
+        this.domicilios = domicilios;
+    }
+
+    public void setFacturas(TreeSet<Factura> facturas) {
+        this.facturas = facturas;
+    }
+    public Persona() {
+    }
+    //
 
     public Persona(String nombre, String dni) {
         this.nombre = nombre;
         this.dni = dni;
+        Factura facturaInicial = new Factura(new Date(), this);
+        facturas.add(facturaInicial);
     }
 
     public String getNombre() {
@@ -31,6 +57,14 @@ public abstract class Persona implements Cloneable {
         return dni;
     }
 
+    public TreeSet<Factura> getFacturas() {
+        return facturas;
+    }
+    
+    public Factura ultimaFactura() {
+        return this.facturas.last();
+    }
+
     public ArrayList<Domicilio> getDomicilios() {
         return domicilios;
     }
@@ -39,6 +73,9 @@ public abstract class Persona implements Cloneable {
         this.domicilios.add(domicilio);
     }
 
+    public ArrayList<Contratacion> getContrataciones() {
+        return this.ultimaFactura().getContratos();
+    }
 
     public abstract ArrayList<Double> recibeDescuento(ArrayList<Contratacion> contratos);
 
@@ -54,6 +91,16 @@ public abstract class Persona implements Cloneable {
         
         return personaClonada;
 
+    }
+
+    public void facturacionMensual () {
+        // TO DO: Implementar
+        // Debe generar una copia de la ultima factura, pasarla al siguiente mes
+        // y agregarla como ultima (factura actual)
+    }
+    
+    public void agregarContrato(Contratacion contrato){
+        this.ultimaFactura().agregarContrato(contrato);
     }
 
     public String toString() {

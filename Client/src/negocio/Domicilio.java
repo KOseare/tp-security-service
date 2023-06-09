@@ -8,6 +8,34 @@ public class Domicilio implements Cloneable{
     private String numero;
     private String codPostal;
 
+
+    public void setCalle(String calle) {
+        this.calle = calle;
+    }
+
+    public String getCalle() {
+        return calle;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setCodPostal(String codPostal) {
+        this.codPostal = codPostal;
+    }
+
+    public String getCodPostal() {
+        return codPostal;
+    }
+    public Domicilio() {
+    }
+//
+
     public Domicilio(String calle, String numero, String codPostal) {
         this.calle = calle;
         this.numero = numero;

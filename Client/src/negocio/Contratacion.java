@@ -18,11 +18,52 @@ public abstract class Contratacion implements Cloneable {
     /**
      * @aggregation shared
      */
-    protected Promocion promo=null;
-    protected double precioDelServicio,precioPromo=0;
+    protected Promocion promo = null;
+    protected double precioDelServicio, precioPromo = 0;
     protected double precio;
     protected int id;
     private Domicilio domicilio;
+
+
+    public void setServiciosAdicionales(ArrayList<ServicioAdicional> serviciosAdicionales) {
+        this.serviciosAdicionales = serviciosAdicionales;
+    }
+
+    public static void setLastId(int lastId) {
+        Contratacion.lastId = lastId;
+    }
+
+    public static int getLastId() {
+        return lastId;
+    }
+
+    public void setPrecioDelServicio(double precioDelServicio) {
+        this.precioDelServicio = precioDelServicio;
+    }
+
+    public double getPrecioDelServicio() {
+        return precioDelServicio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setDomicilio(Domicilio domicilio) {
+        this.domicilio = domicilio;
+    }
+
+    public Contratacion() {
+    }
+    //
 
     /**
      * <b>pre:</b>
@@ -30,26 +71,22 @@ public abstract class Contratacion implements Cloneable {
      * <li>El domicilio deb estar instanciado (no es null).</li>
      * <li>El domicilio no debe estar incluido en otra contratacion.</li>
      * </ul>
-     * 
+     *
      * <b>post:</b>
      * <ul>
      * <li>Se crea una nueva contratacion asociada a un domicilio.</li>
      * <li>La contratacion obtiene un id unico generado automaticamente.</li>
      * </ul>
-     * 
+     *
      * @param domicilio Docimilio asociado a la contratacion de monitoreo.
      */
-    public Contratacion (Domicilio domicilio) {
+    public Contratacion(Domicilio domicilio) {
         this.id = ++Contratacion.lastId;
         this.domicilio = domicilio;
     }
-    
-    
-    public abstract double calculaPromo (Promocion promocion);
 
-    public double getPrecio() {
-        return this.precioDelServicio;
-    }
+
+    public abstract double calculaPromo(Promocion promocion);
 
 
     /**
@@ -62,7 +99,7 @@ public abstract class Contratacion implements Cloneable {
     /**
      * @return la suma total de los precios de los servicios adicionales.
      */
-    public double obtenerTotalDeServiciosAdicionales () {
+    public double obtenerTotalDeServiciosAdicionales() {
         double total = 0;
         for (ServicioAdicional servicio : this.serviciosAdicionales) {
             total += servicio.obtenerPrecio();
@@ -73,7 +110,7 @@ public abstract class Contratacion implements Cloneable {
     public int getId() {
         return id;
     }
-    
+
     public ArrayList<ServicioAdicional> getServiciosAdicionales() {
         return serviciosAdicionales;
     }
@@ -93,38 +130,39 @@ public abstract class Contratacion implements Cloneable {
 
     /**
      * Agrega a la contratacion un nuevo servicio adicional.
-     * 
+     *
      * <b>pre:</b>
      * <ul>
      * <li>El servicio debe estar instanciado (no es null).</li>
      * </ul>
-     * 
+     *
      * <b>post:</b>
      * <ul>
      * <li>Se agrega un servicio mas a la lista de servicios de la contratacion.</li>
      * </ul>
-     * 
+     *
      * @param servicio Servicio adicional que se le quiera agregar a la contratacion
      */
-    public void agregarServicioAdicional (ServicioAdicional servicio) {
+    public void agregarServicioAdicional(ServicioAdicional servicio) {
         serviciosAdicionales.add(servicio);
     }
+
     /**
      * Agrega a la contratacion una promocion.
-     * 
+     *
      * <b>pre:</b>
      * <ul>
      * <li>La promocion debe estar instanciada (no es null).</li>
      * </ul>
-     * 
+     *
      * <b>post:</b>
      * <ul>
      * <li>Se agrega una Promocion al servicio.</li>
      * </ul>
-     * 
+     *
      * @param promo Promocion que se le quiera agregar a la contratacion
      */
-    public void setPromocion(Promocion promo){
+    public void setPromocion(Promocion promo) {
         this.promo = promo;
         this.precioPromo = this.calculaPromo(this.promo);
     }
@@ -134,7 +172,7 @@ public abstract class Contratacion implements Cloneable {
     public boolean equals(Object object) {
         if (this == object) {
             return true;
-}
+        }
         if (!(object instanceof Contratacion)) {
             return false;
         }
@@ -153,28 +191,30 @@ public abstract class Contratacion implements Cloneable {
         return result;
     }
 
-    public String toSting(){
-        String detalle = "[ id: " + id + ", precioDelServicio: " + this.precioDelServicio + ", Servicios adicionales: " +
-               this.serviciosAdicionales.toString();
-        if(promo!=null){
-            detalle +=  ", Promocion: " + promo.toString() + ", Descuento de la promocion: " + calculaPromo(this.promo); 
-}
-            detalle += ", domicilio: " + this.domicilio.toString()+"]\n ";
-        
+    public String toSting() {
+        String detalle =
+            "[ id: " + id + ", precioDelServicio: " + this.precioDelServicio + ", Servicios adicionales: " +
+            this.serviciosAdicionales.toString();
+        if (promo != null) {
+            detalle += ", Promocion: " + promo.toString() + ", Descuento de la promocion: " + calculaPromo(this.promo);
+        }
+        detalle += ", domicilio: " + this.domicilio.toString() + "]\n ";
+
         return detalle;
     }
+
     @Override
     public Object clone() throws CloneNotSupportedException {
         Contratacion contratoClonado = null;
-        contratoClonado=(Contratacion) super.clone();
-        //contratoClonado.promo=(Promocion) this.promo.clone(); no se clona, esta por agregacion 
-        contratoClonado.domicilio=(Domicilio) this.domicilio.clone();
-        
+        contratoClonado = (Contratacion) super.clone();
+        //contratoClonado.promo=(Promocion) this.promo.clone(); no se clona, esta por agregacion
+        contratoClonado.domicilio = (Domicilio) this.domicilio.clone();
+
         contratoClonado.serviciosAdicionales = new ArrayList<ServicioAdicional>();
-        for(ServicioAdicional servicio : this.serviciosAdicionales){
+        for (ServicioAdicional servicio : this.serviciosAdicionales) {
             contratoClonado.serviciosAdicionales.add((ServicioAdicional) servicio.clone());
         }
-    
+
         return contratoClonado;
     }
 }

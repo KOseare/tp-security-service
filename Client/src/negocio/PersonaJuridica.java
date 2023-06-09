@@ -7,7 +7,8 @@ import java.util.ArrayList;
  */
 public class PersonaJuridica extends Persona {
 
-
+    public PersonaJuridica() {
+    }
     public PersonaJuridica(String nombre, String dni) {
         super(nombre, dni);
     }
