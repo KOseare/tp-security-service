@@ -26,6 +26,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="menuAbonados" max="32767" attributes="0"/>
                   <Component id="zonaRespuesta" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="zonaPrincipal" min="-2" max="-2" attributes="0"/>
@@ -40,12 +41,13 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
+              <Component id="menuAbonados" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="zonaBotones" max="32767" attributes="0"/>
                   <Component id="zonaPrincipal" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Component id="zonaRespuesta" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -58,46 +60,24 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="abonados" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="panelFacturas" min="-2" pref="425" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="panelTecnicos" pref="420" max="32767" attributes="0"/>
+                  <Component id="panelFacturas" min="-2" pref="420" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="413" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Component id="abonados" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="panelTecnicos" max="32767" attributes="0"/>
-                      <Component id="panelFacturas" max="32767" attributes="0"/>
-                  </Group>
+              <Group type="102" attributes="0">
+                  <Component id="panelFacturas" min="-2" pref="450" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
+              <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JComboBox" name="abonados">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="abonadosActionPerformed"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
-        </Component>
         <Container class="javax.swing.JScrollPane" name="panelFacturas">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -114,14 +94,14 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JScrollPane" name="panelTecnicos">
+        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="situacionTecnicos">
+            <Component class="javax.swing.JTextArea" name="infoTecnicos">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
@@ -133,29 +113,43 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="zonaBotones">
+      <Properties>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[113, 450]"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="botonFactura" max="32767" attributes="0"/>
-              <Component id="botonSolicitarTecnico" alignment="0" max="32767" attributes="0"/>
               <Component id="botonContratación" alignment="0" pref="113" max="32767" attributes="0"/>
-              <Component id="botonBajaContratación" alignment="0" max="32767" attributes="0"/>
               <Component id="botonAltaTecnico" alignment="0" max="32767" attributes="0"/>
+              <Component id="botonAltaAbonado" alignment="0" max="32767" attributes="0"/>
+              <Component id="botonAltaFactura" alignment="0" max="32767" attributes="0"/>
+              <Component id="botonActualizarMes" alignment="0" max="32767" attributes="0"/>
+              <Component id="botonBajaContratación" alignment="0" max="32767" attributes="0"/>
+              <Component id="botonSolicitarTecnico" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="botonFactura" min="-2" pref="70" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                  <Component id="botonContratación" min="-2" pref="70" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                  <Component id="botonBajaContratación" min="-2" pref="70" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                  <Component id="botonAltaTecnico" pref="71" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                  <Component id="botonSolicitarTecnico" min="-2" pref="70" max="-2" attributes="0"/>
+                  <Component id="botonBajaContratación" min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="botonFactura" min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                  <Component id="botonContratación" min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Component id="botonSolicitarTecnico" min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Component id="botonAltaTecnico" min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Component id="botonAltaAbonado" min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Component id="botonAltaFactura" min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="botonActualizarMes" min="-2" pref="39" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -170,14 +164,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonFacturaActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="botonSolicitarTecnico">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Solicitar Tecnico"/>
-          </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonSolicitarTecnicoMouseClicked"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JButton" name="botonContrataci&#xf3;n">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nueva Contrataci&#xf3;n"/>
@@ -186,20 +172,38 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonContrataci&#xf3;nMouseClicked"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JButton" name="botonSolicitarTecnico">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Solicitar T&#xe9;cnico"/>
+            <Property name="actionCommand" type="java.lang.String" value=""/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="botonAltaTecnico">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Alta T&#xe9;cnico"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="botonAltaAbonado">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Alta Abonado"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="botonAltaFactura">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Alta Factura"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="botonActualizarMes">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Actualizar Mes"/>
+          </Properties>
+        </Component>
         <Component class="javax.swing.JButton" name="botonBajaContrataci&#xf3;n">
           <Properties>
             <Property name="text" type="java.lang.String" value="Baja Contrataci&#xf3;n"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonBajaContrataci&#xf3;nMouseClicked"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="botonAltaTecnico">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Alta T&#xe9;cnico"/>
-          </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonAltaTecnicoMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>
@@ -214,7 +218,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="panelRespuesta" alignment="0" pref="107" max="32767" attributes="0"/>
+              <Component id="panelRespuesta" alignment="0" pref="21" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -237,5 +241,20 @@
         </Container>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JComboBox" name="menuAbonados">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
   </SubComponents>
 </Form>

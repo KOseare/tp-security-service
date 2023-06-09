@@ -21,59 +21,54 @@ public class VistaSistema extends javax.swing.JFrame {
     private void initComponents() {//GEN-BEGIN:initComponents
 
         zonaPrincipal = new javax.swing.JPanel();
-        abonados = new javax.swing.JComboBox<>();
         panelFacturas = new javax.swing.JScrollPane();
         facturasHistoricas = new javax.swing.JTextArea();
-        panelTecnicos = new javax.swing.JScrollPane();
-        situacionTecnicos = new javax.swing.JTextArea();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        infoTecnicos = new javax.swing.JTextArea();
         zonaBotones = new javax.swing.JPanel();
         botonFactura = new javax.swing.JButton();
-        botonSolicitarTecnico = new javax.swing.JButton();
         botonContratación = new javax.swing.JButton();
-        botonBajaContratación = new javax.swing.JButton();
+        botonSolicitarTecnico = new javax.swing.JButton();
         botonAltaTecnico = new javax.swing.JButton();
+        botonAltaAbonado = new javax.swing.JButton();
+        botonAltaFactura = new javax.swing.JButton();
+        botonActualizarMes = new javax.swing.JButton();
+        botonBajaContratación = new javax.swing.JButton();
         zonaRespuesta = new javax.swing.JPanel();
         panelRespuesta = new javax.swing.JScrollPane();
         respuesta = new javax.swing.JTextArea();
+        menuAbonados = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        abonados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        abonados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                abonadosActionPerformed(evt);
-            }
-        });
 
         facturasHistoricas.setEditable(false);
         facturasHistoricas.setColumns(20);
         facturasHistoricas.setRows(5);
         panelFacturas.setViewportView(facturasHistoricas);
 
-        situacionTecnicos.setEditable(false);
-        situacionTecnicos.setColumns(20);
-        situacionTecnicos.setRows(5);
-        panelTecnicos.setViewportView(situacionTecnicos);
+        infoTecnicos.setEditable(false);
+        infoTecnicos.setColumns(20);
+        infoTecnicos.setRows(5);
+        jScrollPane1.setViewportView(infoTecnicos);
 
         javax.swing.GroupLayout zonaPrincipalLayout = new javax.swing.GroupLayout(zonaPrincipal);
         zonaPrincipal.setLayout(zonaPrincipalLayout);
         zonaPrincipalLayout.setHorizontalGroup(
             zonaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(abonados, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(zonaPrincipalLayout.createSequentialGroup()
-                .addComponent(panelFacturas, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelTecnicos, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE))
+                .addComponent(panelFacturas, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         zonaPrincipalLayout.setVerticalGroup(
             zonaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(zonaPrincipalLayout.createSequentialGroup()
-                .addComponent(abonados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(zonaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelTecnicos)
-                    .addComponent(panelFacturas)))
+                .addComponent(panelFacturas, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane1)
         );
+
+        zonaBotones.setPreferredSize(new java.awt.Dimension(113, 450));
 
         botonFactura.setText("Pagar Factura");
         botonFactura.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -87,19 +82,23 @@ public class VistaSistema extends javax.swing.JFrame {
             }
         });
 
-        botonSolicitarTecnico.setText("Solicitar Tecnico");
-        botonSolicitarTecnico.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonSolicitarTecnicoMouseClicked(evt);
-            }
-        });
-
         botonContratación.setText("Nueva Contratación");
         botonContratación.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonContrataciónMouseClicked(evt);
             }
         });
+
+        botonSolicitarTecnico.setText("Solicitar Técnico");
+        botonSolicitarTecnico.setActionCommand("");
+
+        botonAltaTecnico.setText("Alta Técnico");
+
+        botonAltaAbonado.setText("Alta Abonado");
+
+        botonAltaFactura.setText("Alta Factura");
+
+        botonActualizarMes.setText("Actualizar Mes");
 
         botonBajaContratación.setText("Baja Contratación");
         botonBajaContratación.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -108,35 +107,37 @@ public class VistaSistema extends javax.swing.JFrame {
             }
         });
 
-        botonAltaTecnico.setText("Alta Técnico");
-        botonAltaTecnico.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonAltaTecnicoMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout zonaBotonesLayout = new javax.swing.GroupLayout(zonaBotones);
         zonaBotones.setLayout(zonaBotonesLayout);
         zonaBotonesLayout.setHorizontalGroup(
             zonaBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(botonFactura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(botonSolicitarTecnico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(botonContratación, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-            .addComponent(botonBajaContratación, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(botonAltaTecnico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(botonAltaAbonado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(botonAltaFactura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(botonActualizarMes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(botonBajaContratación, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(botonSolicitarTecnico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         zonaBotonesLayout.setVerticalGroup(
             zonaBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(zonaBotonesLayout.createSequentialGroup()
-                .addComponent(botonFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(botonContratación, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(botonBajaContratación, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(botonAltaTecnico, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
-                .addGap(25, 25, 25)
-                .addComponent(botonSolicitarTecnico, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(botonBajaContratación, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(botonFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addComponent(botonContratación, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(botonSolicitarTecnico, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(botonAltaTecnico, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(botonAltaAbonado, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(botonAltaFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonActualizarMes, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         respuesta.setEditable(false);
@@ -152,8 +153,10 @@ public class VistaSistema extends javax.swing.JFrame {
         );
         zonaRespuestaLayout.setVerticalGroup(
             zonaRespuestaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelRespuesta, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+            .addComponent(panelRespuesta, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
         );
+
+        menuAbonados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -162,6 +165,7 @@ public class VistaSistema extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(menuAbonados, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(zonaRespuesta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(zonaPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -172,11 +176,12 @@ public class VistaSistema extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(menuAbonados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(zonaBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(zonaPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addComponent(zonaRespuesta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -187,10 +192,6 @@ public class VistaSistema extends javax.swing.JFrame {
     private void botonFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFacturaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonFacturaActionPerformed
-
-    private void abonadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abonadosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_abonadosActionPerformed
 
     private void botonFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonFacturaMouseClicked
         // TODO add your handling code here:
@@ -203,14 +204,6 @@ public class VistaSistema extends javax.swing.JFrame {
     private void botonBajaContrataciónMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBajaContrataciónMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_botonBajaContrataciónMouseClicked
-
-    private void botonAltaTecnicoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAltaTecnicoMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonAltaTecnicoMouseClicked
-
-    private void botonSolicitarTecnicoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSolicitarTecnicoMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonSolicitarTecnicoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -282,18 +275,21 @@ public class VistaSistema extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> abonados;
+    private javax.swing.JButton botonActualizarMes;
+    private javax.swing.JButton botonAltaAbonado;
+    private javax.swing.JButton botonAltaFactura;
     private javax.swing.JButton botonAltaTecnico;
     private javax.swing.JButton botonBajaContratación;
     private javax.swing.JButton botonContratación;
     private javax.swing.JButton botonFactura;
     private javax.swing.JButton botonSolicitarTecnico;
     private javax.swing.JTextArea facturasHistoricas;
+    private javax.swing.JTextArea infoTecnicos;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> menuAbonados;
     private javax.swing.JScrollPane panelFacturas;
     private javax.swing.JScrollPane panelRespuesta;
-    private javax.swing.JScrollPane panelTecnicos;
     private javax.swing.JTextArea respuesta;
-    private javax.swing.JTextArea situacionTecnicos;
     private javax.swing.JPanel zonaBotones;
     private javax.swing.JPanel zonaPrincipal;
     private javax.swing.JPanel zonaRespuesta;
