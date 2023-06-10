@@ -22,8 +22,10 @@ public class SistemaSeguridad {
     }
 
     public static SistemaSeguridad getSistema() {
-        if (_instancia == null)
-            _instancia = new SistemaSeguridad();
+        if (_instancia == null) {
+        	_instancia = new SistemaSeguridad();
+        	_instancia.serviciotecnico = new ServicioTecnico();
+        }
 
         return _instancia;
     }
@@ -85,5 +87,55 @@ public class SistemaSeguridad {
         } catch (CloneNotSupportedException e) {
             throw e;
         }
+    }
+    
+    public void pagarFactura (Persona persona, Factura factura) {
+    	if (persona.getFacturas().contains(factura)) {
+    		try {
+					factura.pagarFactura(1); // TO DO: Agregar interfaz para el saldo
+				} catch (SaldoInsuficienteExeception e) {
+					System.out.println("SALDO INSUFICIENTE"); // TO DO: Observer, zona de notificaciones
+				}
+    	}
+    }
+    
+    public void agregarContrato (Persona persona, String tipo, Domicilio domicilio, ArrayList<ServicioAdicional> servicios) {
+    	Contratacion contrato;
+    	if (tipo.equals("Comercio")) {
+    		contrato = new MonitoreoComercio();
+    	} else {
+    		contrato = new MonitoreoVivienda();
+    	}
+    	contrato.setServiciosAdicionales(servicios); // TO DO: Revisar si seria necesario instancia aca los servicios
+    	persona.agregarContrato(contrato);
+    }
+    
+    public void bajaContratacion (Persona persona, Contratacion c) {
+    	persona.getContrataciones().remove(c);
+    }
+    
+    public void solicitarTecnico () {
+    	// TO DO: Revisar como esta pensado esto
+    }
+    
+    public void altaTecnico (String nombre) {
+    	Tecnico tecnico = new Tecnico(nombre);
+    	this.serviciotecnico.agregarTecnico(tecnico);
+    }
+    
+    public void nuevoAbonado (String tipo, String nombre, String dni) {
+    	Persona p;
+    	if (tipo.equals("Juridica")) {
+    		p = new PersonaJuridica(nombre, dni);
+    	} else {
+    		p = new PersonaFisica(nombre, dni);
+    	}
+    	this.clientes.add(p);
+    }
+    
+    public void actualizarMes () {
+    	for (Persona persona : this.clientes) {
+        persona.facturacionMensual();
+    }
     }
 }

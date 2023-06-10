@@ -7,7 +7,7 @@ import java.util.TreeMap;
 
 public class ServicioTecnico {
 
-    private ArrayList<Tecnico> tecnicos = new ArrayList<>();
+    private ArrayList<Tecnico> tecnicos = new ArrayList<Tecnico>();
 
     public ServicioTecnico() {
     }
@@ -24,13 +24,14 @@ public class ServicioTecnico {
 
         tecnico = tecnicos.get(0);
         tecnicos.remove(0);
+        notifyAll();
 
         return tecnico;
     }
 
-    public void agregarTecnico(Tecnico T) throws InterruptedException {
+    public void agregarTecnico(Tecnico T) {
         tecnicos.add(T);
-        notify();
+        notifyAll();
     }
 
     public void setTecnicos(ArrayList<Tecnico> tecnicos) {

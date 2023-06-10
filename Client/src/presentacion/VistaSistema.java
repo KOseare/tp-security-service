@@ -27,9 +27,9 @@ public class VistaSistema extends javax.swing.JFrame {
         listaFacturas = new javax.swing.JList<>();
         zonaBotones = new javax.swing.JPanel();
         botonFactura = new javax.swing.JButton();
-        botonContratación = new javax.swing.JButton();
+        botonContratacion = new javax.swing.JButton();
         botonSolicitarTecnico = new javax.swing.JButton();
-        botonBajaContratación = new javax.swing.JButton();
+        botonBajaContratacion = new javax.swing.JButton();
         botonAltaTecnico = new javax.swing.JButton();
         botonNuevoAbonado = new javax.swing.JButton();
         botonNuevaFactura = new javax.swing.JButton();
@@ -83,24 +83,24 @@ public class VistaSistema extends javax.swing.JFrame {
             }
         });
 
-        botonContratación.setText("Nueva Contratación");
-        botonContratación.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonContratacion.setText("Nueva Contratacion");
+        botonContratacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonContrataciónMouseClicked(evt);
+                botonContratacionMouseClicked(evt);
             }
         });
 
-        botonSolicitarTecnico.setText("Solicitar Técnico");
+        botonSolicitarTecnico.setText("Solicitar Tecnico");
         botonSolicitarTecnico.setActionCommand("");
 
-        botonBajaContratación.setText("Baja Contratación");
-        botonBajaContratación.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonBajaContratacion.setText("Baja Contratacion");
+        botonBajaContratacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonBajaContrataciónMouseClicked(evt);
+                botonBajaContratacionMouseClicked(evt);
             }
         });
 
-        botonAltaTecnico.setText("Alta Técnico");
+        botonAltaTecnico.setText("Alta Tecnico");
         botonAltaTecnico.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonAltaTecnicoMouseClicked(evt);
@@ -133,8 +133,8 @@ public class VistaSistema extends javax.swing.JFrame {
         zonaBotonesLayout.setHorizontalGroup(
             zonaBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(botonFactura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(botonContratación, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-            .addComponent(botonBajaContratación, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(botonContratacion, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+            .addComponent(botonBajaContratacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(botonSolicitarTecnico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(botonActualizarMes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(botonNuevaFactura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -144,11 +144,11 @@ public class VistaSistema extends javax.swing.JFrame {
         zonaBotonesLayout.setVerticalGroup(
             zonaBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(zonaBotonesLayout.createSequentialGroup()
-                .addComponent(botonBajaContratación, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botonBajaContratacion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(botonFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19)
-                .addComponent(botonContratación, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botonContratacion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(botonSolicitarTecnico, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -218,13 +218,13 @@ public class VistaSistema extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonFacturaMouseClicked
 
-    private void botonContrataciónMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonContrataciónMouseClicked
+    private void botonContratacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonContratacionMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonContrataciónMouseClicked
+    }//GEN-LAST:event_botonContratacionMouseClicked
 
-    private void botonBajaContrataciónMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBajaContrataciónMouseClicked
+    private void botonBajaContratacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBajaContratacionMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonBajaContrataciónMouseClicked
+    }//GEN-LAST:event_botonBajaContratacionMouseClicked
 
     private void botonAltaTecnicoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAltaTecnicoMouseClicked
         // TODO add your handling code here:
@@ -314,8 +314,8 @@ public class VistaSistema extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonActualizarMes;
     private javax.swing.JButton botonAltaTecnico;
-    private javax.swing.JButton botonBajaContratación;
-    private javax.swing.JButton botonContratación;
+    private javax.swing.JButton botonBajaContratacion;
+    private javax.swing.JButton botonContratacion;
     private javax.swing.JButton botonFactura;
     private javax.swing.JButton botonNuevaFactura;
     private javax.swing.JButton botonNuevoAbonado;

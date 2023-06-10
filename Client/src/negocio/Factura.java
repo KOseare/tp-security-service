@@ -202,15 +202,16 @@ public class Factura implements Cloneable, IFactura, Comparable<Factura> {
         facturaClonada = (Factura) super.clone();
         facturaClonada.fecha = (Date) this.fecha.clone();
 
-        try {
-            facturaClonada.cliente = (Persona) this.cliente.clone();
-        } catch (PersonaJuridicaCloneException e) {
-            throw e;
-        }
-
         facturaClonada.contratos = new ArrayList<Contratacion>();
         for (Contratacion contrato : this.contratos) {
             facturaClonada.contratos.add((Contratacion) contrato.clone());
+        }
+        
+        try {
+            facturaClonada.cliente = (Persona) this.cliente.clone();
+        } catch (PersonaJuridicaCloneException e) {
+        		facturaClonada.cliente = this.cliente;
+            System.out.println(e.getMessage());
         }
 
         return facturaClonada;
