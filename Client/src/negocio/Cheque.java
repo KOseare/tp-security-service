@@ -29,8 +29,8 @@ public class Cheque extends MedioDePagoDecorator {
     }
 
     @Override
-    public double getImporteNeto() {
-        return this.factura.getImporteNeto() * (1-this.descuento);
+    public double getImporte_neto() {
+        return this.factura.getImporte_neto() * (1-this.descuento);
     }
 
 
@@ -44,7 +44,7 @@ public class Cheque extends MedioDePagoDecorator {
     @Override
     public String detalle() {
         
-        return this.factura.detalle() + " Pago en Cheque, incremento de " + -this.descuento*100 + "%, total a pagar: " + this.getImporteNeto();
+        return this.factura.detalle() + " Pago en Cheque, incremento de " + -this.descuento*100 + "%, total a pagar: " + this.getImporte_neto();
     }
 
 }

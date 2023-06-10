@@ -1,11 +1,16 @@
 package negocio;
 
+import java.util.ArrayList;
+
 /**
  * Clase que representa la contratacion de monitoreo para una vivienda.
  * Hereda de la clase abstracta Contratacion.
  */
 public class MonitoreoVivienda extends Contratacion {
     
+    public MonitoreoVivienda(){
+    }
+
     public MonitoreoVivienda(Domicilio domicilio){
         super(domicilio);
         this.precioDelServicio = 8500.0;
