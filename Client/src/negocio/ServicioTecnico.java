@@ -29,7 +29,7 @@ public class ServicioTecnico {
         return tecnico;
     }
 
-    public void agregarTecnico(Tecnico T) {
+    public synchronized void agregarTecnico(Tecnico T) {
         tecnicos.add(T);
         notifyAll();
     }

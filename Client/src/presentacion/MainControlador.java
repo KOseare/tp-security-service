@@ -47,8 +47,7 @@ public class MainControlador implements ActionListener {
 		} else if (e.getActionCommand().equals("Solicitar Tecnico")) {
 			// sistema.solicitarTecnico();
 		} else if (e.getActionCommand().equals("Alta Tecnico")) {
-			// String nombre = vista.getNombreTecnico();
-			// sistema.altaTecnico(nombre);
+			this.vista.abrirDialogAltaTecnico();
 		} else if (e.getActionCommand().equals("Nuevo Abonado")) {
 			// String tipo = vista.getTipoAbonado(); TO DO
 			// String nombre = vista.getNombreAbonado(); TO DO
@@ -71,6 +70,16 @@ public class MainControlador implements ActionListener {
 			}
 			login.limpiarCampos();
 		}
+		
+		// Actions Alta Tecnico ---------------------------
+		else if (e.getActionCommand().equals("CrearAltaTecnico")) {
+			String nombre = vista.getNombreAltaTecnico();
+			this.sistema.altaTecnico(nombre);
+			this.vista.cerrarDialogAltaTecnico();
+		} else if (e.getActionCommand().equals("CancelarAltaTecnico")) {
+			this.vista.cerrarDialogAltaTecnico();
+		}
+		// ------------------------------------------------
 	}
 
 }

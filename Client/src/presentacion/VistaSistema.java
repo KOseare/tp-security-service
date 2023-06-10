@@ -13,6 +13,7 @@ import negocio.Persona;
 import javax.swing.JList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JPanel;
@@ -46,7 +47,8 @@ public class VistaSistema extends javax.swing.JFrame {
     private DefaultComboBoxModel<Persona> modeloAbonados = new DefaultComboBoxModel<Persona>();
     private DefaultListModel<Factura> modeloFacturas = new DefaultListModel<Factura>();
     private DefaultListModel<Contratacion> modeloContrataciones = new DefaultListModel<Contratacion>();
-    
+    private DialogAltaTecnico dialogAltaTecnico;
+
     @SuppressWarnings("unchecked")
     private void initComponents() {//GEN-BEGIN:initComponents
 
@@ -306,5 +308,93 @@ public class VistaSistema extends javax.swing.JFrame {
     		this.modeloContrataciones.addElement(c);
     	}
     	this.repaint();
+    }
+    
+    public void abrirDialogAltaTecnico () {
+    	this.dialogAltaTecnico = new DialogAltaTecnico();
+    	this.dialogAltaTecnico.setControlador(this.controlador);
+    	this.dialogAltaTecnico.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+    	this.dialogAltaTecnico.setVisible(true);
+    }
+
+    public void cerrarDialogAltaTecnico () {
+    	if (this.dialogAltaTecnico != null) {
+    		this.dialogAltaTecnico.dispose();
+    		this.dialogAltaTecnico.setVisible(false);
+    		this.dialogAltaTecnico = null;
+    	}
+    }
+
+    public String getNombreAltaTecnico () {
+    	return this.dialogAltaTecnico.getNombreAltaTecnico();
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing
+                                                                   .UIManager
+                                                                   .getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing
+                         .UIManager
+                         .setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util
+                .logging
+                .Logger
+                .getLogger(VistaSistema.class.getName())
+                .log(java.util
+                         .logging
+                         .Level
+                         .SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util
+                .logging
+                .Logger
+                .getLogger(VistaSistema.class.getName())
+                .log(java.util
+                         .logging
+                         .Level
+                         .SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util
+                .logging
+                .Logger
+                .getLogger(VistaSistema.class.getName())
+                .log(java.util
+                         .logging
+                         .Level
+                         .SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util
+                .logging
+                .Logger
+                .getLogger(VistaSistema.class.getName())
+                .log(java.util
+                         .logging
+                         .Level
+                         .SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt
+            .EventQueue
+            .invokeLater(new Runnable() {
+                public void run() {
+                    new VistaSistema().setVisible(true);
+                }
+            });
     }
 }
