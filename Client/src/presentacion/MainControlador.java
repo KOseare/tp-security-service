@@ -3,6 +3,7 @@ package presentacion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import negocio.Domicilio;
 import negocio.Persona;
@@ -55,13 +56,17 @@ public class MainControlador implements ActionListener {
 			// sistema.nuevoAbonado(String tipo, String nombre, String dni);
 		} else if (e.getActionCommand().equals("Actualizar Mes")) {
 			sistema.actualizarMes();
+		}else if (e.getActionCommand().equals("Seleccion Abonado")){
+			Persona p = vista.getAbonadoSeleccionado();
+			vista.updateListaFacturas(p.getFacturas());
 		} else if (e.getActionCommand().equals("Login")) {
 			String usuario = login.getUsuario();
 			String clave = login.getContrasenia();
-
-			if (usuario == this.usuario && clave == this.clave) {
+			if (Objects.equals(usuario, this.usuario) && Objects.equals(clave, this.clave)) {
 				login.setVisible(false);
+				vista.updateListaAbonados(sistema.getClientes());
 				vista.setVisible(true);
+
 			} else if (sistema.validarUsuario(usuario, clave)){
 				login.setVisible(false);
 				vista.setVisible(true);

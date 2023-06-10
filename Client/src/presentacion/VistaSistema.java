@@ -2,6 +2,7 @@
 package presentacion;
 
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -99,61 +100,22 @@ public class VistaSistema extends javax.swing.JFrame {
         zonaBotones.setPreferredSize(new java.awt.Dimension(113, 450));
 
         botonFactura.setText("Pagar Factura");
-        botonFactura.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonFacturaMouseClicked(evt);
-            }
-        });
-        botonFactura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonFacturaActionPerformed(evt);
-            }
-        });
 
         botonContratacion.setText("Nueva Contratacion");
-        botonContratacion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonContratacionMouseClicked(evt);
-            }
-        });
 
         botonSolicitarTecnico.setText("Solicitar Tecnico");
+
         botonSolicitarTecnico.setActionCommand("");
 
         botonBajaContratacion.setText("Baja Contratacion");
-        botonBajaContratacion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonBajaContratacionMouseClicked(evt);
-            }
-        });
 
         botonAltaTecnico.setText("Alta Tecnico");
-        botonAltaTecnico.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonAltaTecnicoMouseClicked(evt);
-            }
-        });
 
         botonNuevoAbonado.setText("Nuevo Abonado");
-        botonNuevoAbonado.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonNuevoAbonadoMouseClicked(evt);
-            }
-        });
 
         botonNuevaFactura.setText("Nueva Factura");
-        botonNuevaFactura.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonNuevaFacturaMouseClicked(evt);
-            }
-        });
 
         botonActualizarMes.setText("Actualizar Mes");
-        botonActualizarMes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonActualizarMesMouseClicked(evt);
-            }
-        });
 
         GroupLayout zonaBotonesLayout = new GroupLayout(zonaBotones);
         zonaBotones.setLayout(zonaBotonesLayout);
@@ -205,6 +167,7 @@ public class VistaSistema extends javax.swing.JFrame {
         );
 
         comboAbonados.setModel(modeloAbonados);
+        comboAbonados.setActionCommand("Seleccion Abonado");
 
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -235,40 +198,7 @@ public class VistaSistema extends javax.swing.JFrame {
         );
 
         pack();
-    }//GEN-END:initComponents
-
-    private void botonFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFacturaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonFacturaActionPerformed
-
-    private void botonFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonFacturaMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonFacturaMouseClicked
-
-    private void botonContratacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonContratacionMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonContratacionMouseClicked
-
-    private void botonBajaContratacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBajaContratacionMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonBajaContratacionMouseClicked
-
-    private void botonAltaTecnicoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAltaTecnicoMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonAltaTecnicoMouseClicked
-
-    private void botonNuevoAbonadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNuevoAbonadoMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonNuevoAbonadoMouseClicked
-
-    private void botonNuevaFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonNuevaFacturaMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonNuevaFacturaMouseClicked
-
-    private void botonActualizarMesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonActualizarMesMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonActualizarMesMouseClicked
-
+    }
     public void arranca () {
     	this.pack();
     	this.setLocationRelativeTo(null);
@@ -284,6 +214,7 @@ public class VistaSistema extends javax.swing.JFrame {
     	botonNuevaFactura.addActionListener(c);
     	botonNuevoAbonado.addActionListener(c);
     	botonSolicitarTecnico.addActionListener(c);
+        comboAbonados.addActionListener(c);
     }
     
     public void updateListaAbonados (ArrayList<Persona> abonados) {
@@ -294,7 +225,7 @@ public class VistaSistema extends javax.swing.JFrame {
     	this.repaint();
     }
     
-    public void updateListaFacturas (ArrayList<Factura> facturas) {
+    public void updateListaFacturas (TreeSet<Factura> facturas) {
     	this.modeloFacturas.clear();
     	for (Factura f : facturas) {
     		this.modeloFacturas.addElement(f);
@@ -309,7 +240,11 @@ public class VistaSistema extends javax.swing.JFrame {
     	}
     	this.repaint();
     }
-    
+
+    public Persona getAbonadoSeleccionado () {
+    	return (Persona) this.comboAbonados.getSelectedItem();
+    }
+
     public void abrirDialogAltaTecnico () {
     	this.dialogAltaTecnico = new DialogAltaTecnico();
     	this.dialogAltaTecnico.setControlador(this.controlador);
@@ -329,72 +264,4 @@ public class VistaSistema extends javax.swing.JFrame {
     	return this.dialogAltaTecnico.getNombreAltaTecnico();
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing
-                                                                   .UIManager
-                                                                   .getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing
-                         .UIManager
-                         .setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util
-                .logging
-                .Logger
-                .getLogger(VistaSistema.class.getName())
-                .log(java.util
-                         .logging
-                         .Level
-                         .SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util
-                .logging
-                .Logger
-                .getLogger(VistaSistema.class.getName())
-                .log(java.util
-                         .logging
-                         .Level
-                         .SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util
-                .logging
-                .Logger
-                .getLogger(VistaSistema.class.getName())
-                .log(java.util
-                         .logging
-                         .Level
-                         .SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util
-                .logging
-                .Logger
-                .getLogger(VistaSistema.class.getName())
-                .log(java.util
-                         .logging
-                         .Level
-                         .SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt
-            .EventQueue
-            .invokeLater(new Runnable() {
-                public void run() {
-                    new VistaSistema().setVisible(true);
-                }
-            });
-    }
 }

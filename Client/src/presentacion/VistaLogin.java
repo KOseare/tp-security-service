@@ -27,7 +27,7 @@ public class VistaLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        campoUsuario.setText("Usuario");
+        campoUsuario.setText("");
 
         jLabel1.setText("Usuario");
 

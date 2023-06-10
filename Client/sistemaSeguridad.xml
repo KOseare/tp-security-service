@@ -101,7 +101,7 @@
         </void>
         <void property="fecha">
          <object class="java.util.Date">
-          <long>1686435825763</long>
+          <long>1686440470782</long>
          </object>
         </void>
         <void property="importe_bruto">
@@ -305,7 +305,7 @@
         </void>
         <void property="fecha">
          <object class="java.util.Date">
-          <long>1686435825764</long>
+          <long>1686440470782</long>
          </object>
         </void>
         <void property="importeDePago">
@@ -507,7 +507,7 @@
         </void>
         <void property="fecha">
          <object class="java.util.Date">
-          <long>1686435825765</long>
+          <long>1686440470783</long>
          </object>
         </void>
         <void property="importeDePago">
