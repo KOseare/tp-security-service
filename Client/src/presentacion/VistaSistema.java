@@ -13,6 +13,7 @@ import negocio.Persona;
 import javax.swing.JList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JPanel;
@@ -24,6 +25,8 @@ public class VistaSistema extends javax.swing.JFrame {
     public VistaSistema() {
         initComponents();
     }
+    
+    private MainControlador controlador;
 
     private JButton botonActualizarMes;
     private JButton botonAltaTecnico;
@@ -46,6 +49,7 @@ public class VistaSistema extends javax.swing.JFrame {
     private DefaultComboBoxModel<Persona> modeloAbonados = new DefaultComboBoxModel<Persona>();
     private DefaultListModel<Factura> modeloFacturas = new DefaultListModel<Factura>();
     private DefaultListModel<Contratacion> modeloContrataciones = new DefaultListModel<Contratacion>();
+    private DialogAltaTecnico dialogAltaTecnico;
     
     @SuppressWarnings("unchecked")
     private void initComponents() {//GEN-BEGIN:initComponents
@@ -274,6 +278,7 @@ public class VistaSistema extends javax.swing.JFrame {
     }
     
     public void setControlador (MainControlador c) {
+    	this.controlador = c;
     	botonActualizarMes.addActionListener(c);
     	botonAltaTecnico.addActionListener(c);
     	botonBajaContratacion.addActionListener(c);
@@ -306,6 +311,25 @@ public class VistaSistema extends javax.swing.JFrame {
     		this.modeloContrataciones.addElement(c);
     	}
     	this.repaint();
+    }
+    
+    public void abrirDialogAltaTecnico () {
+    	this.dialogAltaTecnico = new DialogAltaTecnico();
+    	this.dialogAltaTecnico.setControlador(this.controlador);
+    	this.dialogAltaTecnico.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+    	this.dialogAltaTecnico.setVisible(true);
+    }
+    
+    public void cerrarDialogAltaTecnico () {
+    	if (this.dialogAltaTecnico != null) {
+    		this.dialogAltaTecnico.dispose();
+    		this.dialogAltaTecnico.setVisible(false);
+    		this.dialogAltaTecnico = null;    		
+    	}
+    }
+    
+    public String getNombreAltaTecnico () {
+    	return this.dialogAltaTecnico.getNombreAltaTecnico();
     }
     
     /**
