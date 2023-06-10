@@ -264,4 +264,8 @@ public class VistaSistema extends javax.swing.JFrame {
     	return this.dialogAltaTecnico.getNombreAltaTecnico();
     }
 
+    public void dibujarRespuesta(String resp){
+        this.respuesta.append(resp +"\n");
+        
+    }
 }

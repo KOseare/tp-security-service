@@ -34,7 +34,7 @@ public class MainControlador implements ActionListener {
 		if (e.getActionCommand().equals("Pagar Factura")) {
 			// Persona p = vista.getPersonaSeleccionada(); TO DO
 			// Factura f = vista.getFacturaSeleccionada(); TO DO
-			sistema.pagarFactura(null, null);
+			//sistema.pagarFactura(null, null);
 		} else if (e.getActionCommand().equals("Nueva Contratacion")) {
 			// Persona p = vista.getPersonaSeleccionada(); TO DO
 			// String tipoContratacion = vista.getTipoContratacionSeleccionada(); TO DO
@@ -46,7 +46,8 @@ public class MainControlador implements ActionListener {
 			// Contratacion c = vista.getContratacionSeleccionada(); TO DO
 			// sistema.bajaContratacion (p, c);
 		} else if (e.getActionCommand().equals("Solicitar Tecnico")) {
-			// sistema.solicitarTecnico();
+			 sistema.solicitarTecnico(this);
+                         
 		} else if (e.getActionCommand().equals("Alta Tecnico")) {
 			this.vista.abrirDialogAltaTecnico();
 		} else if (e.getActionCommand().equals("Nuevo Abonado")) {
@@ -86,6 +87,9 @@ public class MainControlador implements ActionListener {
 		}
 		// ------------------------------------------------
 	}
-
+        
+	public void comunicarConsolaTecnico(String resp){
+			vista.dibujarRespuesta(resp);
+	}
 }
 
