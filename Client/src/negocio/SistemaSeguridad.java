@@ -6,6 +6,8 @@ import java.util.Date;
 
 import negocio.excepciones.SaldoInsuficienteExeception;
 
+import presentacion.MainControlador;
+
 /**
  * Clase que representa al sistema general de la empresa.
  */
@@ -114,8 +116,9 @@ public class SistemaSeguridad {
     	persona.getContrataciones().remove(c);
     }
     
-    public void solicitarTecnico () {
-    	// TO DO: Revisar como esta pensado esto
+    public void solicitarTecnico (MainControlador observer){
+
+            new Thread(new ServicioTecnicoRunnable(this.serviciotecnico,observer)).start();
     }
     
     public void altaTecnico (String nombre) {

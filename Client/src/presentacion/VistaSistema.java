@@ -376,4 +376,9 @@ public class VistaSistema extends javax.swing.JFrame {
                 }
             });
     }
+    
+    public void dibujarRespuesta(String resp){
+        this.respuesta.append(resp +"\n");
+        
+    }
 }
