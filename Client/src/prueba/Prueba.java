@@ -6,19 +6,7 @@ import datos.SistemaSeguridadDTO;
 
 import datos.UtilSerializacionSistema;
 
-import java.beans.XMLEncoder;
-
-import java.io.BufferedOutputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-
 import java.time.LocalTime;
-
-import java.util.ArrayList;
-
-import java.util.Date;
-
-import java.util.GregorianCalendar;
 
 import negocio.*; //importa todas las clases del paquete
 
@@ -31,6 +19,8 @@ import negocio.Promocion;
 import negocio.SistemaSeguridad;
 
 import negocio.excepciones.SaldoInsuficienteExeception;
+import presentacion.MainControlador;
+import presentacion.VistaLogin;
 import presentacion.VistaSistema;
 
 public class Prueba {
@@ -40,8 +30,9 @@ public class Prueba {
 
     public static void main(String[] args) {
 
+        VistaLogin login = new VistaLogin();
         VistaSistema vista = new VistaSistema();
-
+        MainControlador controlador = new MainControlador(vista,login);
         SistemaSeguridad sistema = SistemaSeguridad.getSistema();
 
         Promocion dorada = new Dorada();

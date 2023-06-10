@@ -9,13 +9,22 @@ import negocio.Persona;
 import negocio.ServicioAdicional;
 import negocio.SistemaSeguridad;
 
+import javax.swing.*;
+
 public class MainControlador implements ActionListener {
 	private VistaSistema vista;
-	private SistemaSeguridad sistema; // modelo
+	private VistaLogin login;
+	private SistemaSeguridad sistema;
+	private String usuario = "superusuario";
+	private String clave = "2c2023";
 	
-	public MainControlador (VistaSistema vista, SistemaSeguridad sistema) {
+	public MainControlador (VistaSistema vista,VistaLogin login) {
 		this.vista = vista;
-		this.sistema = sistema;
+		this.login = login;
+		this.sistema = SistemaSeguridad.getSistema();
+		this.login.setControlador(this);
+		this.vista.setControlador(this);
+		login.setVisible(true);
 	}
 
 	@Override
@@ -47,6 +56,22 @@ public class MainControlador implements ActionListener {
 			// sistema.nuevoAbonado(String tipo, String nombre, String dni);
 		} else if (e.getActionCommand().equals("Actualizar Mes")) {
 			sistema.actualizarMes();
+		} else if (e.getActionCommand().equals("Login")) {
+			String usuario = login.getUsuario();
+			String clave = login.getContrasenia();
+
+			if (usuario == this.usuario && clave == this.clave) {
+				login.setVisible(false);
+				vista.setVisible(true);
+			} else if (sistema.validarUsuario(usuario, clave)){
+				login.setVisible(false);
+				vista.setVisible(true);
+			}else {
+				JOptionPane.showMessageDialog(login, "Nombre de usuario invalido", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			login.limpiarCampos();
 		}
 	}
+
 }
+
