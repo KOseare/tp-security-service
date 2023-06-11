@@ -1,8 +1,6 @@
 
 package presentacion;
 
-
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -38,6 +36,7 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener {
     private JButton botonBajaContratacion;
     private JButton botonContratacion;
     private JButton botonFactura;
+    private JButton botonNuevaFactura;
     private JButton botonNuevoAbonado;
     private JButton botonSolicitarTecnico;
     private JComboBox<Persona> comboAbonados;
@@ -54,6 +53,7 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener {
     private DefaultListModel<Factura> modeloFacturas = new DefaultListModel<Factura>();
     private DefaultListModel<Contratacion> modeloContrataciones = new DefaultListModel<Contratacion>();
     private DialogAltaTecnico dialogAltaTecnico;
+    private DialogNuevoAbonado dialogNuevoAbonado;
 
     @SuppressWarnings("unchecked")
     private void initComponents() {//GEN-BEGIN:initComponents
@@ -69,6 +69,7 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener {
         botonBajaContratacion = new JButton();
         botonAltaTecnico = new JButton();
         botonNuevoAbonado = new JButton();
+        botonNuevaFactura = new JButton();
         botonActualizarMes = new JButton();
         zonaRespuesta = new JPanel();
         panelRespuesta = new JScrollPane();
@@ -80,7 +81,6 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener {
         listaFacturas.setModel(modeloFacturas);
         listaFacturas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         panelFacturas.setViewportView(listaFacturas);
-
 
         GroupLayout zonaPrincipalLayout = new GroupLayout(zonaPrincipal);
         zonaPrincipal.setLayout(zonaPrincipalLayout);
@@ -101,7 +101,6 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener {
         listaContrataciones.setModel(modeloContrataciones);
         listaContrataciones.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         panelContrataciones.setViewportView(listaContrataciones);
-        listaFacturas.addMouseListener(this);
 
         zonaBotones.setPreferredSize(new java.awt.Dimension(113, 450));
 
@@ -119,6 +118,8 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener {
 
         botonNuevoAbonado.setText("Nuevo Abonado");
 
+        botonNuevaFactura.setText("Nueva Factura");
+
         botonActualizarMes.setText("Actualizar Mes");
 
         GroupLayout zonaBotonesLayout = new GroupLayout(zonaBotones);
@@ -130,6 +131,7 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener {
             .addComponent(botonBajaContratacion, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(botonSolicitarTecnico, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(botonActualizarMes, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(botonNuevaFactura, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(botonNuevoAbonado, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(botonAltaTecnico, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -213,8 +215,10 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener {
     	botonBajaContratacion.addActionListener(c);
     	botonContratacion.addActionListener(c);
     	botonFactura.addActionListener(c);
+    	botonNuevaFactura.addActionListener(c);
     	botonNuevoAbonado.addActionListener(c);
     	botonSolicitarTecnico.addActionListener(c);
+      comboAbonados.addActionListener(c);
         comboAbonados.addActionListener(c);
         listaFacturas.addListSelectionListener(c);
     }
@@ -261,7 +265,7 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener {
     		this.dialogAltaTecnico = null;
     	}
     }
-    
+
     public void abrirDialogFactura(){
         this.dialogFactura = new DialogFactura(listaFacturas.getSelectedValue());
         this.dialogFactura.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -300,6 +304,30 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener {
     }
     public void dibujarRespuesta(String resp){
         this.respuesta.append(resp +"\n");
+    }
 
+    public void abrirDialogNuevoAbonado () {
+    	this.dialogNuevoAbonado = new DialogNuevoAbonado();
+    	this.dialogNuevoAbonado.setControlador(this.controlador);
+    	this.dialogNuevoAbonado.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+    	this.dialogNuevoAbonado.setVisible(true);
+    }
+
+    public void cerrarDialogNuevoAbonado () {
+    	if (this.dialogNuevoAbonado != null) {
+    		this.dialogNuevoAbonado.dispose();
+    		this.dialogNuevoAbonado.setVisible(false);
+    		this.dialogNuevoAbonado = null;
+    	}
+    }
+
+    public String getNombreNuevoAbonado () {
+    	return this.dialogNuevoAbonado.getNombreNuevoAbonado();
+    }
+    public String getDniNuevoAbonado () {
+    	return this.dialogNuevoAbonado.getDniNuevoAbonado();
+    }
+    public String getTipoNuevoAbonado () {
+    	return this.dialogNuevoAbonado.getTipoNuevoAbonado();
     }
 }
