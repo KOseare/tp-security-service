@@ -52,6 +52,7 @@ public class MainControlador implements ActionListener, ListSelectionListener {
             // Persona p = vista.getPersonaSeleccionada(); TO DO
             // Contratacion c = vista.getContratacionSeleccionada(); TO DO
             // sistema.bajaContratacion (p, c);
+            
 
         } else if (e.getActionCommand().equals("Solicitar Tecnico")) {
             sistema.solicitarTecnico(this);

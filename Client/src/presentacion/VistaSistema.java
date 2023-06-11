@@ -124,7 +124,6 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener {
 
         botonSolicitarTecnico.setText("Solicitar Tecnico");
 
-        botonSolicitarTecnico.setActionCommand("");
 
         botonBajaContratacion.setText("Baja Contratacion");
 

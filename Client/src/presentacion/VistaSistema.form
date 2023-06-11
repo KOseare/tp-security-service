@@ -181,6 +181,9 @@
             <Property name="text" type="java.lang.String" value="Solicitar T&#xe9;cnico"/>
             <Property name="actionCommand" type="java.lang.String" value=""/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonSolicitarTecnicoMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="botonBajaContrataci&#xf3;n">
           <Properties>

@@ -32,7 +32,7 @@ public class Main {
 
     initTestData(sistema);
     
-    vista.setControlador(controlador);
+    //vista.setControlador(controlador);
     vista.arranca();    
     
     vista.updateListaAbonados(sistema.getClientes()); // Es un test, las actualizaciones se deben hacer en el controlador
