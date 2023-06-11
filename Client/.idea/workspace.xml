@@ -7,9 +7,11 @@
     <list default="true" id="0d60bf1d-1a93-4d5a-bfc8-e534c4a1e8d2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistemaSeguridad.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sistemaSeguridad.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/negocio/SistemaSeguridad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/negocio/SistemaSeguridad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/negocio/Usuarios.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/negocio/Usuarios.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentacion/MainControlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentacion/MainControlador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentacion/VistaLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentacion/VistaLogin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentacion/VistaSistema.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentacion/VistaSistema.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/prueba/Prueba.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/prueba/Prueba.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +95,7 @@
       <workItem from="1686086649783" duration="3358000" />
       <workItem from="1686185360575" duration="1368000" />
       <workItem from="1686424549166" duration="1001000" />
-      <workItem from="1686429255867" duration="8182000" />
+      <workItem from="1686429255867" duration="18202000" />
     </task>
     <servers />
   </component>

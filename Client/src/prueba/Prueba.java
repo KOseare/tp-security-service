@@ -28,7 +28,7 @@ public class Prueba {
         super();
     }
 
-    public static void main(String[] args) {
+    public static <Usuario> void main(String[] args) {
 
         VistaLogin login = new VistaLogin();
         VistaSistema vista = new VistaSistema();
@@ -38,7 +38,10 @@ public class Prueba {
         Promocion dorada = new Dorada();
         Promocion platino = new Platino();
 
+
+
         Persona personaFisica = new PersonaFisica("Juan", "42415305");
+        sistema.nuevoUsuario("prueba", "prueba",personaFisica);
         Persona personaJuridica = new PersonaJuridica("Sancho", "25416352");
 
         Contratacion contratacionAuxiliar;
@@ -223,10 +226,7 @@ public class Prueba {
             System.out.println("Exception " + e.getMessage());
         }
         
-        
-        
     }
-
 
 }
 

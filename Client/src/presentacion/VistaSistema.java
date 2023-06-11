@@ -1,6 +1,8 @@
 
 package presentacion;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
@@ -20,7 +22,9 @@ import javax.swing.JTextArea;
 import javax.swing.JPanel;
 
 
-public class VistaSistema extends javax.swing.JFrame {
+public class VistaSistema extends javax.swing.JFrame implements MouseListener {
+
+    private DialogFactura dialogFactura;
 
     /** Creates new form NewJFrame */
     public VistaSistema() {
@@ -32,7 +36,6 @@ public class VistaSistema extends javax.swing.JFrame {
     private JButton botonBajaContratacion;
     private JButton botonContratacion;
     private JButton botonFactura;
-    private JButton botonNuevaFactura;
     private JButton botonNuevoAbonado;
     private JButton botonSolicitarTecnico;
     private JComboBox<Persona> comboAbonados;
@@ -65,7 +68,6 @@ public class VistaSistema extends javax.swing.JFrame {
         botonBajaContratacion = new JButton();
         botonAltaTecnico = new JButton();
         botonNuevoAbonado = new JButton();
-        botonNuevaFactura = new JButton();
         botonActualizarMes = new JButton();
         zonaRespuesta = new JPanel();
         panelRespuesta = new JScrollPane();
@@ -114,8 +116,6 @@ public class VistaSistema extends javax.swing.JFrame {
 
         botonNuevoAbonado.setText("Nuevo Abonado");
 
-        botonNuevaFactura.setText("Nueva Factura");
-
         botonActualizarMes.setText("Actualizar Mes");
 
         GroupLayout zonaBotonesLayout = new GroupLayout(zonaBotones);
@@ -127,7 +127,6 @@ public class VistaSistema extends javax.swing.JFrame {
             .addComponent(botonBajaContratacion, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(botonSolicitarTecnico, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(botonActualizarMes, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(botonNuevaFactura, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(botonNuevoAbonado, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(botonAltaTecnico, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -135,19 +134,17 @@ public class VistaSistema extends javax.swing.JFrame {
             zonaBotonesLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(zonaBotonesLayout.createSequentialGroup()
                 .addComponent(botonBajaContratacion, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(29, 29, 29)
                 .addComponent(botonFactura, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
+                .addGap(28,28,28 )
                 .addComponent(botonContratacion, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
                 .addComponent(botonSolicitarTecnico, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
                 .addComponent(botonAltaTecnico, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
                 .addComponent(botonNuevoAbonado, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(botonNuevaFactura, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
                 .addComponent(botonActualizarMes, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
         );
 
@@ -207,18 +204,26 @@ public class VistaSistema extends javax.swing.JFrame {
     }
     
     public void setControlador (MainControlador c) {
-    	this.controlador = c;
+        this.controlador = c;
     	botonActualizarMes.addActionListener(c);
     	botonAltaTecnico.addActionListener(c);
     	botonBajaContratacion.addActionListener(c);
     	botonContratacion.addActionListener(c);
     	botonFactura.addActionListener(c);
-    	botonNuevaFactura.addActionListener(c);
     	botonNuevoAbonado.addActionListener(c);
     	botonSolicitarTecnico.addActionListener(c);
       comboAbonados.addActionListener(c);
+        comboAbonados.addActionListener(c);
+        listaFacturas.addListSelectionListener(c);
     }
-    
+
+    public void vistaAbonado(){
+        this.comboAbonados.setVisible(false);
+        this.botonAltaTecnico.setVisible(false);
+        this.botonActualizarMes.setVisible(false);
+        this.botonNuevoAbonado.setVisible(false);
+    }
+
     public void updateListaAbonados (ArrayList<Persona> abonados) {
     	this.modeloAbonados.removeAllElements();
     	for (Persona p : abonados) {
@@ -262,14 +267,46 @@ public class VistaSistema extends javax.swing.JFrame {
     	}
     }
 
+    public void abrirDialogFactura(){
+        this.dialogFactura = new DialogFactura(listaFacturas.getSelectedValue());
+        this.dialogFactura.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        this.dialogFactura.setVisible(true);
+    }
+
     public String getNombreAltaTecnico () {
     	return this.dialogAltaTecnico.getNombreAltaTecnico();
     }
 
-    public void dibujarRespuesta(String resp){
-        this.respuesta.append(resp +"\n"); 
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if (e.getSource() == listaFacturas && e.getClickCount() == 1) {
+            this.controlador.abrirDialogFactura();
+        }
     }
-    
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+    public void dibujarRespuesta(String resp){
+        this.respuesta.append(resp +"\n");
+    }
+
     public void abrirDialogNuevoAbonado () {
     	this.dialogNuevoAbonado = new DialogNuevoAbonado();
     	this.dialogNuevoAbonado.setControlador(this.controlador);
@@ -293,5 +330,9 @@ public class VistaSistema extends javax.swing.JFrame {
     }
     public String getTipoNuevoAbonado () {
     	return this.dialogNuevoAbonado.getTipoNuevoAbonado();
+    }
+
+    public void setAbonadoActivo(Persona abonado){
+        comboAbonados.setSelectedItem(abonado);
     }
 }

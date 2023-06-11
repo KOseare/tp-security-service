@@ -2,6 +2,8 @@ package presentacion;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -13,8 +15,10 @@ import negocio.ServicioAdicional;
 import negocio.SistemaSeguridad;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
-public class MainControlador implements ActionListener {
+public class MainControlador implements ActionListener, ListSelectionListener {
 	private VistaSistema vista;
 	private VistaLogin login;
 	private SistemaSeguridad sistema;
@@ -50,7 +54,7 @@ public class MainControlador implements ActionListener {
 			// sistema.bajaContratacion (p, c);
 		} else if (e.getActionCommand().equals("Solicitar Tecnico")) {
 			 sistema.solicitarTecnico(this);
-                         
+
 		} else if (e.getActionCommand().equals("Alta Tecnico")) {
 			this.vista.abrirDialogAltaTecnico();
 		} else if (e.getActionCommand().equals("Nuevo Abonado")) {
@@ -73,9 +77,11 @@ public class MainControlador implements ActionListener {
 				login.setVisible(false);
 				vista.updateListaAbonados(sistema.getClientes());
 				vista.setVisible(true);
-
 			} else if (sistema.validarUsuario(usuario, clave)){
 				login.setVisible(false);
+				vista.setAbonadoActivo(sistema.getPersonaUsuario(usuario,clave));
+				vista.updateListaFacturas(sistema.getPersonaUsuario(usuario,clave).getFacturas());
+				vista.vistaAbonado();
 				vista.setVisible(true);
 			}else {
 				JOptionPane.showMessageDialog(login, "Nombre de usuario invalido", "Error", JOptionPane.ERROR_MESSAGE);
@@ -106,9 +112,21 @@ public class MainControlador implements ActionListener {
 		}
 		// ------------------------------------------------
 	}
-        
+
 	public void comunicarConsolaTecnico(String resp){
 			vista.dibujarRespuesta(resp);
 	}
+
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		vista.abrirDialogFactura();
+	}
+
+	public void abrirDialogFactura() {
+		vista.abrirDialogFactura();
+	}
+
+
 }
 
