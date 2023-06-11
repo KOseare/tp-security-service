@@ -49,6 +49,7 @@ public class VistaSistema extends javax.swing.JFrame {
     private DefaultListModel<Factura> modeloFacturas = new DefaultListModel<Factura>();
     private DefaultListModel<Contratacion> modeloContrataciones = new DefaultListModel<Contratacion>();
     private DialogAltaTecnico dialogAltaTecnico;
+    private DialogNuevoAbonado dialogNuevoAbonado;
 
     @SuppressWarnings("unchecked")
     private void initComponents() {//GEN-BEGIN:initComponents
@@ -206,6 +207,7 @@ public class VistaSistema extends javax.swing.JFrame {
     }
     
     public void setControlador (MainControlador c) {
+    	this.controlador = c;
     	botonActualizarMes.addActionListener(c);
     	botonAltaTecnico.addActionListener(c);
     	botonBajaContratacion.addActionListener(c);
@@ -214,7 +216,7 @@ public class VistaSistema extends javax.swing.JFrame {
     	botonNuevaFactura.addActionListener(c);
     	botonNuevoAbonado.addActionListener(c);
     	botonSolicitarTecnico.addActionListener(c);
-        comboAbonados.addActionListener(c);
+      comboAbonados.addActionListener(c);
     }
     
     public void updateListaAbonados (ArrayList<Persona> abonados) {
@@ -265,7 +267,31 @@ public class VistaSistema extends javax.swing.JFrame {
     }
 
     public void dibujarRespuesta(String resp){
-        this.respuesta.append(resp +"\n");
-        
+        this.respuesta.append(resp +"\n"); 
+    }
+    
+    public void abrirDialogNuevoAbonado () {
+    	this.dialogNuevoAbonado = new DialogNuevoAbonado();
+    	this.dialogNuevoAbonado.setControlador(this.controlador);
+    	this.dialogNuevoAbonado.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+    	this.dialogNuevoAbonado.setVisible(true);
+    }
+
+    public void cerrarDialogNuevoAbonado () {
+    	if (this.dialogNuevoAbonado != null) {
+    		this.dialogNuevoAbonado.dispose();
+    		this.dialogNuevoAbonado.setVisible(false);
+    		this.dialogNuevoAbonado = null;
+    	}
+    }
+
+    public String getNombreNuevoAbonado () {
+    	return this.dialogNuevoAbonado.getNombreNuevoAbonado();
+    }
+    public String getDniNuevoAbonado () {
+    	return this.dialogNuevoAbonado.getDniNuevoAbonado();
+    }
+    public String getTipoNuevoAbonado () {
+    	return this.dialogNuevoAbonado.getTipoNuevoAbonado();
     }
 }

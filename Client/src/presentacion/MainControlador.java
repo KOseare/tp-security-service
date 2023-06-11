@@ -7,6 +7,8 @@ import java.util.Objects;
 
 import negocio.Domicilio;
 import negocio.Persona;
+import negocio.PersonaFisica;
+import negocio.PersonaJuridica;
 import negocio.ServicioAdicional;
 import negocio.SistemaSeguridad;
 
@@ -30,6 +32,7 @@ public class MainControlador implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		System.out.println(e.getActionCommand());
 		// TO DO: Cambiar string por constantes en interfaz (ej.: InterfazVista.PAGAR_FACTURA)
 		if (e.getActionCommand().equals("Pagar Factura")) {
 			// Persona p = vista.getPersonaSeleccionada(); TO DO
@@ -51,15 +54,18 @@ public class MainControlador implements ActionListener {
 		} else if (e.getActionCommand().equals("Alta Tecnico")) {
 			this.vista.abrirDialogAltaTecnico();
 		} else if (e.getActionCommand().equals("Nuevo Abonado")) {
-			// String tipo = vista.getTipoAbonado(); TO DO
-			// String nombre = vista.getNombreAbonado(); TO DO
-			// String dni = vista.getDniAbonado(); TO DO
-			// sistema.nuevoAbonado(String tipo, String nombre, String dni);
+			vista.abrirDialogNuevoAbonado();
 		} else if (e.getActionCommand().equals("Actualizar Mes")) {
 			sistema.actualizarMes();
+			Persona p = vista.getAbonadoSeleccionado();
+			if (p != null) {
+				vista.updateListaFacturas(p.getFacturas());				
+			}
 		}else if (e.getActionCommand().equals("Seleccion Abonado")){
 			Persona p = vista.getAbonadoSeleccionado();
-			vista.updateListaFacturas(p.getFacturas());
+			if (p != null) {
+				vista.updateListaFacturas(p.getFacturas());				
+			}
 		} else if (e.getActionCommand().equals("Login")) {
 			String usuario = login.getUsuario();
 			String clave = login.getContrasenia();
@@ -84,6 +90,19 @@ public class MainControlador implements ActionListener {
 			this.vista.cerrarDialogAltaTecnico();
 		} else if (e.getActionCommand().equals("CancelarAltaTecnico")) {
 			this.vista.cerrarDialogAltaTecnico();
+		}
+		// ------------------------------------------------
+		
+		// Actions Nuevo Abonado -----------------------------
+		else if (e.getActionCommand().equals("CrearNuevoAbonado")) {
+			String tipo = vista.getTipoNuevoAbonado();
+			String nombre = vista.getNombreNuevoAbonado();
+			String dni = vista.getDniNuevoAbonado();
+			sistema.nuevoAbonado(tipo, nombre, dni);
+			vista.updateListaAbonados(sistema.getClientes());
+			this.vista.cerrarDialogNuevoAbonado();
+		} else if (e.getActionCommand().equals("CancelarNuevoAbonado")) {
+			this.vista.cerrarDialogNuevoAbonado();
 		}
 		// ------------------------------------------------
 	}
