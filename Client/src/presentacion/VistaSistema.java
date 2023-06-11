@@ -25,6 +25,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JPanel;
 
+import negocio.IFactura;
+
 
 public class VistaSistema extends javax.swing.JFrame implements MouseListener {
 
@@ -56,6 +58,9 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener {
     private DefaultListModel<Factura> modeloFacturas = new DefaultListModel<Factura>();
     private DefaultListModel<Contratacion> modeloContrataciones = new DefaultListModel<Contratacion>();
     private DialogAltaTecnico dialogAltaTecnico;
+    private DialogNuevoAbonado dialogNuevoAbonado;
+    private DialogPagarFactura dialogPagarFactura;
+    private DialogException dialogException;
 
     @SuppressWarnings("unchecked")
     private void initComponents() { //GEN-BEGIN:initComponents
@@ -119,6 +124,7 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener {
         zonaBotones.setPreferredSize(new java.awt.Dimension(113, 450));
 
         botonFactura.setText("Pagar Factura");
+        botonFactura.setEnabled(false);
 
         botonContratacion.setText("Nueva Contratacion");
 
@@ -130,6 +136,8 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener {
         botonAltaTecnico.setText("Alta Tecnico");
 
         botonNuevoAbonado.setText("Nuevo Abonado");
+
+        // botonNuevaFactura.setText("Nueva Factura");
 
         botonActualizarMes.setText("Actualizar Mes");
 
@@ -262,7 +270,6 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener {
         botonNuevoAbonado.addActionListener(c);
         botonSolicitarTecnico.addActionListener(c);
         comboAbonados.addActionListener(c);
-        listaFacturas.addListSelectionListener(c);
     }
 
     public void updateListaAbonados(ArrayList<Persona> abonados) {
@@ -318,35 +325,135 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener {
         return this.dialogAltaTecnico.getNombreAltaTecnico();
     }
 
+    public void dibujarRespuesta(String resp) {
+        this.respuesta.append(resp + "\n");
+    }
+
+    public void abrirDialogNuevoAbonado() {
+        this.dialogNuevoAbonado = new DialogNuevoAbonado();
+        this.dialogNuevoAbonado.setControlador(this.controlador);
+        this.dialogNuevoAbonado.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        this.dialogNuevoAbonado.setVisible(true);
+    }
+
+    public void cerrarDialogNuevoAbonado() {
+        if (this.dialogNuevoAbonado != null) {
+            this.dialogNuevoAbonado.dispose();
+            this.dialogNuevoAbonado.setVisible(false);
+            this.dialogNuevoAbonado = null;
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt
+            .EventQueue
+            .invokeLater(new Runnable() {
+                public void run() {
+                    new VistaSistema().setVisible(true);
+                }
+            });
+    }
+
     @Override
-    public void mouseClicked(MouseEvent e) {
-        if (e.getSource() == listaFacturas && e.getClickCount() == 1) {
-            this.controlador.abrirDialogFactura();
+    public void mouseClicked(MouseEvent mouseEvent) {
+        // TODO Implement this method
+
+        ComprobacionFacturaSeleccionada();
+    }
+
+    @Override
+    public void mousePressed(MouseEvent mouseEvent) {
+        // TODO Implement this method
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent mouseEvent) {
+        // TODO Implement this method
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent mouseEvent) {
+        // TODO Implement this method
+    }
+
+    @Override
+    public void mouseExited(MouseEvent mouseEvent) {
+        // TODO Implement this method
+    }
+
+    String getTipoNuevoAbonado() {
+        return null;
+    }
+
+    String getNombreNuevoAbonado() {
+        return null;
+    }
+
+    String getDniNuevoAbonado() {
+        return null;
+    }
+
+    void abrirDialogPagarFactura() {
+        this.dialogPagarFactura = new DialogPagarFactura(listaFacturas.getSelectedValue());
+        this.dialogPagarFactura.setControlador(this.controlador);
+        this.dialogPagarFactura.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        this.dialogPagarFactura.setVisible(true);
+    }
+
+    void abrirDialogException(String mensaje) {
+        this.dialogException = new DialogException(mensaje);
+        this.dialogException.setControlador(this.controlador);
+        this.dialogException.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        this.dialogException.setVisible(true);
+    }
+    void cerrarDialogException() {
+        if (this.dialogException != null) {
+            this.dialogException.dispose();
+            this.dialogException.setVisible(false);
+            this.dialogException = null;
         }
     }
 
-    @Override
-    public void mousePressed(MouseEvent e) {
+
+    void ComprobacionFacturaSeleccionada() {
+        this.botonFactura.setEnabled(!listaFacturas.isSelectionEmpty() && !getFacturaSeleccionada().isPagado());
 
     }
 
-    @Override
-    public void mouseReleased(MouseEvent e) {
+    void cerrarDialogPagarFactura() {
+        if (this.dialogPagarFactura != null) {
+            this.dialogPagarFactura.dispose();
+            this.dialogPagarFactura.setVisible(false);
+            this.dialogPagarFactura = null;
 
+        }
+    }
+    
+
+    public String getDetalleFactura() {
+        return this.dialogPagarFactura.getDetalleFactura();
     }
 
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
+    public Factura getFacturaSeleccionada() {
+        return listaFacturas.getSelectedValue();
     }
 
-    @Override
-    public void mouseExited(MouseEvent e) {
-
+    public String getMonto() {
+        return this.dialogPagarFactura.getMonto();
     }
 
-    public void dibujarRespuesta(String resp) {
-        this.respuesta.append(resp + "\n");
-
+    public String getTipoMedioDePago() {
+        return this.dialogPagarFactura.getTipoMedioDePago();
     }
+
+    public void actualizarFacturaDialog(IFactura factura) {
+        this.dialogPagarFactura.setFactura(factura);
+    }
+
+    IFactura getFacturaFinal() {
+        return this.dialogPagarFactura.getFacturaFinal();
+    }
+
+
 }
+

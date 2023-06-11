@@ -18,4 +18,7 @@ public class SaldoInsuficienteExeception extends Throwable {
     public double getImporte() {
         return importe;
     }
+    public String getMessage(){
+        return "La factura no pudo pagarse, faltan "+ (getValor()-getImporte());
+    }
 }

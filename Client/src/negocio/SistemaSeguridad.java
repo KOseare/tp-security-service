@@ -92,14 +92,8 @@ public class SistemaSeguridad {
         }
     }
     
-    public void pagarFactura (Persona persona, Factura factura) {
-    	if (persona.getFacturas().contains(factura)) {
-    		try {
-					factura.pagarFactura(1); // TO DO: Agregar interfaz para el saldo
-				} catch (SaldoInsuficienteExeception e) {
-					System.out.println("SALDO INSUFICIENTE"); // TO DO: Observer, zona de notificaciones
-				}
-    	}
+    public void pagarFactura (IFactura factura,double monto) throws SaldoInsuficienteExeception {
+            factura.pagarFactura(monto);
     }
     
     public void agregarContrato (Persona persona, String tipo, Domicilio domicilio, ArrayList<ServicioAdicional> servicios) {

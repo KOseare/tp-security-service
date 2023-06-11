@@ -26,13 +26,11 @@ public class Main {
 
 	public static void main(String[] args) {
 		VistaSistema vista = new VistaSistema();
-        SistemaSeguridad sistema = SistemaSeguridad.getSistema();
+    SistemaSeguridad sistema = SistemaSeguridad.getSistema();
         VistaLogin login = new VistaLogin();
     MainControlador controlador = new MainControlador(vista,login);
 
     initTestData(sistema);
-    
-    vista.arranca();    
     
     vista.updateListaAbonados(sistema.getClientes()); // Es un test, las actualizaciones se deben hacer en el controlador
 	}
