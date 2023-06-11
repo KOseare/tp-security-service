@@ -268,9 +268,11 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener {
     }
 
     public void abrirDialogFactura(){
-        this.dialogFactura = new DialogFactura(listaFacturas.getSelectedValue());
+    	if (listaFacturas.getSelectedValue() != null) {
+    		this.dialogFactura = new DialogFactura(listaFacturas.getSelectedValue());
         this.dialogFactura.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.dialogFactura.setVisible(true);
+    	}
     }
 
     public String getNombreAltaTecnico () {
