@@ -1,6 +1,7 @@
 
 package presentacion;
 
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -26,13 +27,22 @@ import javax.swing.JPanel;
 import negocio.IFactura;
 
 
-public class VistaSistema extends javax.swing.JFrame implements MouseListener {
+public class VistaSistema extends javax.swing.JFrame {
 
     private DialogFactura dialogFactura;
 
     /** Creates new form NewJFrame */
     public VistaSistema() {
         initComponents();
+        MouseListener mlFacturas = new MouseAdapter() {
+        	public void mouseClicked (MouseEvent e) {
+        		ComprobacionFacturaSeleccionada();
+        		if (e.getClickCount() == 2) {
+        			controlador.abrirDialogFactura();
+        		}
+        	}
+        };
+        listaFacturas.addMouseListener(mlFacturas);
     }
     private MainControlador controlador;
     private JButton botonActualizarMes;
@@ -265,7 +275,7 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener {
     	botonFactura.addActionListener(c);
     	botonNuevoAbonado.addActionListener(c);
     	botonSolicitarTecnico.addActionListener(c);
-        comboAbonados.addActionListener(c);
+      comboAbonados.addActionListener(c);
     }
 
     public void vistaAbonado(){
@@ -328,33 +338,6 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener {
 
     public String getNombreAltaTecnico() {
         return this.dialogAltaTecnico.getNombreAltaTecnico();
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent mouseEvent) {
-        // TODO Implement this method
-
-        ComprobacionFacturaSeleccionada();
-    }
-
-    @Override
-    public void mousePressed(MouseEvent mouseEvent) {
-        // TODO Implement this method
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent mouseEvent) {
-        // TODO Implement this method
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent mouseEvent) {
-        // TODO Implement this method
-    }
-
-    @Override
-    public void mouseExited(MouseEvent mouseEvent) {
-        // TODO Implement this method
     }
 
     void abrirDialogPagarFactura() {

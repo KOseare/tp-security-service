@@ -73,7 +73,8 @@ public class MainControlador implements ActionListener, ListSelectionListener {
 		}else if (e.getActionCommand().equals("Seleccion Abonado")){
 			Persona p = vista.getAbonadoSeleccionado();
 			if (p != null) {
-				vista.updateListaFacturas(p.getFacturas());				
+				vista.updateListaFacturas(p.getFacturas());
+				vista.updateListaContrataciones(p.getContrataciones());				
 			}
 		} else if (e.getActionCommand().equals("Login")) {
 			String usuario = login.getUsuario();
@@ -153,7 +154,7 @@ public class MainControlador implements ActionListener, ListSelectionListener {
 
     @Override
     public void valueChanged(ListSelectionEvent listSelectionEvent) {
-        vista.abrirDialogFactura();
+        // vista.abrirDialogFactura(); // No es mas necesario se agrego un mouse listener
     }
 
     public void abrirDialogFactura() {
