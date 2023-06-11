@@ -30,9 +30,9 @@ public class VistaLogin extends javax.swing.JFrame {
         campoUsuario.setText("");
 
         jLabel1.setText("Usuario");
-
+        campoUsuario.setText("superusuario");
         jLabel2.setText("Contrase�a");
-
+        campoContrasenia.setText("2c2023");
         botonLogin.setText("Ingresar");
         botonLogin.setActionCommand("Login");
 

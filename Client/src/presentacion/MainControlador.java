@@ -2,6 +2,8 @@ package presentacion;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -11,8 +13,10 @@ import negocio.ServicioAdicional;
 import negocio.SistemaSeguridad;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
-public class MainControlador implements ActionListener {
+public class MainControlador implements ActionListener, ListSelectionListener {
 	private VistaSistema vista;
 	private VistaLogin login;
 	private SistemaSeguridad sistema;
@@ -86,6 +90,16 @@ public class MainControlador implements ActionListener {
 		}
 		// ------------------------------------------------
 	}
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		vista.abrirDialogFactura();
+	}
+
+	public void abrirDialogFactura() {
+		vista.abrirDialogFactura();
+	}
+
 
 }
 

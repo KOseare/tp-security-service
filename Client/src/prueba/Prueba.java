@@ -223,10 +223,7 @@ public class Prueba {
             System.out.println("Exception " + e.getMessage());
         }
         
-        
-        
     }
-
 
 }
 
