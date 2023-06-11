@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="18.0.1.1" class="java.beans.XMLDecoder">
+<java version="20.0.1" class="java.beans.XMLDecoder">
  <object class="datos.SistemaSeguridadDTO" id="SistemaSeguridadDTO0">
   <void property="clientes">
    <void method="add">
@@ -101,7 +101,7 @@
         </void>
         <void property="fecha">
          <object class="java.util.Date">
-          <long>1686405938987</long>
+          <long>1686450388045</long>
          </object>
         </void>
         <void property="importe_bruto">
@@ -305,7 +305,7 @@
         </void>
         <void property="fecha">
          <object class="java.util.Date">
-          <long>1686405938988</long>
+          <long>1686450388045</long>
          </object>
         </void>
         <void property="importeDePago">
@@ -507,7 +507,7 @@
         </void>
         <void property="fecha">
          <object class="java.util.Date">
-          <long>1686405938991</long>
+          <long>1686450388047</long>
          </object>
         </void>
         <void property="importeDePago">

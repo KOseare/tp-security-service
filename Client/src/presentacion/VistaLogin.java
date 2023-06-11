@@ -7,13 +7,8 @@ package presentacion;
  */
 public class VistaLogin extends javax.swing.JFrame {
 
-    private String usuario = "superusuario";
-    private String clave = "2c2023";
-
     /** Creates new form VistaLogin */
-    public VistaLogin() {
-        initComponents();
-    }
+    public VistaLogin() {initComponents();}
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -32,18 +27,14 @@ public class VistaLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        campoUsuario.setText("Usuario");
+        campoUsuario.setText("");
 
         jLabel1.setText("Usuario");
-
-        jLabel2.setText("Contraseña");
-
+        campoUsuario.setText("superusuario");
+        jLabel2.setText("Contraseï¿½a");
+        campoContrasenia.setText("2c2023");
         botonLogin.setText("Ingresar");
-        botonLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonLoginActionPerformed(evt);
-            }
-        });
+        botonLogin.setActionCommand("Login");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -100,79 +91,6 @@ public class VistaLogin extends javax.swing.JFrame {
         pack();
     }//GEN-END:initComponents
 
-    private void botonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLoginActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonLoginActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing
-                                                                   .UIManager
-                                                                   .getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing
-                         .UIManager
-                         .setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util
-                .logging
-                .Logger
-                .getLogger(VistaLogin.class.getName())
-                .log(java.util
-                         .logging
-                         .Level
-                         .SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util
-                .logging
-                .Logger
-                .getLogger(VistaLogin.class.getName())
-                .log(java.util
-                         .logging
-                         .Level
-                         .SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util
-                .logging
-                .Logger
-                .getLogger(VistaLogin.class.getName())
-                .log(java.util
-                         .logging
-                         .Level
-                         .SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util
-                .logging
-                .Logger
-                .getLogger(VistaLogin.class.getName())
-                .log(java.util
-                         .logging
-                         .Level
-                         .SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt
-            .EventQueue
-            .invokeLater(new Runnable() {
-                public void run() {
-                    new VistaLogin().setVisible(true);
-                }
-            });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonLogin;
     private javax.swing.JPasswordField campoContrasenia;
@@ -182,4 +100,20 @@ public class VistaLogin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
+    public String getUsuario() {
+        return campoUsuario.getText();
+    }
+
+    public String getContrasenia() {
+        return new String(campoContrasenia.getPassword());
+    }
+
+    public void limpiarCampos() {
+        campoUsuario.setText("");
+        campoContrasenia.setText("");
+    }
+
+    public void setControlador(MainControlador controlador) {
+        botonLogin.addActionListener(controlador);
+    }
 }

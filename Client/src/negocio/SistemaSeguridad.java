@@ -12,6 +12,7 @@ import presentacion.MainControlador;
  * Clase que representa al sistema general de la empresa.
  */
 public class SistemaSeguridad {
+    private ArrayList<Usuarios> usuarios = new ArrayList<Usuarios>();
     private ArrayList<Persona> clientes = new ArrayList<Persona>();
     private static SistemaSeguridad _instancia = null;
     private ServicioTecnico serviciotecnico;
@@ -135,7 +136,26 @@ public class SistemaSeguridad {
     	}
     	this.clientes.add(p);
     }
-    
+
+    public void nuevoUsuario(String usuario, String clave) {
+    	Usuarios u = new Usuarios(usuario, clave);
+    	this.usuarios.add(u);
+    }
+
+    public void eliminarUsuario (Usuarios u) {
+    	this.usuarios.remove(u);
+    }
+
+    public boolean validarUsuario(String usuario, String clave) {
+        boolean res = false;
+    	for (Usuarios u : this.usuarios) {
+            if (u.getUsuario().equals(usuario) && u.getClave().equals(clave)) {
+                res = true;
+                break;
+            }
+    	}
+        return res;
+    }
     public void actualizarMes () {
     	for (Persona persona : this.clientes) {
         persona.facturacionMensual();

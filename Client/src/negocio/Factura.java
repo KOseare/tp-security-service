@@ -220,11 +220,13 @@ public class Factura implements Cloneable, IFactura, Comparable<Factura> {
     @Override
     public String detalle() {
         String detalle = "Fecha: " + this.fecha + " Abonado: " + this.cliente + "\n Contratos: \n";
-        for (Contratacion contrato : contratos)
+        for (Contratacion contrato : contratos){
             detalle += contrato.toSting();
+            detalle += "\n";
+        }
         detalle +=
-            "Importe Bruto: " + this.importe_bruto + " Descuentos: " + this.descuento + " Importe Neto: " +
-            this.importe_neto + ", Pagado: " + this.isPagado() + "\n\n";
+            "Importe Bruto: " + this.importe_bruto + "\nDescuentos: " + this.descuento + "\nImporte Neto: " +
+            this.importe_neto + ",\nPagado: " + this.isPagado() + "\n\n";
 
         return detalle;
     }
@@ -234,5 +236,7 @@ public class Factura implements Cloneable, IFactura, Comparable<Factura> {
         return this.getFecha().compareTo(factura.getFecha());
     }
 
-
+    public String toString() {
+        return "Fecha: " + this.fecha + "\n Abonado: \n" + this.cliente + "\n";
+    }
 }

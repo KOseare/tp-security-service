@@ -31,9 +31,9 @@ public class ConContratacionesState implements States {
     }
 
     @Override
-    public void contratarServicio() {
+    public void agregarContrato(Contratacion contrato) {
         // si, llamar metodo de personafisica
-        this.personaFisica.contratarServicio();
+        this.personaFisica.agregarContrato(contrato);
     }
 
     @Override

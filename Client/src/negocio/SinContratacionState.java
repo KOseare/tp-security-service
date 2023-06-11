@@ -26,9 +26,10 @@ public class SinContratacionState implements States {
     }
 
     @Override
-    public void contratarServicio() {
+    public void agregarContrato(Contratacion contrato) {
         // si puede, llamar al metodo de contratacion de la persona
         //llamar al metodo pasar a ConContratacionesState
+        this.personaFisica.agregarContrato(contrato);
         this.personaFisica.setEstado(new ConContratacionesState(this.personaFisica));
     }
 

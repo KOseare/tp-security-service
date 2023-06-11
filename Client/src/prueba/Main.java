@@ -19,14 +19,16 @@ import negocio.SistemaSeguridad;
 import negocio.Tecnico;
 
 import presentacion.MainControlador;
+import presentacion.VistaLogin;
 import presentacion.VistaSistema;
 
 public class Main {
 
 	public static void main(String[] args) {
 		VistaSistema vista = new VistaSistema();
-    SistemaSeguridad sistema = SistemaSeguridad.getSistema();
-    MainControlador controlador = new MainControlador(vista, sistema);
+        SistemaSeguridad sistema = SistemaSeguridad.getSistema();
+        VistaLogin login = new VistaLogin();
+    MainControlador controlador = new MainControlador(vista,login);
 
     initTestData(sistema);
     

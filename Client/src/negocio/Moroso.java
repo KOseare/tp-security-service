@@ -21,14 +21,13 @@ public class Moroso implements States {
 
     @Override
     public void pagarFactura() {
-        // recargo del 30% :o
-        //actualizador de estado?
+        // recargo del 30% 
         personaFisica.pagarFactura();//+30% crear nuevo recargo(con clase recargo)?
         
     }
 
     @Override
-    public void contratarServicio() {
+    public void agregarContrato(Contratacion contrato) {
         // no puede
     }
 
@@ -39,6 +38,12 @@ public class Moroso implements States {
 
     @Override
     public void actualizarEstado() {
+        int cont=0;
+            while(getPersonaFisica().getFacturas().descendingIterator().hasNext() && cont < 2)
+                cont += getPersonaFisica().getFacturas().descendingIterator().next().isPagado()?0:1;    
+            if(cont >= 2)
+                personaFisica.setEstado(new ConContratacionesState(this.personaFisica));
+        
         //chequea si se pago la factura, pasa a con contratacion
         //if(personaFisica.getFacturas().size() > 2 && personaFisica.getFacturas().get(personaFisica.getFacturas().size()-2).isPagado())
         //    personaFisica.setEstado(new ConContratacionesState(this.personaFisica));
