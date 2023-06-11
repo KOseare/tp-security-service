@@ -41,7 +41,7 @@ public class MonitoreoComercio extends Contratacion {
      * <li>Se devuelve el descuento correspondiente a la promocion.</li>
      * </ul>
      * 
-     * @param promocion La promoción aplicable a la contratacion.
+     * @param promocion La promociï¿½n aplicable a la contratacion.
      * @return El descuento correspondiente a la promocion.
      */
     @Override
@@ -50,7 +50,7 @@ public class MonitoreoComercio extends Contratacion {
     }
     
     @Override
-    public String toSting(){
-        return "\tTipo: Monitoreo de Comercio" + super.toSting();
+    public String toString(){
+        return "\tTipo: Monitoreo de Comercio" + super.toString();
     }
 }

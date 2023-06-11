@@ -191,9 +191,10 @@ public abstract class Contratacion implements Cloneable {
         return result;
     }
 
-    public String toSting() {
+    @Override
+    public String toString() {
         String detalle =
-            "[ id: " + id + ", precioDelServicio: " + this.precioDelServicio + ", Servicios adicionales: " +
+            "[ id: " + id + ", precio base: " + this.precioDelServicio + ", Servicios adicionales: " +
             this.serviciosAdicionales.toString();
         if (promo != null) {
             detalle += ", Promocion: " + promo.toString() + ", Descuento de la promocion: " + calculaPromo(this.promo);

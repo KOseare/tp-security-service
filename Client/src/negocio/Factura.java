@@ -221,7 +221,7 @@ public class Factura implements Cloneable, IFactura, Comparable<Factura> {
     public String detalle() {
         String detalle = "Fecha: " + this.fecha + " Abonado: " + this.cliente + "\n Contratos: \n";
         for (Contratacion contrato : contratos){
-            detalle += contrato.toSting();
+            detalle += contrato.toString();
             detalle += "\n";
         }
         detalle +=

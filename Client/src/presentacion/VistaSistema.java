@@ -13,6 +13,7 @@ import javax.swing.GroupLayout;
 import javax.swing.DefaultListModel;
 
 import negocio.Contratacion;
+import negocio.Domicilio;
 import negocio.Factura;
 import negocio.Persona;
 
@@ -69,6 +70,7 @@ public class VistaSistema extends javax.swing.JFrame {
     private DialogNuevoAbonado dialogNuevoAbonado;
     private DialogPagarFactura dialogPagarFactura;
     private DialogException dialogException;
+    private DialogNuevaContratacion dialogNuevaContratacion;
 
     @SuppressWarnings("unchecked")
     private void initComponents() { //GEN-BEGIN:initComponents
@@ -432,6 +434,41 @@ public class VistaSistema extends javax.swing.JFrame {
     IFactura getFacturaFinal() {
         return this.dialogPagarFactura.getFacturaFinal();
     }
+    
+    public Contratacion getContratacionSeleccionada() {
+      return listaContrataciones.getSelectedValue();
+    }
+    
+    public void abrirDialogNuevaContrataciono () {
+    	this.dialogNuevaContratacion = new DialogNuevaContratacion(this.getAbonadoSeleccionado().getDomicilios());
+    	this.dialogNuevaContratacion.setControlador(this.controlador);
+    	this.dialogNuevaContratacion.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+    	this.dialogNuevaContratacion.setVisible(true);
+    }
+
+    public void cerrarDialogNuevaContratacion () {
+    	if (this.dialogNuevaContratacion != null) {
+    		this.dialogNuevaContratacion.dispose();
+    		this.dialogNuevaContratacion.setVisible(false);
+    		this.dialogNuevaContratacion = null;
+    	}
+    }
+    
+    public Domicilio getDomicilioContratacion() {
+  		return this.dialogNuevaContratacion.getDomicilioContratacion();
+  	}
+  	public String getTipoContratacion () {
+  		return this.dialogNuevaContratacion.getTipoContratacion();
+  	}
+  	public boolean getCamaraSelectedContratacion () {
+  		return this.dialogNuevaContratacion.getCamaraSelectedContratacion();
+  	}
+  	public boolean getAntipanicoSelectedContratacion () {
+  		return this.dialogNuevaContratacion.getAntipanicoSelectedContratacion();
+  	}
+  	public boolean getMovilSelectedContratacion () {
+  		return this.dialogNuevaContratacion.getMovilSelectedContratacion();
+  	}
 
 
 }

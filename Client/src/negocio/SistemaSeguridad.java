@@ -1,6 +1,7 @@
 package negocio;
 
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -96,19 +97,28 @@ public class SistemaSeguridad {
             factura.pagarFactura(monto);
     }
     
-    public void agregarContrato (Persona persona, String tipo, Domicilio domicilio, ArrayList<ServicioAdicional> servicios) {
+    public void agregarContrato (Persona persona, String tipo, Domicilio domicilio, boolean camara, boolean antipanico, boolean movil) {
     	Contratacion contrato;
+    	ArrayList<ServicioAdicional> servicios = new ArrayList<>();
     	if (tipo.equals("Comercio")) {
-    		contrato = new MonitoreoComercio();
+    		contrato = new MonitoreoComercio(domicilio);
     	} else {
-    		contrato = new MonitoreoVivienda();
+    		contrato = new MonitoreoVivienda(domicilio);
     	}
-    	contrato.setServiciosAdicionales(servicios); // TO DO: Revisar si seria necesario instancia aca los servicios
+    	
+    	if (camara)
+    		servicios.add(new Camara(1));
+    	if (antipanico)
+    		servicios.add(new BotonAntiPanico(1));
+    	if (movil)
+    		servicios.add(new MovilDeAcompaniamiento(LocalTime.of(0, 0), LocalTime.of(23, 59)));
+    	
+    	contrato.setServiciosAdicionales(servicios);
     	persona.agregarContrato(contrato);
     }
     
     public void bajaContratacion (Persona persona, Contratacion c) {
-    	persona.getContrataciones().remove(c);
+    	persona.darBajaServicio(c);
     }
     
     public void solicitarTecnico (MainControlador observer){

@@ -20,6 +20,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import negocio.Cheque;
+import negocio.Contratacion;
 import negocio.Efectivo;
 import negocio.Tarjeta;
 
@@ -48,15 +49,14 @@ public class MainControlador implements ActionListener, ListSelectionListener {
 		if (e.getActionCommand().equals("Pagar Factura")) {
 			vista.abrirDialogPagarFactura();
 		} else if (e.getActionCommand().equals("Nueva Contratacion")) {
-			// Persona p = vista.getPersonaSeleccionada(); TO DO
-			// String tipoContratacion = vista.getTipoContratacionSeleccionada(); TO DO
-			// Domicilio d = vista.getTipoDomicilioSeleccionado(); TO DO
-			// ArrayList<ServicioAdicional> s = vista.getTipoServiciosSeleccionados(); TO DO
-			// sistema.agregarContrato (p, tipoContratacion, d, s);
+			vista.abrirDialogNuevaContrataciono();
 		} else if (e.getActionCommand().equals("Baja Contratacion")) {
-			// Persona p = vista.getPersonaSeleccionada(); TO DO
-			// Contratacion c = vista.getContratacionSeleccionada(); TO DO
-			// sistema.bajaContratacion (p, c);
+			Persona p = vista.getAbonadoSeleccionado();
+			Contratacion c = vista.getContratacionSeleccionada();
+			if (p != null && c != null) {
+				sistema.bajaContratacion (p, c);
+				vista.updateListaContrataciones(p.getContrataciones());				
+			}
 		} else if (e.getActionCommand().equals("Solicitar Tecnico")) {
 			 sistema.solicitarTecnico(this);
 
@@ -144,6 +144,26 @@ public class MainControlador implements ActionListener, ListSelectionListener {
 			else if (e.getActionCommand().equals("AceptarMensaje"))
 				this.vista.cerrarDialogException();
 		//------------------------------------------------------------
+		
+		// Actions Nueva Contratacion --------------------------------
+		else if (e.getActionCommand().equals("CrearNuevaContratacion")) {
+			Persona p = vista.getAbonadoSeleccionado();
+			String tipoContratacion = vista.getTipoContratacion();
+			Domicilio d = vista.getDomicilioContratacion();
+			boolean camara = vista.getCamaraSelectedContratacion();
+			boolean antipanico = vista.getAntipanicoSelectedContratacion();
+			boolean movil = vista.getMovilSelectedContratacion();
+			
+			if (p != null && d != null) {
+				sistema.agregarContrato (p, tipoContratacion, d, camara, antipanico, movil);
+				
+				this.vista.updateListaContrataciones(p.getContrataciones());
+				this.vista.cerrarDialogNuevaContratacion();				
+			}
+		} else if (e.getActionCommand().equals("CancelarNuevaContratacion")) {
+			this.vista.cerrarDialogNuevaContratacion();
+		}
+		// -----------------------------------------------------------
 		
 		this.vista.ComprobacionFacturaSeleccionada();
 	}
