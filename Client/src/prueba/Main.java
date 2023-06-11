@@ -16,6 +16,8 @@ import negocio.PersonaJuridica;
 import negocio.Platino;
 import negocio.Promocion;
 import negocio.SistemaSeguridad;
+import negocio.Tecnico;
+
 import presentacion.MainControlador;
 import presentacion.VistaLogin;
 import presentacion.VistaSistema;
@@ -135,6 +137,9 @@ public class Main {
     contratacionAuxiliar.agregarServicioAdicional(new MovilDeAcompaniamiento(LocalTime.of(9, 30),
                                                                              LocalTime.of(13, 0)));
     personaFisica.agregarContrato(contratacionAuxiliar);
+    
+    sistema.getServiciotecnico().agregarTecnico(new Tecnico("Jaime"));
+    sistema.getServiciotecnico().agregarTecnico(new Tecnico("Franco"));
 	}
 
 }

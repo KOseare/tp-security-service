@@ -2,38 +2,46 @@ package negocio;
 
 import java.util.Random;
 
-public class ServicioTecnicoRunnable implements Runnable{
+import presentacion.MainControlador;
+
+public class ServicioTecnicoRunnable implements Runnable {
 
     private Random rand = new Random();
     private ServicioTecnico servicioTecnico;
+    private MainControlador observer;
     //Observable controladorDeLaVista
 
-    public ServicioTecnicoRunnable(ServicioTecnico servicioTecnico){
+    public ServicioTecnicoRunnable(ServicioTecnico servicioTecnico, MainControlador observer) {
         this.servicioTecnico = servicioTecnico;
+        this.setObserver(observer);
     }
+
+    public void setObserver(MainControlador observer) {
+        this.observer = observer;
+    }
+
     public void run() {
-        
-        //comunicacion con la interfaz
-        //solicitando servicio tecnico
-        try{
+
+        try {
             Tecnico tecnico;
-            tecnico = this.servicioTecnico.solicitarTecnico();//en caso de no haber tecnicos se queda esperando
-          
-            //usar controlador de la vista para representar los sucesos
-            //visita del tecnico
-            Thread.sleep(rand.nextInt(10000));
-            //tecnico reparando...
-            Thread.sleep(rand.nextInt(10000));
-            //trabajo hecho regresando tecnico
-            Thread.sleep(rand.nextInt(10000));
+            tecnico =
+                this.servicioTecnico.solicitarTecnico(this.observer); //en caso de no haber tecnicos se queda esperando
+
+            observer.comunicarConsolaTecnico("Se solicito al Tecnico: " + tecnico.getNombre());
+            Thread.sleep(rand.nextInt(5000));
+            observer.comunicarConsolaTecnico("El tecnico " + tecnico.getNombre() +
+                                             " llego a la casa, tecnico reparando...");
+            Thread.sleep(rand.nextInt(5000));
+            observer.comunicarConsolaTecnico("trabajo hecho,tecnico " + tecnico.getNombre() + " regresando ");
+            Thread.sleep(rand.nextInt(5000));
             this.servicioTecnico.agregarTecnico(tecnico);
-            
-        }catch(InterruptedException ie){
-            //se interrumpio el proceso
+            observer.comunicarConsolaTecnico("Tecnico " + tecnico.getNombre() + " regresado");
+
+        } catch (InterruptedException ie) {
+            observer.comunicarConsolaTecnico("Se interrumpio el Proceso");
         }
-        
+
     }
-    
-    
-    
+
+
 }

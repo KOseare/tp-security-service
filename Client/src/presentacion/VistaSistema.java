@@ -298,4 +298,8 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener {
     public void mouseExited(MouseEvent e) {
 
     }
+    public void dibujarRespuesta(String resp){
+        this.respuesta.append(resp +"\n");
+
+    }
 }
