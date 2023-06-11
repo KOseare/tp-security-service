@@ -27,12 +27,12 @@ public class MainControlador implements ActionListener {
 		this.sistema = SistemaSeguridad.getSistema();
 		this.login.setControlador(this);
 		this.vista.setControlador(this);
+		this.vista.arranca();
 		login.setVisible(true);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println(e.getActionCommand());
 		// TO DO: Cambiar string por constantes en interfaz (ej.: InterfazVista.PAGAR_FACTURA)
 		if (e.getActionCommand().equals("Pagar Factura")) {
 			// Persona p = vista.getPersonaSeleccionada(); TO DO

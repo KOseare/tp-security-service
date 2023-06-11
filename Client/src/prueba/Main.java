@@ -30,10 +30,7 @@ public class Main {
         VistaLogin login = new VistaLogin();
     MainControlador controlador = new MainControlador(vista,login);
 
-    initTestData(sistema);
-    
-    vista.setControlador(controlador);
-    vista.arranca();    
+    initTestData(sistema); 
     
     vista.updateListaAbonados(sistema.getClientes()); // Es un test, las actualizaciones se deben hacer en el controlador
 	}
