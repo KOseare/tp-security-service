@@ -77,9 +77,11 @@ public class MainControlador implements ActionListener, ListSelectionListener {
 				login.setVisible(false);
 				vista.updateListaAbonados(sistema.getClientes());
 				vista.setVisible(true);
-
 			} else if (sistema.validarUsuario(usuario, clave)){
 				login.setVisible(false);
+				vista.setAbonadoActivo(sistema.getPersonaUsuario(usuario,clave));
+				vista.updateListaFacturas(sistema.getPersonaUsuario(usuario,clave).getFacturas());
+				vista.vistaAbonado();
 				vista.setVisible(true);
 			}else {
 				JOptionPane.showMessageDialog(login, "Nombre de usuario invalido", "Error", JOptionPane.ERROR_MESSAGE);
@@ -114,6 +116,7 @@ public class MainControlador implements ActionListener, ListSelectionListener {
 	public void comunicarConsolaTecnico(String resp){
 			vista.dibujarRespuesta(resp);
 	}
+
 
 	@Override
 	public void valueChanged(ListSelectionEvent e) {

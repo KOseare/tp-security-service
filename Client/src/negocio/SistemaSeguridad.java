@@ -137,8 +137,8 @@ public class SistemaSeguridad {
     	this.clientes.add(p);
     }
 
-    public void nuevoUsuario(String usuario, String clave) {
-    	Usuarios u = new Usuarios(usuario, clave);
+    public void nuevoUsuario(String usuario, String clave, Persona persona) {
+    	Usuarios u = new Usuarios(usuario, clave, persona);
     	this.usuarios.add(u);
     }
 
@@ -155,6 +155,17 @@ public class SistemaSeguridad {
             }
     	}
         return res;
+    }
+
+    public Persona getPersonaUsuario(String usuario, String clave){
+        Persona persona = null;
+        for (Usuarios u : this.usuarios) {
+            if (u.getUsuario().equals(usuario) && u.getClave().equals(clave)) {
+                persona = u.getPersona();
+                break;
+            }
+        }
+        return persona;
     }
     public void actualizarMes () {
     	for (Persona persona : this.clientes) {
