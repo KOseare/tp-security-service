@@ -239,4 +239,8 @@ public class Factura implements Cloneable, IFactura, Comparable<Factura> {
     public String toString() {
         return "Fecha: " + this.fecha + "\n Abonado: \n" + this.cliente + "\n";
     }
+
+    void darBajaServicio(Contratacion contrato) {
+        this.contratos.remove(contrato);
+    }
 }

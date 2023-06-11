@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -118,14 +119,14 @@ public class MainControlador implements ActionListener, ListSelectionListener {
 	}
 
 
-	@Override
-	public void valueChanged(ListSelectionEvent e) {
-		vista.abrirDialogFactura();
-	}
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        vista.abrirDialogFactura();
+    }
 
-	public void abrirDialogFactura() {
-		vista.abrirDialogFactura();
-	}
+    public void abrirDialogFactura() {
+        vista.abrirDialogFactura();
+    }
 
 
 }

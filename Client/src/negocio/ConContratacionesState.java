@@ -1,5 +1,7 @@
 package negocio;
 
+import negocio.excepciones.SaldoInsuficienteExeception;
+
 public class ConContratacionesState implements States {
     private PersonaFisica personaFisica;
 
@@ -21,25 +23,25 @@ public class ConContratacionesState implements States {
     }
 
     @Override
-    public void pagarFactura() {
+    public void pagarFactura(Factura factura, double importe) throws SaldoInsuficienteExeception {
         // si, llamar metodo de personafisica
 
         //precondicion
         //solo puede pagar facturas que no esten pagas
         //la factura anterior a esta debe estar pagada
-        this.personaFisica.pagarFactura();
+        this.personaFisica.pagarFactura(factura,importe);
     }
 
     @Override
-    public void contratarServicio() {
+    public void agregarContrato(Contratacion contrato) {
         // si, llamar metodo de personafisica
-        this.personaFisica.contratarServicio();
+        this.personaFisica.ultimaFactura().agregarContrato(contrato);
     }
 
     @Override
-    public void darBajaServicio() {
+    public void darBajaServicio(Contratacion contrato) {
         // si, llamar metodo de personafisica
-        this.personaFisica.darBajaServicio();
+        this.personaFisica.ultimaFactura().darBajaServicio(contrato);
         //si queda sin contrataciones pasar al estado sin contrataciones
         if(personaFisica.getContrataciones().isEmpty())
             personaFisica.setEstado(new SinContratacionState(this.personaFisica));        
@@ -51,5 +53,8 @@ public class ConContratacionesState implements States {
         //tirar excepcion?
         //if(personaFisica.getFacturas().size() > 2 && !personaFisica.getFacturas().get(personaFisica.getFacturas().size()-2).isPagado())
          //   personaFisica.setEstado(new Moroso(this.personaFisica));
+    }
+    public String toString(){
+        return "Con Contrataciones";
     }
 }
