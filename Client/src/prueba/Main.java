@@ -26,8 +26,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		VistaSistema vista = new VistaSistema();
-        SistemaSeguridad sistema = SistemaSeguridad.getSistema();
-        VistaLogin login = new VistaLogin();
+    SistemaSeguridad sistema = SistemaSeguridad.getSistema();
+    VistaLogin login = new VistaLogin();
     MainControlador controlador = new MainControlador(vista,login);
 
     initTestData(sistema); 

@@ -19,6 +19,12 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import negocio.Cheque;
+import negocio.Efectivo;
+import negocio.Tarjeta;
+
+import negocio.excepciones.SaldoInsuficienteExeception;
+
 public class MainControlador implements ActionListener, ListSelectionListener {
 	private VistaSistema vista;
 	private VistaLogin login;
@@ -40,9 +46,7 @@ public class MainControlador implements ActionListener, ListSelectionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TO DO: Cambiar string por constantes en interfaz (ej.: InterfazVista.PAGAR_FACTURA)
 		if (e.getActionCommand().equals("Pagar Factura")) {
-			// Persona p = vista.getPersonaSeleccionada(); TO DO
-			// Factura f = vista.getFacturaSeleccionada(); TO DO
-			//sistema.pagarFactura(null, null);
+			vista.abrirDialogPagarFactura();
 		} else if (e.getActionCommand().equals("Nueva Contratacion")) {
 			// Persona p = vista.getPersonaSeleccionada(); TO DO
 			// String tipoContratacion = vista.getTipoContratacionSeleccionada(); TO DO
@@ -112,15 +116,43 @@ public class MainControlador implements ActionListener, ListSelectionListener {
 			this.vista.cerrarDialogNuevoAbonado();
 		}
 		// ------------------------------------------------
+
+		// Actions Pagar Factura -----------------------------
+		else if (e.getActionCommand().equals("ActualizarFactura")) {
+				String tipo = this.vista.getTipoMedioDePago();
+				if (tipo == "Tarjeta")
+						this.vista.actualizarFacturaDialog(new Tarjeta(this.vista.getFacturaSeleccionada()));
+				else if (tipo == "Cheque")
+						this.vista.actualizarFacturaDialog(new Cheque(this.vista.getFacturaSeleccionada()));
+				else
+						this.vista.actualizarFacturaDialog(new Efectivo(this.vista.getFacturaSeleccionada()));
+		} else if (e.getActionCommand().equals("PagarFactura")) {
+				try{
+				double monto = Double.parseDouble(vista.getMonto()); //posibles errores
+				sistema.pagarFactura(vista.getFacturaFinal(),monto);
+				this.vista.cerrarDialogPagarFactura();
+				} catch (SaldoInsuficienteExeception f) {
+						this.vista.abrirDialogException(f.getMessage());
+				} catch(Exception exception){
+						this.vista.abrirDialogException(exception.getMessage());
+				}
+
+		} else if (e.getActionCommand().equals("CancelarFactura"))
+				this.vista.cerrarDialogPagarFactura();
+		// Actions Mensaje -----------------------------
+			else if (e.getActionCommand().equals("AceptarMensaje"))
+				this.vista.cerrarDialogException();
+		//------------------------------------------------------------
+		
+		this.vista.ComprobacionFacturaSeleccionada();
 	}
 
-	public void comunicarConsolaTecnico(String resp){
-			vista.dibujarRespuesta(resp);
-	}
-
+		public void comunicarConsolaTecnico(String resp) {
+        vista.dibujarRespuesta(resp);
+    }
 
     @Override
-    public void valueChanged(ListSelectionEvent e) {
+    public void valueChanged(ListSelectionEvent listSelectionEvent) {
         vista.abrirDialogFactura();
     }
 

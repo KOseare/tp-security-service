@@ -19,7 +19,7 @@ public class DialogFactura extends JDialog {
         setBounds(100, 100, 850, 450); // Adjust the initial size according to your needs
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(contentPanel, BorderLayout.CENTER);
-
+        
         detalle = new JTextArea();
         detalle.setEditable(false);
         detalle.setText(factura.detalle());
