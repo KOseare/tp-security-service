@@ -20,26 +20,29 @@ public class SinContratacionState implements States {
     }
 
     @Override
-    public void pagarFactura() {
+    public void pagarFactura(Factura factura, double importe) {
         // no puede pagar factura exeption?
 
     }
 
     @Override
-    public void contratarServicio() {
+    public void agregarContrato(Contratacion contrato) {
         // si puede, llamar al metodo de contratacion de la persona
         //llamar al metodo pasar a ConContratacionesState
+        this.personaFisica.ultimaFactura().agregarContrato(contrato);
         this.personaFisica.setEstado(new ConContratacionesState(this.personaFisica));
     }
 
     @Override
-    public void darBajaServicio() {
+    public void darBajaServicio(Contratacion contrato) {
         // nop enviar exception
     }
 
     @Override
     public void actualizarEstado() {
         // no hace nada
-
+    }
+    public String toString(){
+        return "Sin Contrataciones";
     }
 }
