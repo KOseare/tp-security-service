@@ -50,4 +50,8 @@ public class Efectivo extends MedioDePagoDecorator {
         return this.factura.isPagado();
     }
 
+    @Override
+    public void setRecargo(Recargo recargo) {
+        this.factura.setRecargo(recargo);
+    }
 }

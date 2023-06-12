@@ -10,7 +10,9 @@ public class ServicioTecnicoRunnable implements Runnable {
     private ServicioTecnico servicioTecnico;
     private MainControlador observer;
     //Observable controladorDeLaVista
-
+    
+    
+    
     public ServicioTecnicoRunnable(ServicioTecnico servicioTecnico, MainControlador observer) {
         this.servicioTecnico = servicioTecnico;
         this.setObserver(observer);
@@ -38,7 +40,9 @@ public class ServicioTecnicoRunnable implements Runnable {
             observer.comunicarConsolaTecnico("Tecnico " + tecnico.getNombre() + " regresado");
 
         } catch (InterruptedException ie) {
+            
             observer.comunicarConsolaTecnico("Se interrumpio el Proceso");
+            
         }
 
     }
