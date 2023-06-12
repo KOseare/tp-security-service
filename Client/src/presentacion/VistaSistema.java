@@ -386,8 +386,10 @@ public class VistaSistema extends javax.swing.JFrame {
 
     void ComprobacionFacturaSeleccionada() {
         this.botonFactura.setEnabled(!listaFacturas.isSelectionEmpty() && !getFacturaSeleccionada().isPagado());
-
+        this.botonBajaContratacion.setEnabled(!listaFacturas.isSelectionEmpty() && !getFacturaSeleccionada().isPagado());
+        this.botonContratacion.setEnabled(!listaFacturas.isSelectionEmpty() && !getFacturaSeleccionada().isPagado());
     }
+
 
     void cerrarDialogPagarFactura() {
         if (this.dialogPagarFactura != null) {
@@ -490,5 +492,8 @@ public class VistaSistema extends javax.swing.JFrame {
   		return this.dialogNuevaContratacion.getMovilSelectedContratacion();
   	}
 
+        public Persona getPersonaSeleccionada() {
+            return (Persona) this.modeloAbonados.getSelectedItem();
+        }
 }
 

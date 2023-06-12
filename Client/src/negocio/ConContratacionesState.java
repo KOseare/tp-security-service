@@ -1,5 +1,8 @@
 package negocio;
 
+import java.util.Iterator;
+
+import negocio.excepciones.EstadoException;
 import negocio.excepciones.SaldoInsuficienteExeception;
 
 public class ConContratacionesState implements States {
@@ -23,13 +26,13 @@ public class ConContratacionesState implements States {
     }
 
     @Override
-    public void pagarFactura(Factura factura, double importe) throws SaldoInsuficienteExeception {
+    public void pagarFactura(IFactura factura, double importe) throws SaldoInsuficienteExeception, EstadoException {
         // si, llamar metodo de personafisica
 
         //precondicion
         //solo puede pagar facturas que no esten pagas
         //la factura anterior a esta debe estar pagada
-        this.personaFisica.pagarFactura(factura,importe);
+        factura.pagarFactura(importe);
     }
 
     @Override
@@ -51,8 +54,10 @@ public class ConContratacionesState implements States {
     public void actualizarEstado() {
         //chequea si se pago 2 veces consecutivas y cambia o no a moroso
         //tirar excepcion?
-        //if(personaFisica.getFacturas().size() > 2 && !personaFisica.getFacturas().get(personaFisica.getFacturas().size()-2).isPagado())
-         //   personaFisica.setEstado(new Moroso(this.personaFisica));
+        Iterator<Factura> it = personaFisica.getFacturas().descendingIterator();
+        it.next();
+        if(personaFisica.getFacturas().size() > 1 && !it.next().isPagado())
+            personaFisica.setEstado(new Moroso(this.personaFisica));
     }
     public String toString(){
         return "Con Contrataciones";

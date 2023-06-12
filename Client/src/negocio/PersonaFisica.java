@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.plaf.nimbus.State;
 
+import negocio.excepciones.EstadoException;
 import negocio.excepciones.SaldoInsuficienteExeception;
 
 /**
@@ -38,14 +39,21 @@ public class PersonaFisica extends Persona {
         this.estado = estado;
     }
     
-    public void pagarFactura(Factura factura,double importe) throws SaldoInsuficienteExeception{
+    public void pagarFactura(IFactura factura, double importe) throws SaldoInsuficienteExeception, EstadoException {
         estado.pagarFactura(factura, importe);
     }
+    
     public void agregarContrato(Contratacion contrato){
         estado.agregarContrato(contrato);
     }
     public void darBajaServicio(Contratacion contrato){
         estado.darBajaServicio(contrato);
+    }
+    @Override
+    public void facturacionMensual () {
+        estado.actualizarEstado();
+        super.facturacionMensual();
+
     }
 
     /**

@@ -38,20 +38,14 @@ public class Main {
 
         PersistenciaXML idao = new PersistenciaXML();
 
-
+        //initTestData(SistemaSeguridad.getSistema());
         try {
-
-
-
             idao.abrirInput("sistemaSeguridad.xml");
             SistemaSeguridadDTO sistemaSeguridadDTO = (SistemaSeguridadDTO) idao.leer();
             UtilSerializacionSistema.sistemaFromSistemaSeguridadDTO(sistemaSeguridadDTO);
             idao.cerrarInput();
             System.out.println("Sistema Recuperado ");
-
             //vista.updateListaAbonados(sistema.getClientes());
-
-
         } catch (IOException e) {
             // TODO Auto-generated catch block
             System.out.println("Exception " + e.getMessage());

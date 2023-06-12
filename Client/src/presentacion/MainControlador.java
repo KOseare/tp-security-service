@@ -130,13 +130,11 @@ public class MainControlador implements ActionListener, ListSelectionListener {
         } else if (e.getActionCommand().equals("PagarFactura")) {
             try {
                 double monto = Double.parseDouble(vista.getMonto()); //posibles errores
-                sistema.pagarFactura(vista.getFacturaFinal(), monto);
+                sistema.pagarFactura(vista.getPersonaSeleccionada(),vista.getFacturaFinal(), monto);
                 this.vista.cerrarDialogPagarFactura();
-            } catch (SaldoInsuficienteExeception f) {
+            } catch (Throwable f) {
                 JOptionPane.showMessageDialog(vista, f.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            } catch (Exception exception) {
-                JOptionPane.showMessageDialog(vista, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
+            } 
 
         } else if (e.getActionCommand().equals("CancelarFactura"))
             this.vista.cerrarDialogPagarFactura();
