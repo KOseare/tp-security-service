@@ -18,8 +18,6 @@ import java.util.Date;
 
 import java.util.GregorianCalendar;
 
-import javax.rmi.CORBA.Util;
-
 import negocio.*; //importa todas las clases del paquete
 
 import negocio.Dorada;
@@ -47,7 +45,7 @@ public class Prueba {
 
 
         Persona personaFisica = new PersonaFisica("Juan", "42415305");
-        sistema.nuevoUsuario("prueba", "prueba",personaFisica);
+
         Persona personaJuridica = new PersonaJuridica("Sancho", "25416352");
 
         Contratacion contratacionAuxiliar;
