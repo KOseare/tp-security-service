@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.TreeSet;
 
+import negocio.excepciones.EstadoException;
 import negocio.excepciones.SaldoInsuficienteExeception;
 
 /**
@@ -100,11 +101,12 @@ public abstract class Persona implements Cloneable {
     	Factura nuevaFactura;
 			try {
 				nuevaFactura = (Factura) this.ultimaFactura().clone();
-				
+				if(this.ultimaFactura().getContratos().isEmpty()) this.facturas.remove(this.ultimaFactura());
 				int mes = nuevaFactura.getFecha().getMonth();
 	    	mes = mes == 11 ? 0 : mes + 1;
 	    	
 	    	nuevaFactura.getFecha().setMonth(mes);
+                nuevaFactura.setPagado(false);
 	    	this.facturas.add(nuevaFactura);
 			} catch (CloneNotSupportedException e) {
 				e.printStackTrace();
@@ -117,9 +119,10 @@ public abstract class Persona implements Cloneable {
     
     public void darBajaServicio(Contratacion contrato) {
         this.ultimaFactura().darBajaServicio(contrato);
+
     }
     
-    public void pagarFactura(Factura f, double importe) throws SaldoInsuficienteExeception {
+    public void pagarFactura(IFactura f, double importe) throws SaldoInsuficienteExeception, EstadoException {
         f.pagarFactura(importe);
     }
     
@@ -127,4 +130,6 @@ public abstract class Persona implements Cloneable {
     public String toString() {
         return " Nombre:" + this.nombre + " DNI " + this.dni;
     }
+
+
 }

@@ -5,6 +5,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 
+import java.util.GregorianCalendar;
+
+import negocio.excepciones.EstadoException;
 import negocio.excepciones.SaldoInsuficienteExeception;
 
 import presentacion.MainControlador;
@@ -93,8 +96,9 @@ public class SistemaSeguridad {
         }
     }
     
-    public void pagarFactura (IFactura factura,double monto) throws SaldoInsuficienteExeception {
-            factura.pagarFactura(monto);
+    public void pagarFactura (Persona persona,IFactura factura,double monto) throws SaldoInsuficienteExeception,
+                                                                                     EstadoException {
+           persona.pagarFactura(factura, monto);
     }
     
     public void agregarContrato (Persona persona, String tipo, Domicilio domicilio, boolean camara, boolean antipanico, boolean movil) {
@@ -111,7 +115,7 @@ public class SistemaSeguridad {
     	if (antipanico)
     		servicios.add(new BotonAntiPanico(1));
     	if (movil)
-    		servicios.add(new MovilDeAcompaniamiento(LocalTime.of(0, 0), LocalTime.of(23, 59)));
+    		servicios.add(new MovilDeAcompaniamiento(new GregorianCalendar(1990,01,01,00,00), new GregorianCalendar(1990,01,01,23,59)));
     	
     	contrato.setServiciosAdicionales(servicios);
     	persona.agregarContrato(contrato);

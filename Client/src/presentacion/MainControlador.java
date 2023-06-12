@@ -42,22 +42,22 @@ public class MainControlador implements ActionListener, ListSelectionListener {
 		this.login.arranca();
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TO DO: Cambiar string por constantes en interfaz (ej.: InterfazVista.PAGAR_FACTURA)
-		if (e.getActionCommand().equals("Pagar Factura")) {
-			vista.abrirDialogPagarFactura();
-		} else if (e.getActionCommand().equals("Nueva Contratacion")) {
-			vista.abrirDialogNuevaContrataciono();
-		} else if (e.getActionCommand().equals("Baja Contratacion")) {
-			Persona p = vista.getAbonadoSeleccionado();
-			Contratacion c = vista.getContratacionSeleccionada();
-			if (p != null && c != null) {
-				sistema.bajaContratacion (p, c);
-				vista.updateListaContrataciones(p.getContrataciones());				
-			}
-		} else if (e.getActionCommand().equals("Solicitar Tecnico")) {
-			 sistema.solicitarTecnico(this);
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        // TO DO: Cambiar string por constantes en interfaz (ej.: InterfazVista.PAGAR_FACTURA)
+        if (e.getActionCommand().equals("Pagar Factura")) {
+            vista.abrirDialogPagarFactura();
+        } else if (e.getActionCommand().equals("Nueva Contratacion")) {
+            vista.abrirDialogNuevaContrataciono();
+        } else if (e.getActionCommand().equals("Baja Contratacion")) {
+            Persona p = vista.getAbonadoSeleccionado();
+            Contratacion c = vista.getContratacionSeleccionada();
+            if (p != null && c != null) {
+                sistema.bajaContratacion(p, c);
+                vista.updateListaContrataciones(p.getContrataciones());
+            }
+        } else if (e.getActionCommand().equals("Solicitar Tecnico")) {
+            sistema.solicitarTecnico(this);
 
 		} else if (e.getActionCommand().equals("Alta Tecnico")) {
 			this.vista.abrirDialogAltaTecnico();
@@ -117,57 +117,52 @@ public class MainControlador implements ActionListener, ListSelectionListener {
 		}
 		// ------------------------------------------------
 
-		// Actions Pagar Factura -----------------------------
-		else if (e.getActionCommand().equals("ActualizarFactura")) {
-				String tipo = this.vista.getTipoMedioDePago();
-				if (tipo == "Tarjeta")
-						this.vista.actualizarFacturaDialog(new Tarjeta(this.vista.getFacturaSeleccionada()));
-				else if (tipo == "Cheque")
-						this.vista.actualizarFacturaDialog(new Cheque(this.vista.getFacturaSeleccionada()));
-				else
-						this.vista.actualizarFacturaDialog(new Efectivo(this.vista.getFacturaSeleccionada()));
-		} else if (e.getActionCommand().equals("PagarFactura")) {
-				try{
-				double monto = Double.parseDouble(vista.getMonto()); //posibles errores
-				sistema.pagarFactura(vista.getFacturaFinal(),monto);
-				this.vista.cerrarDialogPagarFactura();
-				} catch (SaldoInsuficienteExeception f) {
-						this.vista.abrirDialogException(f.getMessage());
-				} catch(Exception exception){
-						this.vista.abrirDialogException(exception.getMessage());
-				}
+        // Actions Pagar Factura -----------------------------
+        else if (e.getActionCommand().equals("ActualizarFactura")) {
+            String tipo = this.vista.getTipoMedioDePago();
+            if (tipo == "Tarjeta")
+                this.vista.actualizarFacturaDialog(new Tarjeta(this.vista.getFacturaSeleccionada()));
+            else if (tipo == "Cheque")
+                this.vista.actualizarFacturaDialog(new Cheque(this.vista.getFacturaSeleccionada()));
+            else
+                this.vista.actualizarFacturaDialog(new Efectivo(this.vista.getFacturaSeleccionada()));
+        } else if (e.getActionCommand().equals("PagarFactura")) {
+            try {
+                double monto = Double.parseDouble(vista.getMonto()); //posibles errores
+                sistema.pagarFactura(vista.getPersonaSeleccionada(),vista.getFacturaFinal(), monto);
+                this.vista.cerrarDialogPagarFactura();
+            } catch (Throwable f) {
+                JOptionPane.showMessageDialog(vista, f.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
 
-		} else if (e.getActionCommand().equals("CancelarFactura"))
-				this.vista.cerrarDialogPagarFactura();
-		// Actions Mensaje -----------------------------
-			else if (e.getActionCommand().equals("AceptarMensaje"))
-				this.vista.cerrarDialogException();
-		//------------------------------------------------------------
-		
-		// Actions Nueva Contratacion --------------------------------
-		else if (e.getActionCommand().equals("CrearNuevaContratacion")) {
-			Persona p = vista.getAbonadoSeleccionado();
-			String tipoContratacion = vista.getTipoContratacion();
-			Domicilio d = vista.getDomicilioContratacion();
-			boolean camara = vista.getCamaraSelectedContratacion();
-			boolean antipanico = vista.getAntipanicoSelectedContratacion();
-			boolean movil = vista.getMovilSelectedContratacion();
-			
-			if (p != null && d != null) {
-				sistema.agregarContrato (p, tipoContratacion, d, camara, antipanico, movil);
-				
-				this.vista.updateListaContrataciones(p.getContrataciones());
-				this.vista.cerrarDialogNuevaContratacion();				
-			}
-		} else if (e.getActionCommand().equals("CancelarNuevaContratacion")) {
-			this.vista.cerrarDialogNuevaContratacion();
-		}
-		// -----------------------------------------------------------
-		
-		this.vista.ComprobacionFacturaSeleccionada();
-	}
+        } else if (e.getActionCommand().equals("CancelarFactura"))
+            this.vista.cerrarDialogPagarFactura();
 
-		public void comunicarConsolaTecnico(String resp) {
+
+        // Actions Nueva Contratacion --------------------------------
+        else if (e.getActionCommand().equals("CrearNuevaContratacion")) {
+            Persona p = vista.getAbonadoSeleccionado();
+            String tipoContratacion = vista.getTipoContratacion();
+            Domicilio d = vista.getDomicilioContratacion();
+            boolean camara = vista.getCamaraSelectedContratacion();
+            boolean antipanico = vista.getAntipanicoSelectedContratacion();
+            boolean movil = vista.getMovilSelectedContratacion();
+
+            if (p != null && d != null) {
+                sistema.agregarContrato(p, tipoContratacion, d, camara, antipanico, movil);
+
+                this.vista.updateListaContrataciones(p.getContrataciones());
+                this.vista.cerrarDialogNuevaContratacion();
+            }
+        } else if (e.getActionCommand().equals("CancelarNuevaContratacion")) {
+            this.vista.cerrarDialogNuevaContratacion();
+        }
+        // -----------------------------------------------------------
+
+        this.vista.ComprobacionFacturaSeleccionada();
+    }
+
+    public void comunicarConsolaTecnico(String resp) {
         vista.dibujarRespuesta(resp);
     }
 
