@@ -47,4 +47,8 @@ public class Cheque extends MedioDePagoDecorator {
         return this.factura.detalle() + " Pago en Cheque, incremento de " + -this.descuento*100 + "%, total a pagar: " + this.getImporte_neto();
     }
 
+    @Override
+    public void setRecargo(Recargo recargo) {
+        this.factura.setRecargo(recargo);
+    }
 }

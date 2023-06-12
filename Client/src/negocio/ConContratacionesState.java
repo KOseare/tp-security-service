@@ -38,28 +38,39 @@ public class ConContratacionesState implements States {
     @Override
     public void agregarContrato(Contratacion contrato) {
         // si, llamar metodo de personafisica
-        this.personaFisica.ultimaFactura().agregarContrato(contrato);
+        this.personaFisica
+            .ultimaFactura()
+            .agregarContrato(contrato);
     }
 
     @Override
     public void darBajaServicio(Contratacion contrato) {
         // si, llamar metodo de personafisica
-        this.personaFisica.ultimaFactura().darBajaServicio(contrato);
+        this.personaFisica
+            .ultimaFactura()
+            .darBajaServicio(contrato);
         //si queda sin contrataciones pasar al estado sin contrataciones
-        if(personaFisica.getContrataciones().isEmpty())
-            personaFisica.setEstado(new SinContratacionState(this.personaFisica));        
+        if (personaFisica.getContrataciones().isEmpty())
+            personaFisica.setEstado(new SinContratacionState(this.personaFisica));
     }
 
     @Override
     public void actualizarEstado() {
         //chequea si se pago 2 veces consecutivas y cambia o no a moroso
         //tirar excepcion?
+        Factura recargable;
         Iterator<Factura> it = personaFisica.getFacturas().descendingIterator();
         it.next();
-        if(personaFisica.getFacturas().size() > 1 && !it.next().isPagado())
-            personaFisica.setEstado(new Moroso(this.personaFisica));
+        if (personaFisica.getFacturas().size() > 1) {
+            recargable = it.next();
+            if (!recargable.isPagado()) {
+                recargable.setRecargo(new Recargo(30));
+                personaFisica.setEstado(new Moroso(this.personaFisica));
+            }
+        }
     }
-    public String toString(){
+
+    public String toString() {
         return "Con Contrataciones";
     }
 }

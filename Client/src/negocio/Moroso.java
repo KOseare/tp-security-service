@@ -26,8 +26,7 @@ public class Moroso implements States {
 
     @Override
     public void pagarFactura(IFactura factura, double importe) throws SaldoInsuficienteExeception, EstadoException {
-        // recargo del 30% 
-        factura.pagarFactura(importe * 1.3);//+30% crear nuevo recargo(con clase recargo)?
+        factura.pagarFactura(importe);
         actualizarEstado();
     }
 
@@ -43,11 +42,16 @@ public class Moroso implements States {
 
     @Override
     public void actualizarEstado() {
-        int cont=0;
-                Iterator<Factura> it = personaFisica.getFacturas().descendingIterator();
-                it.next();
-                if(it.next().isPagado())
-                        personaFisica.setEstado(new ConContratacionesState(this.personaFisica));
+        Factura recargable;
+        Iterator<Factura> it = personaFisica.getFacturas().descendingIterator();
+        it.next();
+            recargable = it.next();
+            if (!recargable.isPagado()) {
+                recargable.setRecargo(new Recargo(30));
+                personaFisica.setEstado(new Moroso(this.personaFisica));
+            }
+            else
+                    personaFisica.setEstado(new ConContratacionesState(this.personaFisica));
 
     }
     public String toString(){
