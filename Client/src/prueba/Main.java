@@ -1,7 +1,12 @@
 package prueba;
 
+import java.io.IOException;
 import java.time.LocalTime;
+import java.util.GregorianCalendar;
 
+import datos.PersistenciaXML;
+import datos.SistemaSeguridadDTO;
+import datos.UtilSerializacionSistema;
 import negocio.BotonAntiPanico;
 import negocio.Camara;
 import negocio.Contratacion;
@@ -21,6 +26,8 @@ import negocio.Tecnico;
 import presentacion.MainControlador;
 import presentacion.VistaLogin;
 import presentacion.VistaSistema;
+
+import javax.swing.*;
 
 public class Main {
 
@@ -57,9 +64,9 @@ public class Main {
         Promocion dorada = new Dorada();
         Promocion platino = new Platino();
 
-    Persona personaFisica = new PersonaFisica("Juan", "42415305");
-    sistema.nuevoUsuario("prueba", "prueba",personaFisica);
-    Persona personaJuridica = new PersonaJuridica("Sancho", "25416352");
+        Persona personaFisica = new PersonaFisica("Juan", "42415305");
+        sistema.nuevoUsuario("prueba", "prueba",personaFisica);
+        Persona personaJuridica = new PersonaJuridica("Sancho", "25416352");
 
         Contratacion contratacionAuxiliar;
 

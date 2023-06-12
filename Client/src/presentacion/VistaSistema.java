@@ -226,7 +226,7 @@ public class VistaSistema extends javax.swing.JFrame {
 
         respuesta.setEditable(false);
         respuesta.setColumns(20);
-        respuesta.setRows(5);
+        respuesta.setRows(15);
         panelRespuesta.setViewportView(respuesta);
 
         GroupLayout zonaRespuestaLayout = new GroupLayout(zonaRespuesta);
