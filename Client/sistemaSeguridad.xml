@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.8.0_211" class="java.beans.XMLDecoder">
+<java version="18.0.1.1" class="java.beans.XMLDecoder">
  <object class="datos.SistemaSeguridadDTO" id="SistemaSeguridadDTO0">
   <void property="clientes">
    <void method="add">
@@ -80,6 +80,24 @@
               <void property="cantidad">
                <int>1</int>
               </void>
+              <void property="entrada">
+               <object class="java.util.GregorianCalendar">
+                <void property="time">
+                 <object class="java.util.Date">
+                  <long>633875400000</long>
+                 </object>
+                </void>
+               </object>
+              </void>
+              <void property="salida">
+               <object class="java.util.GregorianCalendar">
+                <void property="time">
+                 <object class="java.util.Date">
+                  <long>633889800000</long>
+                 </object>
+                </void>
+               </object>
+              </void>
              </object>
             </void>
            </void>
@@ -101,18 +119,14 @@
         </void>
         <void property="fecha">
          <object class="java.util.Date">
-<<<<<<< HEAD
-          <long>1686456230793</long>
-=======
-          <long>1686512017223</long>
->>>>>>> 75ea5bb3753f82d96031870eedcf24a91783b12b
+          <long>1686607218646</long>
          </object>
         </void>
         <void property="importe_bruto">
-         <double>15500.0</double>
+         <double>34000.0</double>
         </void>
         <void property="importe_neto">
-         <double>15500.0</double>
+         <double>34000.0</double>
         </void>
        </object>
       </void>
@@ -240,6 +254,24 @@
               <void property="cantidad">
                <int>1</int>
               </void>
+              <void property="entrada">
+               <object class="java.util.GregorianCalendar">
+                <void property="time">
+                 <object class="java.util.Date">
+                  <long>633871800000</long>
+                 </object>
+                </void>
+               </object>
+              </void>
+              <void property="salida">
+               <object class="java.util.GregorianCalendar">
+                <void property="time">
+                 <object class="java.util.Date">
+                  <long>633884400000</long>
+                 </object>
+                </void>
+               </object>
+              </void>
              </object>
             </void>
             <void method="add">
@@ -305,28 +337,18 @@
          </void>
         </void>
         <void property="descuento">
-         <double>28150.0</double>
+         <double>14300.0</double>
         </void>
         <void property="fecha">
          <object class="java.util.Date">
-<<<<<<< HEAD
-          <long>1686456230794</long>
-=======
-          <long>1686512017224</long>
->>>>>>> 75ea5bb3753f82d96031870eedcf24a91783b12b
+          <long>1686607218653</long>
          </object>
         </void>
-        <void property="importeDePago">
-         <double>100000.0</double>
-        </void>
         <void property="importe_bruto">
-         <double>33500.0</double>
+         <double>70500.0</double>
         </void>
         <void property="importe_neto">
-         <double>5350.0</double>
-        </void>
-        <void property="pagado">
-         <boolean>true</boolean>
+         <double>56200.0</double>
         </void>
        </object>
       </void>
@@ -504,6 +526,24 @@
               <void property="cantidad">
                <int>1</int>
               </void>
+              <void property="entrada">
+               <object class="java.util.GregorianCalendar">
+                <void property="time">
+                 <object class="java.util.Date">
+                  <long>633900000000</long>
+                 </object>
+                </void>
+               </object>
+              </void>
+              <void property="salida">
+               <object class="java.util.GregorianCalendar">
+                <void property="time">
+                 <object class="java.util.Date">
+                  <long>633912480000</long>
+                 </object>
+                </void>
+               </object>
+              </void>
              </object>
             </void>
            </void>
@@ -511,28 +551,18 @@
          </void>
         </void>
         <void property="descuento">
-         <double>27150.0</double>
+         <double>10050.0</double>
         </void>
         <void property="fecha">
          <object class="java.util.Date">
-<<<<<<< HEAD
-          <long>1686456230797</long>
-=======
-          <long>1686512017230</long>
->>>>>>> 75ea5bb3753f82d96031870eedcf24a91783b12b
+          <long>1686607218723</long>
          </object>
         </void>
-        <void property="importeDePago">
-         <double>10000.0</double>
-        </void>
         <void property="importe_bruto">
-         <double>36500.0</double>
+         <double>73500.0</double>
         </void>
         <void property="importe_neto">
-         <double>9350.0</double>
-        </void>
-        <void property="pagado">
-         <boolean>true</boolean>
+         <double>63450.0</double>
         </void>
        </object>
       </void>
@@ -544,7 +574,24 @@
    </void>
   </void>
   <void property="serviciotecnico">
-   <object class="negocio.ServicioTecnico"/>
+   <object class="negocio.ServicioTecnico" id="ServicioTecnico0">
+    <void property="tecnicos">
+     <void method="add">
+      <object class="negocio.Tecnico">
+       <void property="nombre">
+        <string>Jaime</string>
+       </void>
+      </object>
+     </void>
+     <void method="add">
+      <object class="negocio.Tecnico">
+       <void property="nombre">
+        <string>Franco</string>
+       </void>
+      </object>
+     </void>
+    </void>
+   </object>
   </void>
  </object>
 </java>

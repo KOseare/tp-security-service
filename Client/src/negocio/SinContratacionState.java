@@ -1,5 +1,7 @@
 package negocio;
 
+import negocio.excepciones.EstadoException;
+
 public class SinContratacionState implements States {
     private PersonaFisica personaFisica;
 
@@ -20,8 +22,8 @@ public class SinContratacionState implements States {
     }
 
     @Override
-    public void pagarFactura(Factura factura, double importe) {
-        // no puede pagar factura exeption?
+    public void pagarFactura(IFactura factura, double importe) throws EstadoException {
+       throw new EstadoException("No puede pagar la factura sin contratos");
 
     }
 

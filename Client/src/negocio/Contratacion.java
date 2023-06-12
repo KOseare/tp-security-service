@@ -20,7 +20,6 @@ public abstract class Contratacion implements Cloneable {
      */
     protected Promocion promo = null;
     protected double precioDelServicio, precioPromo = 0;
-    protected double precio;
     protected int id;
     private Domicilio domicilio;
 
@@ -43,14 +42,6 @@ public abstract class Contratacion implements Cloneable {
 
     public double getPrecioDelServicio() {
         return precioDelServicio;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-
-    public double getPrecio() {
-        return precio;
     }
 
     public void setId(int id) {

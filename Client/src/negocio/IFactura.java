@@ -15,5 +15,5 @@ public interface IFactura{
     public boolean isPagado();
     public String detalle();
 
-
+    public void setRecargo(Recargo recargo);
 }

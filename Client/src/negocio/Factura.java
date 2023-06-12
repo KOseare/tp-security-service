@@ -14,6 +14,7 @@ public class Factura implements Cloneable, IFactura, Comparable<Factura> {
     private double importe_bruto, importe_neto, descuento = 0, importeDePago = 0;
     private Date fecha;
     private boolean pagado;
+    private Recargo recargo;
     /**
      * @aggregation shared
      */
@@ -150,17 +151,19 @@ public class Factura implements Cloneable, IFactura, Comparable<Factura> {
      * </ul>
      */
     public void calcularImporteBruto() { //Una vez generada la factura, se calcula el importe bruto segun la cantidad de contrataciones
+
         assert this.contratos != null : "La lista de contrataciones es nula";
 
-        double importe = 0, importeNeto = 0;
+        double importe = 0;
+                descuento=0;
         ArrayList<Double> descuentos = this.cliente.recibeDescuento(this.contratos);
         for (int i = 0; i < contratos.size(); i++) {
-            importe += contratos.get(i).getPrecio() + contratos.get(i).obtenerTotalDeServiciosAdicionales();
+            importe += contratos.get(i).getPrecioDelServicio() + contratos.get(i).obtenerTotalDeServiciosAdicionales();
             this.descuento +=
-                contratos.get(i).getPrecio() * (1 - descuentos.get(i)) +
+                contratos.get(i).getPrecioDelServicio() * (1 - descuentos.get(i)) +
                 contratos.get(i).getPrecioPromo(); //1-desc porque agrega el porcentaje a descontar
         }
-
+        if(recargo != null) descuento -= importe * recargo.getPorcentaje();
 
         this.importe_bruto = importe;
         this.importe_neto = importe - descuento; /* El importe neto se calcula según el decorator de tipo de pago */
@@ -220,13 +223,15 @@ public class Factura implements Cloneable, IFactura, Comparable<Factura> {
     @Override
     public String detalle() {
         String detalle = "Fecha: " + this.fecha + " Abonado: " + this.cliente + "\n Contratos: \n";
+        this.calcularImporteBruto();
         for (Contratacion contrato : contratos){
             detalle += contrato.toString();
             detalle += "\n";
         }
         detalle +=
-            "Importe Bruto: " + this.importe_bruto + "\nDescuentos: " + this.descuento + "\nImporte Neto: " +
-            this.importe_neto + ",\nPagado: " + this.isPagado() + "\n\n";
+            "Importe Bruto: " + this.importe_bruto + "\nDescuentos: " + this.descuento ;
+        detalle += (recargo!=null)?this.recargo.toString():"";
+        detalle += "\nImporte Neto: " + this.importe_neto + ",\nPagado: " + this.isPagado() + "\n\n";
 
         return detalle;
     }
@@ -242,5 +247,11 @@ public class Factura implements Cloneable, IFactura, Comparable<Factura> {
 
     void darBajaServicio(Contratacion contrato) {
         this.contratos.remove(contrato);
+        this.calcularImporteBruto();
+    }
+
+    @Override
+    public void setRecargo(Recargo recargo) {
+        this.recargo = recargo;
     }
 }

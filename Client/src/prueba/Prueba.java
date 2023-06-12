@@ -6,11 +6,22 @@ import datos.SistemaSeguridadDTO;
 
 import datos.UtilSerializacionSistema;
 
-import java.time.LocalTime;
+import java.beans.XMLEncoder;
+
+import java.io.BufferedOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
+import java.util.ArrayList;
+
+import java.util.Date;
+
+import java.util.GregorianCalendar;
 
 import negocio.*; //importa todas las clases del paquete
 
 import negocio.Dorada;
+import negocio.Efectivo;
 import negocio.Factura;
 import negocio.IFactura;
 import negocio.Persona;
@@ -19,9 +30,6 @@ import negocio.Promocion;
 import negocio.SistemaSeguridad;
 
 import negocio.excepciones.SaldoInsuficienteExeception;
-import presentacion.MainControlador;
-import presentacion.VistaLogin;
-import presentacion.VistaSistema;
 
 public class Prueba {
     public Prueba() {
@@ -29,10 +37,6 @@ public class Prueba {
     }
 
     public static <Usuario> void main(String[] args) {
-
-        VistaLogin login = new VistaLogin();
-        VistaSistema vista = new VistaSistema();
-        MainControlador controlador = new MainControlador(vista,login);
         SistemaSeguridad sistema = SistemaSeguridad.getSistema();
 
         Promocion dorada = new Dorada();
@@ -62,8 +66,8 @@ public class Prueba {
         //precocndicion la cantidad debe ser mayor que 0
         contratacionAuxiliar.agregarServicioAdicional(new Camara(2));
         contratacionAuxiliar.agregarServicioAdicional(new BotonAntiPanico(1));
-        contratacionAuxiliar.agregarServicioAdicional(new MovilDeAcompaniamiento(LocalTime.of(10, 30),
-                                                                                 LocalTime.of(14, 30)));
+        contratacionAuxiliar.agregarServicioAdicional(new MovilDeAcompaniamiento(new GregorianCalendar(1990,01,01,10,30),
+                                                                                 new GregorianCalendar(1990,01,01,14,30)));
         personaFisica.agregarContrato(contratacionAuxiliar);
 
         contratacionAuxiliar = new MonitoreoVivienda(personaFisica.getDomicilios().get(1)); //sin adicionales
@@ -82,8 +86,8 @@ public class Prueba {
         personaJuridica.agregarContrato(contratacionAuxiliar);
 
         contratacionAuxiliar = new MonitoreoVivienda(personaJuridica.getDomicilios().get(1));
-        contratacionAuxiliar.agregarServicioAdicional(new MovilDeAcompaniamiento(LocalTime.of(9, 30),
-                                                                                 LocalTime.of(13, 0)));
+        contratacionAuxiliar.agregarServicioAdicional(new MovilDeAcompaniamiento(new GregorianCalendar(1990,01,01,9,30),
+                                                                                 new GregorianCalendar(1990,01,01,13,00)));
         contratacionAuxiliar.agregarServicioAdicional(new BotonAntiPanico(3));
 
         contratacionAuxiliar.setPromocion(platino);
@@ -133,8 +137,8 @@ public class Prueba {
         contratacionAuxiliar.setPromocion(dorada);
         contratacionAuxiliar.agregarServicioAdicional(new Camara(1));
         contratacionAuxiliar.agregarServicioAdicional(new BotonAntiPanico(6));
-        contratacionAuxiliar.agregarServicioAdicional(new MovilDeAcompaniamiento(LocalTime.of(9, 30),
-                                                                                 LocalTime.of(13, 0)));
+        contratacionAuxiliar.agregarServicioAdicional(new MovilDeAcompaniamiento(new GregorianCalendar(1990,01,01,17,20),
+                                                                                 new GregorianCalendar(1990,01,01,20,48))); 
         personaFisica.agregarContrato(contratacionAuxiliar);
 
         //pago de facturas
@@ -209,9 +213,6 @@ public class Prueba {
         }
         
         
-        
-        //no guarda las horas de movil de acompa�amiento
-        //PersistenciaXML idao = new PersistenciaXML();
         try
         {
             idao.abrirInput("sistemaSeguridad.xml");
@@ -226,7 +227,10 @@ public class Prueba {
             System.out.println("Exception " + e.getMessage());
         }
         
+        
+        
     }
+
 
 }
 

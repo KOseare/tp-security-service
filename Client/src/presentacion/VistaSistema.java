@@ -1,11 +1,19 @@
 
 package presentacion;
 
+import datos.PersistenciaXML;
+import datos.SistemaSeguridadDTO;
+import datos.UtilSerializacionSistema;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.TreeSet;
 
 import javax.swing.DefaultComboBoxModel;
@@ -36,14 +44,35 @@ public class VistaSistema extends javax.swing.JFrame {
     public VistaSistema() {
         initComponents();
         MouseListener mlFacturas = new MouseAdapter() {
-        	public void mouseClicked (MouseEvent e) {
-        		ComprobacionFacturaSeleccionada();
-        		if (e.getClickCount() == 2) {
-        			controlador.abrirDialogFactura();
-        		}
-        	}
+            public void mouseClicked(MouseEvent e) {
+                ComprobacionFacturaSeleccionada();
+                if (e.getClickCount() == 2) {
+                    controlador.abrirDialogFactura();
+                }
+            }
         };
         listaFacturas.addMouseListener(mlFacturas);
+
+        // this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                //persistencia al salir
+
+                PersistenciaXML idao = new PersistenciaXML();
+                try {
+                    idao.abrirOutput("sistemaSeguridad.xml");
+                    SistemaSeguridadDTO sistemadto = UtilSerializacionSistema.SistemaDTOFromSistema();
+                    idao.escribir(sistemadto);
+                    idao.cerrarOutput();
+                    System.out.println("Sistema Guardado");
+                } catch (Exception exception) {
+                    System.out.println("Exception " + exception.getMessage());
+                }
+
+                e.getWindow().dispose();
+            }
+        });
     }
     private MainControlador controlador;
     private JButton botonActualizarMes;
@@ -69,11 +98,11 @@ public class VistaSistema extends javax.swing.JFrame {
     private DialogAltaTecnico dialogAltaTecnico;
     private DialogNuevoAbonado dialogNuevoAbonado;
     private DialogPagarFactura dialogPagarFactura;
-    private DialogException dialogException;
     private DialogNuevaContratacion dialogNuevaContratacion;
 
     @SuppressWarnings("unchecked")
     private void initComponents() { //GEN-BEGIN:initComponents
+
 
         zonaPrincipal = new JPanel();
         panelContrataciones = new JScrollPane();
@@ -260,6 +289,7 @@ public class VistaSistema extends javax.swing.JFrame {
                                                                                                .addContainerGap()));
 
         pack();
+
     }
 
     public void arranca() {
@@ -270,29 +300,29 @@ public class VistaSistema extends javax.swing.JFrame {
 
     public void setControlador(MainControlador c) {
         this.controlador = c;
-    	botonActualizarMes.addActionListener(c);
-    	botonAltaTecnico.addActionListener(c);
-    	botonBajaContratacion.addActionListener(c);
-    	botonContratacion.addActionListener(c);
-    	botonFactura.addActionListener(c);
-    	botonNuevoAbonado.addActionListener(c);
-    	botonSolicitarTecnico.addActionListener(c);
-      comboAbonados.addActionListener(c);
+        botonActualizarMes.addActionListener(c);
+        botonAltaTecnico.addActionListener(c);
+        botonBajaContratacion.addActionListener(c);
+        botonContratacion.addActionListener(c);
+        botonFactura.addActionListener(c);
+        botonNuevoAbonado.addActionListener(c);
+        botonSolicitarTecnico.addActionListener(c);
+        comboAbonados.addActionListener(c);
     }
 
-    public void vistaAbonado(){
+    public void vistaAbonado() {
         this.comboAbonados.setVisible(false);
         this.botonAltaTecnico.setVisible(false);
         this.botonActualizarMes.setVisible(false);
         this.botonNuevoAbonado.setVisible(false);
     }
 
-    public void updateListaAbonados (ArrayList<Persona> abonados) {
-    	this.modeloAbonados.removeAllElements();
-    	for (Persona p : abonados) {
-    		this.modeloAbonados.addElement(p);
-    	}
-    	this.repaint();
+    public void updateListaAbonados(ArrayList<Persona> abonados) {
+        this.modeloAbonados.removeAllElements();
+        for (Persona p : abonados) {
+            this.modeloAbonados.addElement(p);
+        }
+        this.repaint();
     }
 
     public void updateListaFacturas(TreeSet<Factura> facturas) {
@@ -331,11 +361,11 @@ public class VistaSistema extends javax.swing.JFrame {
     }
 
     public void abrirDialogFactura() {
-    	if (listaFacturas.getSelectedValue() != null) {
-        this.dialogFactura = new DialogFactura(listaFacturas.getSelectedValue());
-        this.dialogFactura.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        this.dialogFactura.setVisible(true);
-    	}
+        if (listaFacturas.getSelectedValue() != null) {
+            this.dialogFactura = new DialogFactura(listaFacturas.getSelectedValue());
+            this.dialogFactura.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            this.dialogFactura.setVisible(true);
+        }
     }
 
     public String getNombreAltaTecnico() {
@@ -349,24 +379,18 @@ public class VistaSistema extends javax.swing.JFrame {
         this.dialogPagarFactura.setVisible(true);
     }
 
-    void abrirDialogException(String mensaje) {
-        this.dialogException = new DialogException(mensaje);
-        this.dialogException.setControlador(this.controlador);
-        this.dialogException.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        this.dialogException.setVisible(true);
-    }
-    void cerrarDialogException() {
-        if (this.dialogException != null) {
-            this.dialogException.dispose();
-            this.dialogException.setVisible(false);
-            this.dialogException = null;
+
+    void ComprobacionFacturaSeleccionada() {
+        if (!listaFacturas.isSelectionEmpty()) {
+            Iterator<Factura> it = getPersonaSeleccionada().getFacturas().descendingIterator();
+            while (it.hasNext() && !getFacturaSeleccionada().equals(it.next())) {
+            }
+            boolean resp = (!it.hasNext() || it.next().isPagado())&&!getFacturaSeleccionada().isPagado();
+            this.botonFactura.setEnabled(resp);
+
         }
     }
 
-
-    void ComprobacionFacturaSeleccionada() {
-        this.botonFactura.setEnabled(!listaFacturas.isSelectionEmpty() && !getFacturaSeleccionada().isPagado());
-    }
 
     void cerrarDialogPagarFactura() {
         if (this.dialogPagarFactura != null) {
@@ -376,7 +400,7 @@ public class VistaSistema extends javax.swing.JFrame {
 
         }
     }
-    
+
 
     public String getDetalleFactura() {
         return this.dialogPagarFactura.getDetalleFactura();
@@ -389,39 +413,42 @@ public class VistaSistema extends javax.swing.JFrame {
     public String getMonto() {
         return this.dialogPagarFactura.getMonto();
     }
-    public void dibujarRespuesta(String resp){
-        this.respuesta.append(resp +"\n");
+
+    public void dibujarRespuesta(String resp) {
+        this.respuesta.append(resp + "\n");
     }
 
-    public void abrirDialogNuevoAbonado () {
-    	this.dialogNuevoAbonado = new DialogNuevoAbonado();
-    	this.dialogNuevoAbonado.setControlador(this.controlador);
-    	this.dialogNuevoAbonado.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-    	this.dialogNuevoAbonado.setVisible(true);
+    public void abrirDialogNuevoAbonado() {
+        this.dialogNuevoAbonado = new DialogNuevoAbonado();
+        this.dialogNuevoAbonado.setControlador(this.controlador);
+        this.dialogNuevoAbonado.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        this.dialogNuevoAbonado.setVisible(true);
     }
 
-    public void cerrarDialogNuevoAbonado () {
-    	if (this.dialogNuevoAbonado != null) {
-    		this.dialogNuevoAbonado.dispose();
-    		this.dialogNuevoAbonado.setVisible(false);
-    		this.dialogNuevoAbonado = null;
-    	}
+    public void cerrarDialogNuevoAbonado() {
+        if (this.dialogNuevoAbonado != null) {
+            this.dialogNuevoAbonado.dispose();
+            this.dialogNuevoAbonado.setVisible(false);
+            this.dialogNuevoAbonado = null;
+        }
     }
 
-    public String getNombreNuevoAbonado () {
-    	return this.dialogNuevoAbonado.getNombreNuevoAbonado();
-    }
-    public String getDniNuevoAbonado () {
-    	return this.dialogNuevoAbonado.getDniNuevoAbonado();
-    }
-    public String getTipoNuevoAbonado () {
-    	return this.dialogNuevoAbonado.getTipoNuevoAbonado();
+    public String getNombreNuevoAbonado() {
+        return this.dialogNuevoAbonado.getNombreNuevoAbonado();
     }
 
-    public void setAbonadoActivo(Persona abonado){
+    public String getDniNuevoAbonado() {
+        return this.dialogNuevoAbonado.getDniNuevoAbonado();
+    }
+
+    public String getTipoNuevoAbonado() {
+        return this.dialogNuevoAbonado.getTipoNuevoAbonado();
+    }
+
+    public void setAbonadoActivo(Persona abonado) {
         comboAbonados.setSelectedItem(abonado);
     }
-    
+
     public String getTipoMedioDePago() {
         return this.dialogPagarFactura.getTipoMedioDePago();
     }
@@ -433,42 +460,48 @@ public class VistaSistema extends javax.swing.JFrame {
     IFactura getFacturaFinal() {
         return this.dialogPagarFactura.getFacturaFinal();
     }
-    
+
     public Contratacion getContratacionSeleccionada() {
-      return listaContrataciones.getSelectedValue();
-    }
-    
-    public void abrirDialogNuevaContrataciono () {
-    	this.dialogNuevaContratacion = new DialogNuevaContratacion(this.getAbonadoSeleccionado().getDomicilios());
-    	this.dialogNuevaContratacion.setControlador(this.controlador);
-    	this.dialogNuevaContratacion.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-    	this.dialogNuevaContratacion.setVisible(true);
+        return listaContrataciones.getSelectedValue();
     }
 
-    public void cerrarDialogNuevaContratacion () {
-    	if (this.dialogNuevaContratacion != null) {
-    		this.dialogNuevaContratacion.dispose();
-    		this.dialogNuevaContratacion.setVisible(false);
-    		this.dialogNuevaContratacion = null;
-    	}
+    public void abrirDialogNuevaContrataciono() {
+        this.dialogNuevaContratacion = new DialogNuevaContratacion(this.getAbonadoSeleccionado().getDomicilios());
+        this.dialogNuevaContratacion.setControlador(this.controlador);
+        this.dialogNuevaContratacion.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        this.dialogNuevaContratacion.setVisible(true);
     }
-    
+
+    public void cerrarDialogNuevaContratacion() {
+        if (this.dialogNuevaContratacion != null) {
+            this.dialogNuevaContratacion.dispose();
+            this.dialogNuevaContratacion.setVisible(false);
+            this.dialogNuevaContratacion = null;
+        }
+    }
+
     public Domicilio getDomicilioContratacion() {
-  		return this.dialogNuevaContratacion.getDomicilioContratacion();
-  	}
-  	public String getTipoContratacion () {
-  		return this.dialogNuevaContratacion.getTipoContratacion();
-  	}
-  	public boolean getCamaraSelectedContratacion () {
-  		return this.dialogNuevaContratacion.getCamaraSelectedContratacion();
-  	}
-  	public boolean getAntipanicoSelectedContratacion () {
-  		return this.dialogNuevaContratacion.getAntipanicoSelectedContratacion();
-  	}
-  	public boolean getMovilSelectedContratacion () {
-  		return this.dialogNuevaContratacion.getMovilSelectedContratacion();
-  	}
+        return this.dialogNuevaContratacion.getDomicilioContratacion();
+    }
 
+    public String getTipoContratacion() {
+        return this.dialogNuevaContratacion.getTipoContratacion();
+    }
 
+    public boolean getCamaraSelectedContratacion() {
+        return this.dialogNuevaContratacion.getCamaraSelectedContratacion();
+    }
+
+    public boolean getAntipanicoSelectedContratacion() {
+        return this.dialogNuevaContratacion.getAntipanicoSelectedContratacion();
+    }
+
+    public boolean getMovilSelectedContratacion() {
+        return this.dialogNuevaContratacion.getMovilSelectedContratacion();
+    }
+
+    public Persona getPersonaSeleccionada() {
+        return (Persona) this.modeloAbonados.getSelectedItem();
+    }
 }
 

@@ -48,5 +48,5 @@ public class PersistenciaXML {
             p = (SistemaSeguridadDTO) xmlDecoder.readObject();
         return p;
     }
-
+    
 }
