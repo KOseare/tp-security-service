@@ -80,6 +80,24 @@
               <void property="cantidad">
                <int>1</int>
               </void>
+              <void property="entrada">
+               <object class="java.util.GregorianCalendar">
+                <void property="time">
+                 <object class="java.util.Date">
+                  <long>633875400000</long>
+                 </object>
+                </void>
+               </object>
+              </void>
+              <void property="salida">
+               <object class="java.util.GregorianCalendar">
+                <void property="time">
+                 <object class="java.util.Date">
+                  <long>633889800000</long>
+                 </object>
+                </void>
+               </object>
+              </void>
              </object>
             </void>
            </void>
@@ -101,7 +119,7 @@
         </void>
         <void property="fecha">
          <object class="java.util.Date">
-          <long>1686512017223</long>
+          <long>1686528771570</long>
          </object>
         </void>
         <void property="importe_bruto">
@@ -236,6 +254,24 @@
               <void property="cantidad">
                <int>1</int>
               </void>
+              <void property="entrada">
+               <object class="java.util.GregorianCalendar">
+                <void property="time">
+                 <object class="java.util.Date">
+                  <long>633871800000</long>
+                 </object>
+                </void>
+               </object>
+              </void>
+              <void property="salida">
+               <object class="java.util.GregorianCalendar">
+                <void property="time">
+                 <object class="java.util.Date">
+                  <long>633884400000</long>
+                 </object>
+                </void>
+               </object>
+              </void>
              </object>
             </void>
             <void method="add">
@@ -305,20 +341,14 @@
         </void>
         <void property="fecha">
          <object class="java.util.Date">
-          <long>1686512017224</long>
+          <long>1686528771571</long>
          </object>
-        </void>
-        <void property="importeDePago">
-         <double>100000.0</double>
         </void>
         <void property="importe_bruto">
          <double>33500.0</double>
         </void>
         <void property="importe_neto">
          <double>5350.0</double>
-        </void>
-        <void property="pagado">
-         <boolean>true</boolean>
         </void>
        </object>
       </void>
@@ -496,6 +526,24 @@
               <void property="cantidad">
                <int>1</int>
               </void>
+              <void property="entrada">
+               <object class="java.util.GregorianCalendar">
+                <void property="time">
+                 <object class="java.util.Date">
+                  <long>633900000000</long>
+                 </object>
+                </void>
+               </object>
+              </void>
+              <void property="salida">
+               <object class="java.util.GregorianCalendar">
+                <void property="time">
+                 <object class="java.util.Date">
+                  <long>633912480000</long>
+                 </object>
+                </void>
+               </object>
+              </void>
              </object>
             </void>
            </void>
@@ -507,20 +555,14 @@
         </void>
         <void property="fecha">
          <object class="java.util.Date">
-          <long>1686512017230</long>
+          <long>1686528771586</long>
          </object>
-        </void>
-        <void property="importeDePago">
-         <double>10000.0</double>
         </void>
         <void property="importe_bruto">
          <double>36500.0</double>
         </void>
         <void property="importe_neto">
          <double>9350.0</double>
-        </void>
-        <void property="pagado">
-         <boolean>true</boolean>
         </void>
        </object>
       </void>
@@ -532,7 +574,24 @@
    </void>
   </void>
   <void property="serviciotecnico">
-   <object class="negocio.ServicioTecnico"/>
+   <object class="negocio.ServicioTecnico" id="ServicioTecnico0">
+    <void property="tecnicos">
+     <void method="add">
+      <object class="negocio.Tecnico">
+       <void property="nombre">
+        <string>Jaime</string>
+       </void>
+      </object>
+     </void>
+     <void method="add">
+      <object class="negocio.Tecnico">
+       <void property="nombre">
+        <string>Franco</string>
+       </void>
+      </object>
+     </void>
+    </void>
+   </object>
   </void>
  </object>
 </java>

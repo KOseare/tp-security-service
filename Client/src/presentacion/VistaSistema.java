@@ -2,9 +2,16 @@
 package presentacion;
 
 
+import datos.PersistenciaXML;
+import datos.SistemaSeguridadDTO;
+import datos.UtilSerializacionSistema;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import java.util.ArrayList;
 import java.util.TreeSet;
@@ -28,7 +35,7 @@ import javax.swing.JPanel;
 import negocio.IFactura;
 
 
-public class VistaSistema extends javax.swing.JFrame implements MouseListener {
+public class VistaSistema extends javax.swing.JFrame implements MouseListener,WindowListener {
 
     private DialogFactura dialogFactura;
 
@@ -453,7 +460,52 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener {
     IFactura getFacturaFinal() {
         return this.dialogPagarFactura.getFacturaFinal();
     }
+    
+    @Override
+    public void windowClosing(WindowEvent e){
 
+        PersistenciaXML idao = new PersistenciaXML();
+        try
+        {
+            idao.abrirOutput("sistemaSeguridad.xml");
+            SistemaSeguridadDTO sistemadto = UtilSerializacionSistema.SistemaDTOFromSistema();
+            idao.escribir(sistemadto);
+            idao.cerrarOutput();
+            System.out.println("Sistema Guardado");
+        } catch (Exception exception)
+        {
+            System.out.println("Exception " + exception.getMessage());
+        }
+    }
 
+    @Override
+    public void windowOpened(WindowEvent windowEvent) {
+    
+    }
+
+    @Override
+    public void windowClosed(WindowEvent windowEvent) {
+        // TODO Implement this method
+    }
+
+    @Override
+    public void windowIconified(WindowEvent windowEvent) {
+        // TODO Implement this method
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent windowEvent) {
+        // TODO Implement this method
+    }
+
+    @Override
+    public void windowActivated(WindowEvent windowEvent) {
+        // TODO Implement this method
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent windowEvent) {
+        // TODO Implement this method
+    }
 }
 

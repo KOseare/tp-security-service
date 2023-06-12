@@ -140,9 +140,9 @@ public class MainControlador implements ActionListener, ListSelectionListener {
             sistema.pagarFactura(vista.getFacturaFinal(),monto);
             this.vista.cerrarDialogPagarFactura();
             }catch(Exception exception){
-                this.vista.abrirDialogException(exception.getMessage());
-            } catch (SaldoInsuficienteExeception f) {
-                this.vista.abrirDialogException(f.getMessage());
+                JOptionPane.showMessageDialog(vista, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }catch (SaldoInsuficienteExeception f) {
+                JOptionPane.showMessageDialog(vista, f.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
 
         } else if (e.getActionCommand().equals("CancelarFactura"))
@@ -168,7 +168,7 @@ public class MainControlador implements ActionListener, ListSelectionListener {
     public void abrirDialogFactura() {
         vista.abrirDialogFactura();
     }
-
+    
 
 }
 
