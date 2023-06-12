@@ -55,6 +55,8 @@ public class MainControlador implements ActionListener, ListSelectionListener {
             if (p != null && c != null) {
                 sistema.bajaContratacion(p, c);
                 vista.updateListaContrataciones(p.getContrataciones());
+            } else {
+            	JOptionPane.showMessageDialog(vista, "Seleccione una contratación.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else if (e.getActionCommand().equals("Solicitar Tecnico")) {
             sistema.solicitarTecnico(this);
