@@ -103,10 +103,13 @@ public abstract class Persona implements Cloneable {
 				nuevaFactura = (Factura) this.ultimaFactura().clone();
 				if(this.ultimaFactura().getContratos().isEmpty()) this.facturas.remove(this.ultimaFactura());
 				int mes = nuevaFactura.getFecha().getMonth();
-	    	mes = mes == 11 ? 0 : mes + 1;
-	    	
-	    	nuevaFactura.getFecha().setMonth(mes);
-                nuevaFactura.setPagado(false);
+				if (mes == 11) {
+					nuevaFactura.getFecha().setMonth(0);
+					nuevaFactura.getFecha().setYear(nuevaFactura.getFecha().getYear() + 1);
+				} else {
+					nuevaFactura.getFecha().setMonth(mes + 1);
+				}
+        nuevaFactura.setPagado(false);
 	    	this.facturas.add(nuevaFactura);
 			} catch (CloneNotSupportedException e) {
 				e.printStackTrace();

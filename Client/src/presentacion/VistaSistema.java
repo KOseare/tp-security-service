@@ -98,7 +98,6 @@ public class VistaSistema extends javax.swing.JFrame {
     private DialogAltaTecnico dialogAltaTecnico;
     private DialogNuevoAbonado dialogNuevoAbonado;
     private DialogPagarFactura dialogPagarFactura;
-    private DialogException dialogException;
     private DialogNuevaContratacion dialogNuevaContratacion;
 
     @SuppressWarnings("unchecked")
@@ -226,7 +225,7 @@ public class VistaSistema extends javax.swing.JFrame {
 
         respuesta.setEditable(false);
         respuesta.setColumns(20);
-        respuesta.setRows(15);
+        respuesta.setRows(5);
         panelRespuesta.setViewportView(respuesta);
 
         GroupLayout zonaRespuestaLayout = new GroupLayout(zonaRespuesta);
@@ -380,20 +379,6 @@ public class VistaSistema extends javax.swing.JFrame {
         this.dialogPagarFactura.setVisible(true);
     }
 
-    void abrirDialogException(String mensaje) {
-        this.dialogException = new DialogException(mensaje);
-        this.dialogException.setControlador(this.controlador);
-        this.dialogException.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        this.dialogException.setVisible(true);
-    }
-    void cerrarDialogException() {
-        if (this.dialogException != null) {
-            this.dialogException.dispose();
-            this.dialogException.setVisible(false);
-            this.dialogException = null;
-        }
-    }
-
 
     void ComprobacionFacturaSeleccionada() {
         if (!listaFacturas.isSelectionEmpty()) {
@@ -404,9 +389,7 @@ public class VistaSistema extends javax.swing.JFrame {
             this.botonFactura.setEnabled(resp);
             this.botonBajaContratacion.setEnabled(resp);
             this.botonContratacion.setEnabled(resp);
-
         }
-
     }
 
 

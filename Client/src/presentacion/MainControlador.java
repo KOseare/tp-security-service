@@ -32,7 +32,7 @@ public class MainControlador implements ActionListener, ListSelectionListener {
 	private SistemaSeguridad sistema;
 	private String usuario = "superusuario";
 	private String clave = "2c2023";
-	
+
 	public MainControlador (VistaSistema vista,VistaLogin login) {
 		this.vista = vista;
 		this.login = login;
@@ -59,63 +59,63 @@ public class MainControlador implements ActionListener, ListSelectionListener {
         } else if (e.getActionCommand().equals("Solicitar Tecnico")) {
             sistema.solicitarTecnico(this);
 
-		} else if (e.getActionCommand().equals("Alta Tecnico")) {
-			this.vista.abrirDialogAltaTecnico();
-		} else if (e.getActionCommand().equals("Nuevo Abonado")) {
-			vista.abrirDialogNuevoAbonado();
-		} else if (e.getActionCommand().equals("Actualizar Mes")) {
-			sistema.actualizarMes();
-			Persona p = vista.getAbonadoSeleccionado();
-			if (p != null) {
-				vista.updateListaFacturas(p.getFacturas());				
-			}
-		}else if (e.getActionCommand().equals("Seleccion Abonado")){
-			Persona p = vista.getAbonadoSeleccionado();
-			if (p != null) {
-				vista.updateListaFacturas(p.getFacturas());
-				vista.updateListaContrataciones(p.getContrataciones());				
-			}
-		} else if (e.getActionCommand().equals("Login")) {
-			String usuario = login.getUsuario();
-			String clave = login.getContrasenia();
-			if (Objects.equals(usuario, this.usuario) && Objects.equals(clave, this.clave)) {
-				login.setVisible(false);
-				vista.updateListaAbonados(sistema.getClientes());
-				this.vista.arranca();
-			} else if (sistema.validarUsuario(usuario, clave)){
-				login.setVisible(false);
-				vista.setAbonadoActivo(sistema.getPersonaUsuario(usuario,clave));
-				vista.updateListaFacturas(sistema.getPersonaUsuario(usuario,clave).getFacturas());
-				vista.vistaAbonado();
-				this.vista.arranca();
-			}else {
-				JOptionPane.showMessageDialog(login, "Nombre de usuario invalido", "Error", JOptionPane.ERROR_MESSAGE);
-			}
-			login.limpiarCampos();
-		}
-		
-		// Actions Alta Tecnico ---------------------------
-		else if (e.getActionCommand().equals("CrearAltaTecnico")) {
-			String nombre = vista.getNombreAltaTecnico();
-			this.sistema.altaTecnico(nombre);
-			this.vista.cerrarDialogAltaTecnico();
-		} else if (e.getActionCommand().equals("CancelarAltaTecnico")) {
-			this.vista.cerrarDialogAltaTecnico();
-		}
-		// ------------------------------------------------
-		
-		// Actions Nuevo Abonado -----------------------------
-		else if (e.getActionCommand().equals("CrearNuevoAbonado")) {
-			String tipo = vista.getTipoNuevoAbonado();
-			String nombre = vista.getNombreNuevoAbonado();
-			String dni = vista.getDniNuevoAbonado();
-			sistema.nuevoAbonado(tipo, nombre, dni);
-			vista.updateListaAbonados(sistema.getClientes());
-			this.vista.cerrarDialogNuevoAbonado();
-		} else if (e.getActionCommand().equals("CancelarNuevoAbonado")) {
-			this.vista.cerrarDialogNuevoAbonado();
-		}
-		// ------------------------------------------------
+        } else if (e.getActionCommand().equals("Alta Tecnico")) {
+            this.vista.abrirDialogAltaTecnico();
+        } else if (e.getActionCommand().equals("Nuevo Abonado")) {
+            vista.abrirDialogNuevoAbonado();
+        } else if (e.getActionCommand().equals("Actualizar Mes")) {
+            sistema.actualizarMes();
+            Persona p = vista.getAbonadoSeleccionado();
+            if (p != null) {
+                vista.updateListaFacturas(p.getFacturas());
+            }
+        } else if (e.getActionCommand().equals("Seleccion Abonado")) {
+            Persona p = vista.getAbonadoSeleccionado();
+            if (p != null) {
+                vista.updateListaFacturas(p.getFacturas());
+                vista.updateListaContrataciones(p.getContrataciones());
+            }
+        } else if (e.getActionCommand().equals("Login")) {
+            String usuario = login.getUsuario();
+            String clave = login.getContrasenia();
+            if (Objects.equals(usuario, this.usuario) && Objects.equals(clave, this.clave)) {
+                login.setVisible(false);
+                vista.updateListaAbonados(sistema.getClientes());
+                this.vista.arranca();
+            } else if (sistema.validarUsuario(usuario, clave)) {
+                login.setVisible(false);
+                vista.setAbonadoActivo(sistema.getPersonaUsuario(usuario, clave));
+                vista.updateListaFacturas(sistema.getPersonaUsuario(usuario, clave).getFacturas());
+                vista.vistaAbonado();
+                this.vista.arranca();
+            } else {
+                JOptionPane.showMessageDialog(login, "Nombre de usuario invalido", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            login.limpiarCampos();
+        }
+
+        // Actions Alta Tecnico ---------------------------
+        else if (e.getActionCommand().equals("CrearAltaTecnico")) {
+            String nombre = vista.getNombreAltaTecnico();
+            this.sistema.altaTecnico(nombre);
+            this.vista.cerrarDialogAltaTecnico();
+        } else if (e.getActionCommand().equals("CancelarAltaTecnico")) {
+            this.vista.cerrarDialogAltaTecnico();
+        }
+        // ------------------------------------------------
+
+        // Actions Nuevo Abonado -----------------------------
+        else if (e.getActionCommand().equals("CrearNuevoAbonado")) {
+            String tipo = vista.getTipoNuevoAbonado();
+            String nombre = vista.getNombreNuevoAbonado();
+            String dni = vista.getDniNuevoAbonado();
+            sistema.nuevoAbonado(tipo, nombre, dni);
+            vista.updateListaAbonados(sistema.getClientes());
+            this.vista.cerrarDialogNuevoAbonado();
+        } else if (e.getActionCommand().equals("CancelarNuevoAbonado")) {
+            this.vista.cerrarDialogNuevoAbonado();
+        }
+        // ------------------------------------------------
 
         // Actions Pagar Factura -----------------------------
         else if (e.getActionCommand().equals("ActualizarFactura")) {
@@ -133,7 +133,7 @@ public class MainControlador implements ActionListener, ListSelectionListener {
                 this.vista.cerrarDialogPagarFactura();
             } catch (Throwable f) {
                 JOptionPane.showMessageDialog(vista, f.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
+            } 
 
         } else if (e.getActionCommand().equals("CancelarFactura"))
             this.vista.cerrarDialogPagarFactura();
