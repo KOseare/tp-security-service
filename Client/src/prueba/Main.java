@@ -38,8 +38,8 @@ public class Main {
 
         PersistenciaXML idao = new PersistenciaXML();
 
-        initTestData(SistemaSeguridad.getSistema());
-        /*try {
+        //initTestData(SistemaSeguridad.getSistema());
+        try {
             idao.abrirInput("sistemaSeguridad.xml");
             SistemaSeguridadDTO sistemaSeguridadDTO = (SistemaSeguridadDTO) idao.leer();
             UtilSerializacionSistema.sistemaFromSistemaSeguridadDTO(sistemaSeguridadDTO);
@@ -52,7 +52,7 @@ public class Main {
             initTestData(SistemaSeguridad.getSistema());
         } catch (ClassNotFoundException e) {
             System.out.println("Exception " + e.getMessage());
-        }*/
+        }
 
         VistaSistema vista = new VistaSistema();
         VistaLogin login = new VistaLogin();
