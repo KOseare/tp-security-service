@@ -140,10 +140,7 @@ public class MainControlador implements ActionListener, ListSelectionListener {
 
         } else if (e.getActionCommand().equals("CancelarFactura"))
             this.vista.cerrarDialogPagarFactura();
-        // Actions Mensaje -----------------------------
-        else if (e.getActionCommand().equals("AceptarMensaje"))
-            this.vista.cerrarDialogException();
-        //------------------------------------------------------------
+
 
         // Actions Nueva Contratacion --------------------------------
         else if (e.getActionCommand().equals("CrearNuevaContratacion")) {

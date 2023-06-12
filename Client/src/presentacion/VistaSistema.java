@@ -35,7 +35,7 @@ import javax.swing.JPanel;
 import negocio.IFactura;
 
 
-public class VistaSistema extends javax.swing.JFrame implements WindowListener {
+public class VistaSistema extends javax.swing.JFrame {
 
     private DialogFactura dialogFactura;
 
@@ -99,7 +99,6 @@ public class VistaSistema extends javax.swing.JFrame implements WindowListener {
     private DialogAltaTecnico dialogAltaTecnico;
     private DialogNuevoAbonado dialogNuevoAbonado;
     private DialogPagarFactura dialogPagarFactura;
-    private DialogException dialogException;
     private DialogNuevaContratacion dialogNuevaContratacion;
 
     @SuppressWarnings("unchecked")
@@ -383,19 +382,6 @@ public class VistaSistema extends javax.swing.JFrame implements WindowListener {
         this.dialogPagarFactura.setVisible(true);
     }
 
-    void abrirDialogException(String mensaje) {
-        this.dialogException = new DialogException(mensaje);
-        this.dialogException.setControlador(this.controlador);
-        this.dialogException.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        this.dialogException.setVisible(true);
-    }
-    void cerrarDialogException() {
-        if (this.dialogException != null) {
-            this.dialogException.dispose();
-            this.dialogException.setVisible(false);
-            this.dialogException = null;
-        }
-    }
 
 
     void ComprobacionFacturaSeleccionada() {
@@ -504,40 +490,5 @@ public class VistaSistema extends javax.swing.JFrame implements WindowListener {
   		return this.dialogNuevaContratacion.getMovilSelectedContratacion();
   	}
 
-    @Override
-    public void windowOpened(WindowEvent windowEvent) {
-        // TODO Implement this method
-    }
-
-    @Override
-    public void windowClosing(WindowEvent windowEvent) {
-        // TODO Implement this method
-        System.out.println("ay");
-    }
-
-    @Override
-    public void windowClosed(WindowEvent windowEvent) {
-        // TODO Implement this method
-    }
-
-    @Override
-    public void windowIconified(WindowEvent windowEvent) {
-        // TODO Implement this method
-    }
-
-    @Override
-    public void windowDeiconified(WindowEvent windowEvent) {
-        // TODO Implement this method
-    }
-
-    @Override
-    public void windowActivated(WindowEvent windowEvent) {
-        // TODO Implement this method
-    }
-
-    @Override
-    public void windowDeactivated(WindowEvent windowEvent) {
-        // TODO Implement this method
-    }
 }
 
