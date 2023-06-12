@@ -366,7 +366,6 @@ public class VistaSistema extends javax.swing.JFrame {
 
     void ComprobacionFacturaSeleccionada() {
         this.botonFactura.setEnabled(!listaFacturas.isSelectionEmpty() && !getFacturaSeleccionada().isPagado());
-
     }
 
     void cerrarDialogPagarFactura() {

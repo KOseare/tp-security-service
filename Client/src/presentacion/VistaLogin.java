@@ -113,6 +113,12 @@ public class VistaLogin extends javax.swing.JFrame {
         campoContrasenia.setText("");
     }
 
+    public void arranca(){
+        this.pack();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+    }
+
     public void setControlador(MainControlador controlador) {
         botonLogin.addActionListener(controlador);
     }

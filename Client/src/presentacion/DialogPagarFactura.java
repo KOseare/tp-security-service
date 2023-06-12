@@ -1,10 +1,7 @@
 package presentacion;
 
-import java.awt.BorderLayout;
+import java.awt.*;
 import java.awt.Dialog.ModalityType;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -62,6 +59,7 @@ public class DialogPagarFactura extends JDialog {
                 detalle = new JTextArea();
                 detalle.setEditable(false);
                 detalle.setText(factura.detalle());
+                detalle.setPreferredSize(new Dimension(200, 200));
                 panel.add(detalle);
                 detalle.setColumns(10);
 

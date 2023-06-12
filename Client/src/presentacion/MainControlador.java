@@ -39,8 +39,7 @@ public class MainControlador implements ActionListener, ListSelectionListener {
 		this.sistema = SistemaSeguridad.getSistema();
 		this.login.setControlador(this);
 		this.vista.setControlador(this);
-		this.vista.arranca();
-		login.setVisible(true);
+		this.login.arranca();
 	}
 
 	@Override
@@ -82,13 +81,13 @@ public class MainControlador implements ActionListener, ListSelectionListener {
 			if (Objects.equals(usuario, this.usuario) && Objects.equals(clave, this.clave)) {
 				login.setVisible(false);
 				vista.updateListaAbonados(sistema.getClientes());
-				vista.setVisible(true);
+				this.vista.arranca();
 			} else if (sistema.validarUsuario(usuario, clave)){
 				login.setVisible(false);
 				vista.setAbonadoActivo(sistema.getPersonaUsuario(usuario,clave));
 				vista.updateListaFacturas(sistema.getPersonaUsuario(usuario,clave).getFacturas());
 				vista.vistaAbonado();
-				vista.setVisible(true);
+				this.vista.arranca();
 			}else {
 				JOptionPane.showMessageDialog(login, "Nombre de usuario invalido", "Error", JOptionPane.ERROR_MESSAGE);
 			}
