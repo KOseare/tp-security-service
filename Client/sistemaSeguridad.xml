@@ -22,7 +22,7 @@
        </object>
       </void>
       <void method="add">
-       <object class="negocio.Domicilio" id="Domicilio1">
+       <object class="negocio.Domicilio">
         <void property="calle">
          <string>Moreno</string>
         </void>
@@ -103,30 +103,23 @@
            </void>
           </object>
          </void>
-         <void method="add">
-          <object class="negocio.MonitoreoVivienda">
-           <void property="domicilio">
-            <object idref="Domicilio1"/>
-           </void>
-           <void property="id">
-            <int>2</int>
-           </void>
-           <void property="precioDelServicio">
-            <double>8500.0</double>
-           </void>
-          </object>
-         </void>
         </void>
         <void property="fecha">
          <object class="java.util.Date">
-          <long>1686528771570</long>
+          <long>1686533709889</long>
          </object>
         </void>
+        <void property="importeDePago">
+         <double>26775.1</double>
+        </void>
         <void property="importe_bruto">
-         <double>15500.0</double>
+         <double>25500.0</double>
         </void>
         <void property="importe_neto">
-         <double>15500.0</double>
+         <double>25500.0</double>
+        </void>
+        <void property="pagado">
+         <boolean>true</boolean>
         </void>
        </object>
       </void>
@@ -143,7 +136,7 @@
      </void>
      <void property="domicilios">
       <void method="add">
-       <object class="negocio.Domicilio" id="Domicilio2">
+       <object class="negocio.Domicilio" id="Domicilio1">
         <void property="calle">
          <string>Entre Rios</string>
         </void>
@@ -156,7 +149,7 @@
        </object>
       </void>
       <void method="add">
-       <object class="negocio.Domicilio" id="Domicilio3">
+       <object class="negocio.Domicilio" id="Domicilio2">
         <void property="calle">
          <string>Almirante Brown</string>
         </void>
@@ -169,7 +162,7 @@
        </object>
       </void>
       <void method="add">
-       <object class="negocio.Domicilio" id="Domicilio4">
+       <object class="negocio.Domicilio" id="Domicilio3">
         <void property="calle">
          <string>Primera Junta</string>
         </void>
@@ -182,7 +175,7 @@
        </object>
       </void>
       <void method="add">
-       <object class="negocio.Domicilio" id="Domicilio5">
+       <object class="negocio.Domicilio" id="Domicilio4">
         <void property="calle">
          <string>Rawson</string>
         </void>
@@ -218,7 +211,7 @@
          <void method="add">
           <object class="negocio.MonitoreoComercio" id="MonitoreoComercio1">
            <void property="domicilio">
-            <object idref="Domicilio2"/>
+            <object idref="Domicilio1"/>
            </void>
            <void property="id">
             <int>3</int>
@@ -240,7 +233,7 @@
          <void method="add">
           <object class="negocio.MonitoreoVivienda" id="MonitoreoVivienda0">
            <void property="domicilio">
-            <object idref="Domicilio3"/>
+            <object idref="Domicilio2"/>
            </void>
            <void property="id">
             <int>4</int>
@@ -287,7 +280,7 @@
          <void method="add">
           <object class="negocio.MonitoreoComercio" id="MonitoreoComercio2">
            <void property="domicilio">
-            <object idref="Domicilio4"/>
+            <object idref="Domicilio3"/>
            </void>
            <void property="id">
             <int>5</int>
@@ -309,7 +302,7 @@
          <void method="add">
           <object class="negocio.MonitoreoVivienda" id="MonitoreoVivienda1">
            <void property="domicilio">
-            <object idref="Domicilio5"/>
+            <object idref="Domicilio4"/>
            </void>
            <void property="id">
             <int>6</int>
@@ -337,18 +330,18 @@
          </void>
         </void>
         <void property="descuento">
-         <double>28150.0</double>
+         <double>32400.0</double>
         </void>
         <void property="fecha">
          <object class="java.util.Date">
-          <long>1686528771571</long>
+          <long>1686533709889</long>
          </object>
         </void>
         <void property="importe_bruto">
-         <double>33500.0</double>
+         <double>70500.0</double>
         </void>
         <void property="importe_neto">
-         <double>5350.0</double>
+         <double>38100.0</double>
         </void>
        </object>
       </void>
@@ -365,7 +358,7 @@
      </void>
      <void property="domicilios">
       <void method="add">
-       <object class="negocio.Domicilio" id="Domicilio6">
+       <object class="negocio.Domicilio" id="Domicilio5">
         <void property="calle">
          <string>Belgrano</string>
         </void>
@@ -378,7 +371,7 @@
        </object>
       </void>
       <void method="add">
-       <object class="negocio.Domicilio" id="Domicilio7">
+       <object class="negocio.Domicilio" id="Domicilio6">
         <void property="calle">
          <string>Almirante Brown</string>
         </void>
@@ -391,7 +384,7 @@
        </object>
       </void>
       <void method="add">
-       <object class="negocio.Domicilio" id="Domicilio8">
+       <object class="negocio.Domicilio" id="Domicilio7">
         <void property="calle">
          <string>Moreno</string>
         </void>
@@ -404,7 +397,7 @@
        </object>
       </void>
       <void method="add">
-       <object class="negocio.Domicilio" id="Domicilio9">
+       <object class="negocio.Domicilio" id="Domicilio8">
         <void property="calle">
          <string>Entre Rios</string>
         </void>
@@ -434,7 +427,7 @@
          <void method="add">
           <object class="negocio.MonitoreoComercio">
            <void property="domicilio">
-            <object idref="Domicilio6"/>
+            <object idref="Domicilio5"/>
            </void>
            <void property="id">
             <int>7</int>
@@ -447,7 +440,7 @@
          <void method="add">
           <object class="negocio.MonitoreoVivienda" id="MonitoreoVivienda2">
            <void property="domicilio">
-            <object idref="Domicilio7"/>
+            <object idref="Domicilio6"/>
            </void>
            <void property="id">
             <int>8</int>
@@ -469,7 +462,7 @@
          <void method="add">
           <object class="negocio.MonitoreoVivienda" id="MonitoreoVivienda3">
            <void property="domicilio">
-            <object idref="Domicilio8"/>
+            <object idref="Domicilio7"/>
            </void>
            <void property="id">
             <int>9</int>
@@ -498,7 +491,7 @@
          <void method="add">
           <object class="negocio.MonitoreoComercio" id="MonitoreoComercio3">
            <void property="domicilio">
-            <object idref="Domicilio9"/>
+            <object idref="Domicilio8"/>
            </void>
            <void property="id">
             <int>10</int>
@@ -555,14 +548,14 @@
         </void>
         <void property="fecha">
          <object class="java.util.Date">
-          <long>1686528771586</long>
+          <long>1686533709912</long>
          </object>
         </void>
         <void property="importe_bruto">
-         <double>36500.0</double>
+         <double>73500.0</double>
         </void>
         <void property="importe_neto">
-         <double>9350.0</double>
+         <double>46350.0</double>
         </void>
        </object>
       </void>

@@ -49,8 +49,8 @@ public class MonitoreoVivienda extends Contratacion {
         return promocion.PromoVivienda(this.precioDelServicio);
     }
     @Override
-    public String toSting(){
-        return "\tTipo: Monitoreo de Vivienda" + super.toSting();
+    public String toString(){
+        return "\tTipo: Monitoreo de Vivienda" + super.toString();
     }
     
 }

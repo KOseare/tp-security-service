@@ -1,7 +1,6 @@
 
 package presentacion;
 
-
 import datos.PersistenciaXML;
 import datos.SistemaSeguridadDTO;
 import datos.UtilSerializacionSistema;
@@ -21,6 +20,7 @@ import javax.swing.GroupLayout;
 import javax.swing.DefaultListModel;
 
 import negocio.Contratacion;
+import negocio.Domicilio;
 import negocio.Factura;
 import negocio.Persona;
 
@@ -35,13 +35,45 @@ import javax.swing.JPanel;
 import negocio.IFactura;
 
 
-public class VistaSistema extends javax.swing.JFrame implements MouseListener,WindowListener {
+public class VistaSistema extends javax.swing.JFrame implements WindowListener {
 
     private DialogFactura dialogFactura;
 
     /** Creates new form NewJFrame */
     public VistaSistema() {
         initComponents();
+        MouseListener mlFacturas = new MouseAdapter() {
+        	public void mouseClicked (MouseEvent e) {
+        		ComprobacionFacturaSeleccionada();
+        		if (e.getClickCount() == 2) {
+        			controlador.abrirDialogFactura();
+    }
+        	}
+        };
+        listaFacturas.addMouseListener(mlFacturas);
+        
+       // this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+               //persistencia al salir
+                
+                PersistenciaXML idao = new PersistenciaXML();
+                try
+                {
+                    idao.abrirOutput("sistemaSeguridad.xml");
+                    SistemaSeguridadDTO sistemadto = UtilSerializacionSistema.SistemaDTOFromSistema();
+                    idao.escribir(sistemadto);
+                    idao.cerrarOutput();
+                    System.out.println("Sistema Guardado");
+                } catch (Exception exception)
+                {
+                    System.out.println("Exception " + exception.getMessage());
+                }
+                
+                e.getWindow().dispose();
+            }
+        });
     }
     private MainControlador controlador;
     private JButton botonActualizarMes;
@@ -68,9 +100,13 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener,Wi
     private DialogNuevoAbonado dialogNuevoAbonado;
     private DialogPagarFactura dialogPagarFactura;
     private DialogException dialogException;
+    private DialogNuevaContratacion dialogNuevaContratacion;
 
     @SuppressWarnings("unchecked")
     private void initComponents() { //GEN-BEGIN:initComponents
+
+
+
 
         zonaPrincipal = new JPanel();
         panelContrataciones = new JScrollPane();
@@ -99,7 +135,6 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener,Wi
                                             .SINGLE_SELECTION);
         panelFacturas.setViewportView(listaFacturas);
 
-
         GroupLayout zonaPrincipalLayout = new GroupLayout(zonaPrincipal);
         zonaPrincipal.setLayout(zonaPrincipalLayout);
         zonaPrincipalLayout.setHorizontalGroup(zonaPrincipalLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -126,7 +161,6 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener,Wi
                                                   .ListSelectionModel
                                                   .SINGLE_SELECTION);
         panelContrataciones.setViewportView(listaContrataciones);
-        listaFacturas.addMouseListener(this);
 
         zonaBotones.setPreferredSize(new java.awt.Dimension(113, 450));
 
@@ -259,6 +293,7 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener,Wi
                                                                                                .addContainerGap()));
 
         pack();
+
     }
 
     public void arranca() {
@@ -277,6 +312,13 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener,Wi
         botonNuevoAbonado.addActionListener(c);
         botonSolicitarTecnico.addActionListener(c);
         comboAbonados.addActionListener(c);
+    }
+
+    public void vistaAbonado(){
+        this.comboAbonados.setVisible(false);
+        this.botonAltaTecnico.setVisible(false);
+        this.botonActualizarMes.setVisible(false);
+        this.botonNuevoAbonado.setVisible(false);
     }
 
     public void updateListaAbonados(ArrayList<Persona> abonados) {
@@ -323,81 +365,15 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener,Wi
     }
 
     public void abrirDialogFactura() {
+    	if (listaFacturas.getSelectedValue() != null) {
         this.dialogFactura = new DialogFactura(listaFacturas.getSelectedValue());
         this.dialogFactura.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.dialogFactura.setVisible(true);
     }
+    }
 
     public String getNombreAltaTecnico() {
         return this.dialogAltaTecnico.getNombreAltaTecnico();
-    }
-
-    public void dibujarRespuesta(String resp) {
-        this.respuesta.append(resp + "\n");
-    }
-
-    public void abrirDialogNuevoAbonado() {
-        this.dialogNuevoAbonado = new DialogNuevoAbonado();
-        this.dialogNuevoAbonado.setControlador(this.controlador);
-        this.dialogNuevoAbonado.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        this.dialogNuevoAbonado.setVisible(true);
-    }
-
-    public void cerrarDialogNuevoAbonado() {
-        if (this.dialogNuevoAbonado != null) {
-            this.dialogNuevoAbonado.dispose();
-            this.dialogNuevoAbonado.setVisible(false);
-            this.dialogNuevoAbonado = null;
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt
-            .EventQueue
-            .invokeLater(new Runnable() {
-                public void run() {
-                    new VistaSistema().setVisible(true);
-                }
-            });
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent mouseEvent) {
-        // TODO Implement this method
-
-        ComprobacionFacturaSeleccionada();
-    }
-
-    @Override
-    public void mousePressed(MouseEvent mouseEvent) {
-        // TODO Implement this method
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent mouseEvent) {
-        // TODO Implement this method
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent mouseEvent) {
-        // TODO Implement this method
-    }
-
-    @Override
-    public void mouseExited(MouseEvent mouseEvent) {
-        // TODO Implement this method
-    }
-
-    String getTipoNuevoAbonado() {
-        return null;
-    }
-
-    String getNombreNuevoAbonado() {
-        return null;
-    }
-
-    String getDniNuevoAbonado() {
-        return null;
     }
 
     void abrirDialogPagarFactura() {
@@ -448,7 +424,39 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener,Wi
     public String getMonto() {
         return this.dialogPagarFactura.getMonto();
     }
+    public void dibujarRespuesta(String resp){
+        this.respuesta.append(resp +"\n");
+    }
 
+    public void abrirDialogNuevoAbonado () {
+    	this.dialogNuevoAbonado = new DialogNuevoAbonado();
+    	this.dialogNuevoAbonado.setControlador(this.controlador);
+    	this.dialogNuevoAbonado.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+    	this.dialogNuevoAbonado.setVisible(true);
+    }
+
+    public void cerrarDialogNuevoAbonado () {
+    	if (this.dialogNuevoAbonado != null) {
+    		this.dialogNuevoAbonado.dispose();
+    		this.dialogNuevoAbonado.setVisible(false);
+    		this.dialogNuevoAbonado = null;
+    	}
+    }
+
+    public String getNombreNuevoAbonado () {
+    	return this.dialogNuevoAbonado.getNombreNuevoAbonado();
+    }
+    public String getDniNuevoAbonado () {
+    	return this.dialogNuevoAbonado.getDniNuevoAbonado();
+    }
+    public String getTipoNuevoAbonado () {
+    	return this.dialogNuevoAbonado.getTipoNuevoAbonado();
+    }
+
+    public void setAbonadoActivo(Persona abonado){
+        comboAbonados.setSelectedItem(abonado);
+    }
+    
     public String getTipoMedioDePago() {
         return this.dialogPagarFactura.getTipoMedioDePago();
     }
@@ -460,27 +468,51 @@ public class VistaSistema extends javax.swing.JFrame implements MouseListener,Wi
     IFactura getFacturaFinal() {
         return this.dialogPagarFactura.getFacturaFinal();
     }
-    
-    @Override
-    public void windowClosing(WindowEvent e){
 
-        PersistenciaXML idao = new PersistenciaXML();
-        try
-        {
-            idao.abrirOutput("sistemaSeguridad.xml");
-            SistemaSeguridadDTO sistemadto = UtilSerializacionSistema.SistemaDTOFromSistema();
-            idao.escribir(sistemadto);
-            idao.cerrarOutput();
-            System.out.println("Sistema Guardado");
-        } catch (Exception exception)
-        {
-            System.out.println("Exception " + exception.getMessage());
-        }
+    public Contratacion getContratacionSeleccionada() {
+      return listaContrataciones.getSelectedValue();
     }
+
+    public void abrirDialogNuevaContrataciono () {
+    	this.dialogNuevaContratacion = new DialogNuevaContratacion(this.getAbonadoSeleccionado().getDomicilios());
+    	this.dialogNuevaContratacion.setControlador(this.controlador);
+    	this.dialogNuevaContratacion.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+    	this.dialogNuevaContratacion.setVisible(true);
+    }
+
+    public void cerrarDialogNuevaContratacion () {
+    	if (this.dialogNuevaContratacion != null) {
+    		this.dialogNuevaContratacion.dispose();
+    		this.dialogNuevaContratacion.setVisible(false);
+    		this.dialogNuevaContratacion = null;
+    	}
+    }
+    
+    public Domicilio getDomicilioContratacion() {
+  		return this.dialogNuevaContratacion.getDomicilioContratacion();
+  	}
+  	public String getTipoContratacion () {
+  		return this.dialogNuevaContratacion.getTipoContratacion();
+  	}
+  	public boolean getCamaraSelectedContratacion () {
+  		return this.dialogNuevaContratacion.getCamaraSelectedContratacion();
+  	}
+  	public boolean getAntipanicoSelectedContratacion () {
+  		return this.dialogNuevaContratacion.getAntipanicoSelectedContratacion();
+  	}
+  	public boolean getMovilSelectedContratacion () {
+  		return this.dialogNuevaContratacion.getMovilSelectedContratacion();
+  	}
 
     @Override
     public void windowOpened(WindowEvent windowEvent) {
-    
+        // TODO Implement this method
+    }
+
+    @Override
+    public void windowClosing(WindowEvent windowEvent) {
+        // TODO Implement this method
+        System.out.println("ay");
     }
 
     @Override

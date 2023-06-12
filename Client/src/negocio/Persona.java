@@ -117,6 +117,7 @@ public abstract class Persona implements Cloneable {
     
     public void darBajaServicio(Contratacion contrato) {
         this.ultimaFactura().darBajaServicio(contrato);
+
     }
     
     public void pagarFactura(Factura f, double importe) throws SaldoInsuficienteExeception {

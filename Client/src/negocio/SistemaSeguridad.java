@@ -1,8 +1,11 @@
 package negocio;
 
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
+
+import java.util.GregorianCalendar;
 
 import negocio.excepciones.SaldoInsuficienteExeception;
 
@@ -96,19 +99,28 @@ public class SistemaSeguridad {
             factura.pagarFactura(monto);
     }
     
-    public void agregarContrato (Persona persona, String tipo, Domicilio domicilio, ArrayList<ServicioAdicional> servicios) {
+    public void agregarContrato (Persona persona, String tipo, Domicilio domicilio, boolean camara, boolean antipanico, boolean movil) {
     	Contratacion contrato;
+    	ArrayList<ServicioAdicional> servicios = new ArrayList<>();
     	if (tipo.equals("Comercio")) {
-    		contrato = new MonitoreoComercio();
+    		contrato = new MonitoreoComercio(domicilio);
     	} else {
-    		contrato = new MonitoreoVivienda();
+    		contrato = new MonitoreoVivienda(domicilio);
     	}
-    	contrato.setServiciosAdicionales(servicios); // TO DO: Revisar si seria necesario instancia aca los servicios
+    	
+    	if (camara)
+    		servicios.add(new Camara(1));
+    	if (antipanico)
+    		servicios.add(new BotonAntiPanico(1));
+    	if (movil)
+    		servicios.add(new MovilDeAcompaniamiento(new GregorianCalendar(1990,01,01,00,00), new GregorianCalendar(1990,01,01,23,59)));
+    	
+    	contrato.setServiciosAdicionales(servicios);
     	persona.agregarContrato(contrato);
     }
     
     public void bajaContratacion (Persona persona, Contratacion c) {
-    	persona.getContrataciones().remove(c);
+    	persona.darBajaServicio(c);
     }
     
     public void solicitarTecnico (MainControlador observer){
@@ -131,8 +143,8 @@ public class SistemaSeguridad {
     	this.clientes.add(p);
     }
 
-    public void nuevoUsuario(String usuario, String clave) {
-    	Usuarios u = new Usuarios(usuario, clave);
+    public void nuevoUsuario(String usuario, String clave, Persona persona) {
+    	Usuarios u = new Usuarios(usuario, clave, persona);
     	this.usuarios.add(u);
     }
 
@@ -149,6 +161,17 @@ public class SistemaSeguridad {
             }
     	}
         return res;
+    }
+
+    public Persona getPersonaUsuario(String usuario, String clave){
+        Persona persona = null;
+        for (Usuarios u : this.usuarios) {
+            if (u.getUsuario().equals(usuario) && u.getClave().equals(clave)) {
+                persona = u.getPersona();
+                break;
+            }
+        }
+        return persona;
     }
     public void actualizarMes () {
     	for (Persona persona : this.clientes) {

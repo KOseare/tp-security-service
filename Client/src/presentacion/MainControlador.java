@@ -20,14 +20,13 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import negocio.Cheque;
+import negocio.Contratacion;
 import negocio.Efectivo;
 import negocio.Tarjeta;
 
 import negocio.excepciones.SaldoInsuficienteExeception;
 
 public class MainControlador implements ActionListener, ListSelectionListener {
-
-
     private VistaSistema vista;
     private VistaLogin login;
     private SistemaSeguridad sistema;
@@ -48,26 +47,16 @@ public class MainControlador implements ActionListener, ListSelectionListener {
     public void actionPerformed(ActionEvent e) {
         // TO DO: Cambiar string por constantes en interfaz (ej.: InterfazVista.PAGAR_FACTURA)
         if (e.getActionCommand().equals("Pagar Factura")) {
-            // Persona p = vista.getPersonaSeleccionada(); TO DO
-            // Factura f = vista.getFacturaSeleccionada(); TO DO
-            //sistema.pagarFactura(null, null);
             vista.abrirDialogPagarFactura();
-
         } else if (e.getActionCommand().equals("Nueva Contratacion")) {
-            // Persona p = vista.getPersonaSeleccionada(); TO DO
-            // String tipoContratacion = vista.getTipoContratacionSeleccionada(); TO DO
-            // Domicilio d = vista.getTipoDomicilioSeleccionado(); TO DO
-            // ArrayList<ServicioAdicional> s = vista.getTipoServiciosSeleccionados(); TO DO
-            // sistema.agregarContrato (p, tipoContratacion, d, s);
-
-
+            vista.abrirDialogNuevaContrataciono();
         } else if (e.getActionCommand().equals("Baja Contratacion")) {
-            // Persona p = vista.getPersonaSeleccionada(); TO DO
-            // Contratacion c = vista.getContratacionSeleccionada(); TO DO
-            // sistema.bajaContratacion (p, c);
-
-
-
+            Persona p = vista.getAbonadoSeleccionado();
+            Contratacion c = vista.getContratacionSeleccionada();
+            if (p != null && c != null) {
+                sistema.bajaContratacion(p, c);
+                vista.updateListaContrataciones(p.getContrataciones());
+            }
         } else if (e.getActionCommand().equals("Solicitar Tecnico")) {
             sistema.solicitarTecnico(this);
 
@@ -75,7 +64,6 @@ public class MainControlador implements ActionListener, ListSelectionListener {
             this.vista.abrirDialogAltaTecnico();
         } else if (e.getActionCommand().equals("Nuevo Abonado")) {
             vista.abrirDialogNuevoAbonado();
-
         } else if (e.getActionCommand().equals("Actualizar Mes")) {
             sistema.actualizarMes();
             Persona p = vista.getAbonadoSeleccionado();
@@ -86,6 +74,7 @@ public class MainControlador implements ActionListener, ListSelectionListener {
             Persona p = vista.getAbonadoSeleccionado();
             if (p != null) {
                 vista.updateListaFacturas(p.getFacturas());
+                vista.updateListaContrataciones(p.getContrataciones());
             }
         } else if (e.getActionCommand().equals("Login")) {
             String usuario = login.getUsuario();
@@ -94,9 +83,11 @@ public class MainControlador implements ActionListener, ListSelectionListener {
                 login.setVisible(false);
                 vista.updateListaAbonados(sistema.getClientes());
                 vista.setVisible(true);
-
             } else if (sistema.validarUsuario(usuario, clave)) {
                 login.setVisible(false);
+                vista.setAbonadoActivo(sistema.getPersonaUsuario(usuario, clave));
+                vista.updateListaFacturas(sistema.getPersonaUsuario(usuario, clave).getFacturas());
+                vista.vistaAbonado();
                 vista.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(login, "Nombre de usuario invalido", "Error", JOptionPane.ERROR_MESSAGE);
@@ -122,8 +113,10 @@ public class MainControlador implements ActionListener, ListSelectionListener {
             sistema.nuevoAbonado(tipo, nombre, dni);
             vista.updateListaAbonados(sistema.getClientes());
             this.vista.cerrarDialogNuevoAbonado();
-        } else if (e.getActionCommand().equals("CancelarNuevoAbonado"))
+        } else if (e.getActionCommand().equals("CancelarNuevoAbonado")) {
             this.vista.cerrarDialogNuevoAbonado();
+        }
+        // ------------------------------------------------
 
         // Actions Pagar Factura -----------------------------
         else if (e.getActionCommand().equals("ActualizarFactura")) {
@@ -135,25 +128,44 @@ public class MainControlador implements ActionListener, ListSelectionListener {
             else
                 this.vista.actualizarFacturaDialog(new Efectivo(this.vista.getFacturaSeleccionada()));
         } else if (e.getActionCommand().equals("PagarFactura")) {
-            try{
-            double monto = Double.parseDouble(vista.getMonto()); //posibles errores
-            sistema.pagarFactura(vista.getFacturaFinal(),monto);
-            this.vista.cerrarDialogPagarFactura();
-            }catch(Exception exception){
-                JOptionPane.showMessageDialog(vista, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }catch (SaldoInsuficienteExeception f) {
+            try {
+                double monto = Double.parseDouble(vista.getMonto()); //posibles errores
+                sistema.pagarFactura(vista.getFacturaFinal(), monto);
+                this.vista.cerrarDialogPagarFactura();
+            } catch (SaldoInsuficienteExeception f) {
                 JOptionPane.showMessageDialog(vista, f.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (Exception exception) {
+                JOptionPane.showMessageDialog(vista, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
 
         } else if (e.getActionCommand().equals("CancelarFactura"))
             this.vista.cerrarDialogPagarFactura();
         // Actions Mensaje -----------------------------
-         else if (e.getActionCommand().equals("AceptarMensaje"))
+        else if (e.getActionCommand().equals("AceptarMensaje"))
             this.vista.cerrarDialogException();
         //------------------------------------------------------------
-        
-        this.vista.ComprobacionFacturaSeleccionada();
 
+        // Actions Nueva Contratacion --------------------------------
+        else if (e.getActionCommand().equals("CrearNuevaContratacion")) {
+            Persona p = vista.getAbonadoSeleccionado();
+            String tipoContratacion = vista.getTipoContratacion();
+            Domicilio d = vista.getDomicilioContratacion();
+            boolean camara = vista.getCamaraSelectedContratacion();
+            boolean antipanico = vista.getAntipanicoSelectedContratacion();
+            boolean movil = vista.getMovilSelectedContratacion();
+
+            if (p != null && d != null) {
+                sistema.agregarContrato(p, tipoContratacion, d, camara, antipanico, movil);
+
+                this.vista.updateListaContrataciones(p.getContrataciones());
+                this.vista.cerrarDialogNuevaContratacion();
+            }
+        } else if (e.getActionCommand().equals("CancelarNuevaContratacion")) {
+            this.vista.cerrarDialogNuevaContratacion();
+        }
+        // -----------------------------------------------------------
+
+        this.vista.ComprobacionFacturaSeleccionada();
     }
 
     public void comunicarConsolaTecnico(String resp) {
@@ -162,13 +174,13 @@ public class MainControlador implements ActionListener, ListSelectionListener {
 
     @Override
     public void valueChanged(ListSelectionEvent listSelectionEvent) {
-        vista.abrirDialogFactura();
+        // vista.abrirDialogFactura(); // No es mas necesario se agrego un mouse listener
     }
 
     public void abrirDialogFactura() {
         vista.abrirDialogFactura();
     }
-    
+
 
 }
 

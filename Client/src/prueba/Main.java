@@ -4,7 +4,8 @@ import datos.PersistenciaXML;
 import datos.SistemaSeguridadDTO;
 import datos.UtilSerializacionSistema;
 
-import java.time.LocalTime;
+
+import java.io.IOException;
 
 import java.util.GregorianCalendar;
 
@@ -33,58 +34,40 @@ import presentacion.VistaSistema;
 public class Main {
 
     public static void main(String[] args) {
-        
-        
-        
+
+
         PersistenciaXML idao = new PersistenciaXML();
 
-        
-        try
-        {
-            SistemaSeguridad sistema = SistemaSeguridad.getSistema();
-            //initTestData(sistema);
 
-            
+        try {
+
+
+
             idao.abrirInput("sistemaSeguridad.xml");
             SistemaSeguridadDTO sistemaSeguridadDTO = (SistemaSeguridadDTO) idao.leer();
             UtilSerializacionSistema.sistemaFromSistemaSeguridadDTO(sistemaSeguridadDTO);
             idao.cerrarInput();
             System.out.println("Sistema Recuperado ");
-            
-            
-            VistaSistema vista = new VistaSistema();
-            VistaLogin login = new VistaLogin();
-            vista.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-            MainControlador controlador = new MainControlador(vista, login);
-            
-            
 
-           //vista.updateListaAbonados(sistema.getClientes());
-            
-            
-        } catch (Exception e)
-        {
+            //vista.updateListaAbonados(sistema.getClientes());
+
+
+        } catch (IOException e) {
             // TODO Auto-generated catch block
             System.out.println("Exception " + e.getMessage());
-        }
-        
-    }
-    public void guardarSistema(){
-        PersistenciaXML idao = new PersistenciaXML();
-        try
-        {
-            idao.abrirOutput("sistemaSeguridad.xml");
-            SistemaSeguridadDTO sistemadto = UtilSerializacionSistema.SistemaDTOFromSistema();
-            idao.escribir(sistemadto);
-            idao.cerrarOutput();
-            System.out.println("Sistema Guardado");
-        } catch (Exception e)
-        {
+            initTestData(SistemaSeguridad.getSistema());
+        } catch (ClassNotFoundException e) {
             System.out.println("Exception " + e.getMessage());
         }
+
+        VistaSistema vista = new VistaSistema();
+        VistaLogin login = new VistaLogin();
+        vista.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        MainControlador controlador = new MainControlador(vista, login);
+
     }
-    
-    
+
+
     public static void initTestData(SistemaSeguridad sistema) {
         Promocion dorada = new Dorada();
         Promocion platino = new Platino();
