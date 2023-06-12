@@ -6,26 +6,11 @@ import datos.SistemaSeguridadDTO;
 
 import datos.UtilSerializacionSistema;
 
-import java.beans.XMLEncoder;
-
-import java.io.BufferedOutputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-
 import java.time.LocalTime;
-
-import java.util.ArrayList;
-
-import java.util.Date;
-
-import java.util.GregorianCalendar;
-
-import javax.rmi.CORBA.Util;
 
 import negocio.*; //importa todas las clases del paquete
 
 import negocio.Dorada;
-import negocio.Efectivo;
 import negocio.Factura;
 import negocio.IFactura;
 import negocio.Persona;
@@ -34,19 +19,29 @@ import negocio.Promocion;
 import negocio.SistemaSeguridad;
 
 import negocio.excepciones.SaldoInsuficienteExeception;
+import presentacion.MainControlador;
+import presentacion.VistaLogin;
+import presentacion.VistaSistema;
 
 public class Prueba {
     public Prueba() {
         super();
     }
 
-    public static void main(String[] args) {
+    public static <Usuario> void main(String[] args) {
+
+        VistaLogin login = new VistaLogin();
+        VistaSistema vista = new VistaSistema();
+        MainControlador controlador = new MainControlador(vista,login);
         SistemaSeguridad sistema = SistemaSeguridad.getSistema();
 
         Promocion dorada = new Dorada();
         Promocion platino = new Platino();
 
+
+
         Persona personaFisica = new PersonaFisica("Juan", "42415305");
+        sistema.nuevoUsuario("prueba", "prueba",personaFisica);
         Persona personaJuridica = new PersonaJuridica("Sancho", "25416352");
 
         Contratacion contratacionAuxiliar;
@@ -215,7 +210,7 @@ public class Prueba {
         
         
         
-        //no guarda las horas de movil de acompañamiento
+        //no guarda las horas de movil de acompaï¿½amiento
         //PersistenciaXML idao = new PersistenciaXML();
         try
         {
@@ -231,10 +226,7 @@ public class Prueba {
             System.out.println("Exception " + e.getMessage());
         }
         
-        
-        
     }
-
 
 }
 

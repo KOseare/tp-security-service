@@ -5,9 +5,11 @@ import java.util.HashMap;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import presentacion.MainControlador;
+
 public class ServicioTecnico {
 
-    private ArrayList<Tecnico> tecnicos = new ArrayList<>();
+    private ArrayList<Tecnico> tecnicos = new ArrayList<Tecnico>();
 
     public ServicioTecnico() {
     }
@@ -16,21 +18,25 @@ public class ServicioTecnico {
         this.tecnicos = tecnicos;
     }
 
-    public synchronized Tecnico solicitarTecnico() throws InterruptedException {
+    public synchronized Tecnico solicitarTecnico(MainControlador observer) throws InterruptedException {
         Tecnico tecnico;
 
-        while (tecnicos.isEmpty())
+        while (tecnicos.isEmpty()) {
+            observer.comunicarConsolaTecnico("No hay tecnicos disponibles, se solicitara automaticamente cuando se tenga disponibilidad");
             wait();
+        }
+
 
         tecnico = tecnicos.get(0);
         tecnicos.remove(0);
+        notifyAll();
 
         return tecnico;
     }
 
-    public void agregarTecnico(Tecnico T) throws InterruptedException {
+    public synchronized void agregarTecnico(Tecnico T) {
         tecnicos.add(T);
-        notify();
+        notifyAll();
     }
 
     public void setTecnicos(ArrayList<Tecnico> tecnicos) {

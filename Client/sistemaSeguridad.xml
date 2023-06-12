@@ -36,7 +36,7 @@
       </void>
      </void>
      <void property="estado">
-      <object class="negocio.SinContratacionState">
+      <object class="negocio.ConContratacionesState">
        <void property="personaFisica">
         <object idref="PersonaFisica0"/>
        </void>
@@ -101,7 +101,11 @@
         </void>
         <void property="fecha">
          <object class="java.util.Date">
-          <long>1686266892831</long>
+<<<<<<< HEAD
+          <long>1686456230793</long>
+=======
+          <long>1686512017223</long>
+>>>>>>> 75ea5bb3753f82d96031870eedcf24a91783b12b
          </object>
         </void>
         <void property="importe_bruto">
@@ -305,7 +309,11 @@
         </void>
         <void property="fecha">
          <object class="java.util.Date">
-          <long>1686266892832</long>
+<<<<<<< HEAD
+          <long>1686456230794</long>
+=======
+          <long>1686512017224</long>
+>>>>>>> 75ea5bb3753f82d96031870eedcf24a91783b12b
          </object>
         </void>
         <void property="importeDePago">
@@ -388,7 +396,7 @@
       </void>
      </void>
      <void property="estado">
-      <object class="negocio.SinContratacionState">
+      <object class="negocio.ConContratacionesState">
        <void property="personaFisica">
         <object idref="PersonaFisica1"/>
        </void>
@@ -507,7 +515,11 @@
         </void>
         <void property="fecha">
          <object class="java.util.Date">
-          <long>1686266892838</long>
+<<<<<<< HEAD
+          <long>1686456230797</long>
+=======
+          <long>1686512017230</long>
+>>>>>>> 75ea5bb3753f82d96031870eedcf24a91783b12b
          </object>
         </void>
         <void property="importeDePago">
@@ -530,6 +542,9 @@
      </void>
     </object>
    </void>
+  </void>
+  <void property="serviciotecnico">
+   <object class="negocio.ServicioTecnico"/>
   </void>
  </object>
 </java>

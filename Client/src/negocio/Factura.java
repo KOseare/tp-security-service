@@ -202,15 +202,16 @@ public class Factura implements Cloneable, IFactura, Comparable<Factura> {
         facturaClonada = (Factura) super.clone();
         facturaClonada.fecha = (Date) this.fecha.clone();
 
-        try {
-            facturaClonada.cliente = (Persona) this.cliente.clone();
-        } catch (PersonaJuridicaCloneException e) {
-            throw e;
-        }
-
         facturaClonada.contratos = new ArrayList<Contratacion>();
         for (Contratacion contrato : this.contratos) {
             facturaClonada.contratos.add((Contratacion) contrato.clone());
+        }
+        
+        try {
+            facturaClonada.cliente = (Persona) this.cliente.clone();
+        } catch (PersonaJuridicaCloneException e) {
+        		facturaClonada.cliente = this.cliente;
+            System.out.println(e.getMessage());
         }
 
         return facturaClonada;
@@ -219,11 +220,13 @@ public class Factura implements Cloneable, IFactura, Comparable<Factura> {
     @Override
     public String detalle() {
         String detalle = "Fecha: " + this.fecha + " Abonado: " + this.cliente + "\n Contratos: \n";
-        for (Contratacion contrato : contratos)
-            detalle += contrato.toSting();
+        for (Contratacion contrato : contratos){
+            detalle += contrato.toString();
+            detalle += "\n";
+        }
         detalle +=
-            "Importe Bruto: " + this.importe_bruto + " Descuentos: " + this.descuento + " Importe Neto: " +
-            this.importe_neto + ", Pagado: " + this.isPagado() + "\n\n";
+            "Importe Bruto: " + this.importe_bruto + "\nDescuentos: " + this.descuento + "\nImporte Neto: " +
+            this.importe_neto + ",\nPagado: " + this.isPagado() + "\n\n";
 
         return detalle;
     }
@@ -233,5 +236,11 @@ public class Factura implements Cloneable, IFactura, Comparable<Factura> {
         return this.getFecha().compareTo(factura.getFecha());
     }
 
+    public String toString() {
+        return "Fecha: " + this.fecha + "\n Abonado: \n" + this.cliente + "\n";
+    }
 
+    void darBajaServicio(Contratacion contrato) {
+        this.contratos.remove(contrato);
+    }
 }

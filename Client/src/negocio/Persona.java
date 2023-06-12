@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.TreeSet;
 
+import negocio.excepciones.SaldoInsuficienteExeception;
+
 /**
  * Clase abstracta que representa a una persona.
  */
@@ -93,15 +95,34 @@ public abstract class Persona implements Cloneable {
 
     }
 
-    public void facturacionMensual () {
-        // TO DO: Implementar
-        // Debe generar una copia de la ultima factura, pasarla al siguiente mes
-        // y agregarla como ultima (factura actual)
+    @SuppressWarnings("deprecation")
+		public void facturacionMensual () {
+    	Factura nuevaFactura;
+			try {
+				nuevaFactura = (Factura) this.ultimaFactura().clone();
+				
+				int mes = nuevaFactura.getFecha().getMonth();
+	    	mes = mes == 11 ? 0 : mes + 1;
+	    	
+	    	nuevaFactura.getFecha().setMonth(mes);
+	    	this.facturas.add(nuevaFactura);
+			} catch (CloneNotSupportedException e) {
+				e.printStackTrace();
+			}
     }
     
     public void agregarContrato(Contratacion contrato){
         this.ultimaFactura().agregarContrato(contrato);
     }
+    
+    public void darBajaServicio(Contratacion contrato) {
+        this.ultimaFactura().darBajaServicio(contrato);
+    }
+    
+    public void pagarFactura(Factura f, double importe) throws SaldoInsuficienteExeception {
+        f.pagarFactura(importe);
+    }
+    
 
     public String toString() {
         return " Nombre:" + this.nombre + " DNI " + this.dni;
