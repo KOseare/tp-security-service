@@ -101,7 +101,7 @@ public class SistemaSeguridad {
            persona.pagarFactura(factura, monto);
     }
     
-    public void agregarContrato (Persona persona, String tipo, Domicilio domicilio, boolean camara, boolean antipanico, boolean movil) {
+    public void agregarContrato (Persona persona, String tipo, Domicilio domicilio, boolean camara, boolean antipanico, boolean movil) throws EstadoException {
     	Contratacion contrato;
     	ArrayList<ServicioAdicional> servicios = new ArrayList<>();
     	if (tipo.equals("Comercio")) {
@@ -121,7 +121,7 @@ public class SistemaSeguridad {
     	persona.agregarContrato(contrato);
     }
     
-    public void bajaContratacion (Persona persona, Contratacion c) {
+    public void bajaContratacion (Persona persona, Contratacion c) throws EstadoException {
     	persona.darBajaServicio(c);
     }
     

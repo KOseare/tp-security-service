@@ -43,10 +43,10 @@ public class PersonaFisica extends Persona {
         estado.pagarFactura(factura, importe);
     }
     
-    public void agregarContrato(Contratacion contrato){
+    public void agregarContrato(Contratacion contrato) throws EstadoException {
         estado.agregarContrato(contrato);
     }
-    public void darBajaServicio(Contratacion contrato){
+    public void darBajaServicio(Contratacion contrato) throws EstadoException {
         estado.darBajaServicio(contrato);
     }
     @Override

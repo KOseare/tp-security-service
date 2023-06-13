@@ -29,6 +29,7 @@ import negocio.Platino;
 import negocio.Promocion;
 import negocio.SistemaSeguridad;
 
+import negocio.excepciones.EstadoException;
 import negocio.excepciones.SaldoInsuficienteExeception;
 
 public class Prueba {
@@ -36,7 +37,7 @@ public class Prueba {
         super();
     }
 
-    public static <Usuario> void main(String[] args) {
+    public static <Usuario> void main(String[] args) throws EstadoException {
         SistemaSeguridad sistema = SistemaSeguridad.getSistema();
 
         Promocion dorada = new Dorada();
