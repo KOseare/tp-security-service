@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="18.0.1.1" class="java.beans.XMLDecoder">
+<java version="20.0.1" class="java.beans.XMLDecoder">
  <object class="datos.SistemaSeguridadDTO" id="SistemaSeguridadDTO0">
   <void property="clientes">
    <void method="add">
@@ -36,13 +36,13 @@
       </void>
      </void>
      <void property="estado">
-      <object class="negocio.ConContratacionesState">
+      <object class="negocio.Moroso">
        <void property="personaFisica">
         <object idref="PersonaFisica0"/>
        </void>
       </object>
      </void>
-     <void property="facturas">
+     <void id="TreeSet0" property="facturas">
       <void method="add">
        <object class="negocio.Factura" id="Factura0">
         <void property="cliente">
@@ -81,7 +81,7 @@
                <int>1</int>
               </void>
               <void property="entrada">
-               <object class="java.util.GregorianCalendar">
+               <object class="java.util.GregorianCalendar" id="GregorianCalendar0">
                 <void property="time">
                  <object class="java.util.Date">
                   <long>633875400000</long>
@@ -90,7 +90,7 @@
                </object>
               </void>
               <void property="salida">
-               <object class="java.util.GregorianCalendar">
+               <object class="java.util.GregorianCalendar" id="GregorianCalendar1">
                 <void property="time">
                  <object class="java.util.Date">
                   <long>633889800000</long>
@@ -119,7 +119,419 @@
         </void>
         <void property="fecha">
          <object class="java.util.Date">
-          <long>1686607218646</long>
+          <long>1686613891403</long>
+         </object>
+        </void>
+        <void property="importe_bruto">
+         <double>34000.0</double>
+        </void>
+        <void property="importe_neto">
+         <double>34000.0</double>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="negocio.Factura" id="Factura1">
+        <void property="cliente">
+         <object class="negocio.PersonaFisica" id="PersonaFisica1">
+          <void property="dni">
+           <string>42415305</string>
+          </void>
+          <void property="domicilios">
+           <void method="add">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Corrientes</string>
+             </void>
+             <void property="codPostal">
+              <string>7600</string>
+             </void>
+             <void property="numero">
+              <string>3215</string>
+             </void>
+            </object>
+           </void>
+           <void method="add">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Moreno</string>
+             </void>
+             <void property="codPostal">
+              <string>7600</string>
+             </void>
+             <void property="numero">
+              <string>1215</string>
+             </void>
+            </object>
+           </void>
+          </void>
+          <void property="estado">
+           <object class="negocio.ConContratacionesState" id="ConContratacionesState0">
+            <void property="personaFisica">
+             <object idref="PersonaFisica0"/>
+            </void>
+           </object>
+          </void>
+          <void property="facturas">
+           <object idref="TreeSet0"/>
+          </void>
+          <void property="nombre">
+           <string>Juan</string>
+          </void>
+         </object>
+        </void>
+        <void property="contratos">
+         <void method="add">
+          <object class="negocio.MonitoreoComercio" id="MonitoreoComercio1">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Corrientes</string>
+             </void>
+             <void property="codPostal">
+              <string>7600</string>
+             </void>
+             <void property="numero">
+              <string>3215</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>1</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>10000.0</double>
+           </void>
+           <void property="serviciosAdicionales">
+            <void method="add">
+             <object class="negocio.Camara">
+              <void property="cantidad">
+               <int>2</int>
+              </void>
+             </object>
+            </void>
+            <void method="add">
+             <object class="negocio.BotonAntiPanico">
+              <void property="cantidad">
+               <int>1</int>
+              </void>
+             </object>
+            </void>
+            <void method="add">
+             <object class="negocio.MovilDeAcompaniamiento">
+              <void property="cantidad">
+               <int>1</int>
+              </void>
+              <void property="entrada">
+               <object idref="GregorianCalendar0"/>
+              </void>
+              <void property="salida">
+               <object idref="GregorianCalendar1"/>
+              </void>
+             </object>
+            </void>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="negocio.MonitoreoVivienda">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Moreno</string>
+             </void>
+             <void property="codPostal">
+              <string>7600</string>
+             </void>
+             <void property="numero">
+              <string>1215</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>2</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>8500.0</double>
+           </void>
+          </object>
+         </void>
+        </void>
+        <void property="fecha">
+         <object class="java.util.Date">
+          <long>1689205891403</long>
+         </object>
+        </void>
+        <void property="importe_bruto">
+         <double>34000.0</double>
+        </void>
+        <void property="importe_neto">
+         <double>34000.0</double>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="negocio.Factura" id="Factura2">
+        <void property="cliente">
+         <object class="negocio.PersonaFisica" id="PersonaFisica2">
+          <void property="dni">
+           <string>42415305</string>
+          </void>
+          <void property="domicilios">
+           <void method="add">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Corrientes</string>
+             </void>
+             <void property="codPostal">
+              <string>7600</string>
+             </void>
+             <void property="numero">
+              <string>3215</string>
+             </void>
+            </object>
+           </void>
+           <void method="add">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Moreno</string>
+             </void>
+             <void property="codPostal">
+              <string>7600</string>
+             </void>
+             <void property="numero">
+              <string>1215</string>
+             </void>
+            </object>
+           </void>
+          </void>
+          <void property="estado">
+           <object idref="ConContratacionesState0"/>
+          </void>
+          <void property="facturas">
+           <object idref="TreeSet0"/>
+          </void>
+          <void property="nombre">
+           <string>Juan</string>
+          </void>
+         </object>
+        </void>
+        <void property="contratos">
+         <void method="add">
+          <object class="negocio.MonitoreoComercio" id="MonitoreoComercio2">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Corrientes</string>
+             </void>
+             <void property="codPostal">
+              <string>7600</string>
+             </void>
+             <void property="numero">
+              <string>3215</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>1</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>10000.0</double>
+           </void>
+           <void property="serviciosAdicionales">
+            <void method="add">
+             <object class="negocio.Camara">
+              <void property="cantidad">
+               <int>2</int>
+              </void>
+             </object>
+            </void>
+            <void method="add">
+             <object class="negocio.BotonAntiPanico">
+              <void property="cantidad">
+               <int>1</int>
+              </void>
+             </object>
+            </void>
+            <void method="add">
+             <object class="negocio.MovilDeAcompaniamiento">
+              <void property="cantidad">
+               <int>1</int>
+              </void>
+              <void property="entrada">
+               <object idref="GregorianCalendar0"/>
+              </void>
+              <void property="salida">
+               <object idref="GregorianCalendar1"/>
+              </void>
+             </object>
+            </void>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="negocio.MonitoreoVivienda">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Moreno</string>
+             </void>
+             <void property="codPostal">
+              <string>7600</string>
+             </void>
+             <void property="numero">
+              <string>1215</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>2</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>8500.0</double>
+           </void>
+          </object>
+         </void>
+        </void>
+        <void property="fecha">
+         <object class="java.util.Date">
+          <long>1691884291403</long>
+         </object>
+        </void>
+        <void property="importe_bruto">
+         <double>34000.0</double>
+        </void>
+        <void property="importe_neto">
+         <double>34000.0</double>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="negocio.Factura" id="Factura3">
+        <void property="cliente">
+         <object class="negocio.PersonaFisica" id="PersonaFisica3">
+          <void property="dni">
+           <string>42415305</string>
+          </void>
+          <void property="domicilios">
+           <void method="add">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Corrientes</string>
+             </void>
+             <void property="codPostal">
+              <string>7600</string>
+             </void>
+             <void property="numero">
+              <string>3215</string>
+             </void>
+            </object>
+           </void>
+           <void method="add">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Moreno</string>
+             </void>
+             <void property="codPostal">
+              <string>7600</string>
+             </void>
+             <void property="numero">
+              <string>1215</string>
+             </void>
+            </object>
+           </void>
+          </void>
+          <void property="estado">
+           <object idref="ConContratacionesState0"/>
+          </void>
+          <void property="facturas">
+           <object idref="TreeSet0"/>
+          </void>
+          <void property="nombre">
+           <string>Juan</string>
+          </void>
+         </object>
+        </void>
+        <void property="contratos">
+         <void method="add">
+          <object class="negocio.MonitoreoComercio" id="MonitoreoComercio3">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Corrientes</string>
+             </void>
+             <void property="codPostal">
+              <string>7600</string>
+             </void>
+             <void property="numero">
+              <string>3215</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>1</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>10000.0</double>
+           </void>
+           <void property="serviciosAdicionales">
+            <void method="add">
+             <object class="negocio.Camara">
+              <void property="cantidad">
+               <int>2</int>
+              </void>
+             </object>
+            </void>
+            <void method="add">
+             <object class="negocio.BotonAntiPanico">
+              <void property="cantidad">
+               <int>1</int>
+              </void>
+             </object>
+            </void>
+            <void method="add">
+             <object class="negocio.MovilDeAcompaniamiento">
+              <void property="cantidad">
+               <int>1</int>
+              </void>
+              <void property="entrada">
+               <object idref="GregorianCalendar0"/>
+              </void>
+              <void property="salida">
+               <object idref="GregorianCalendar1"/>
+              </void>
+             </object>
+            </void>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="negocio.MonitoreoVivienda">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Moreno</string>
+             </void>
+             <void property="codPostal">
+              <string>7600</string>
+             </void>
+             <void property="numero">
+              <string>1215</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>2</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>8500.0</double>
+           </void>
+          </object>
+         </void>
+        </void>
+        <void property="fecha">
+         <object class="java.util.Date">
+          <long>1694562691403</long>
          </object>
         </void>
         <void property="importe_bruto">
@@ -210,13 +622,13 @@
      </void>
      <void property="facturas">
       <void method="add">
-       <object class="negocio.Factura" id="Factura1">
+       <object class="negocio.Factura" id="Factura4">
         <void property="cliente">
          <object idref="PersonaJuridica0"/>
         </void>
         <void property="contratos">
          <void method="add">
-          <object class="negocio.MonitoreoComercio" id="MonitoreoComercio1">
+          <object class="negocio.MonitoreoComercio" id="MonitoreoComercio4">
            <void property="domicilio">
             <object idref="Domicilio2"/>
            </void>
@@ -255,7 +667,7 @@
                <int>1</int>
               </void>
               <void property="entrada">
-               <object class="java.util.GregorianCalendar">
+               <object class="java.util.GregorianCalendar" id="GregorianCalendar2">
                 <void property="time">
                  <object class="java.util.Date">
                   <long>633871800000</long>
@@ -264,7 +676,7 @@
                </object>
               </void>
               <void property="salida">
-               <object class="java.util.GregorianCalendar">
+               <object class="java.util.GregorianCalendar" id="GregorianCalendar3">
                 <void property="time">
                  <object class="java.util.Date">
                   <long>633884400000</long>
@@ -285,7 +697,7 @@
           </object>
          </void>
          <void method="add">
-          <object class="negocio.MonitoreoComercio" id="MonitoreoComercio2">
+          <object class="negocio.MonitoreoComercio" id="MonitoreoComercio5">
            <void property="domicilio">
             <object idref="Domicilio4"/>
            </void>
@@ -337,11 +749,524 @@
          </void>
         </void>
         <void property="descuento">
+         <double>4250.0</double>
+        </void>
+        <void property="fecha">
+         <object class="java.util.Date">
+          <long>1686613891403</long>
+         </object>
+        </void>
+        <void property="importe_bruto">
+         <double>70500.0</double>
+        </void>
+        <void property="importe_neto">
+         <double>66250.0</double>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="negocio.Factura" id="Factura5">
+        <void property="cliente">
+         <object idref="PersonaJuridica0"/>
+        </void>
+        <void property="contratos">
+         <void method="add">
+          <object class="negocio.MonitoreoComercio" id="MonitoreoComercio6">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Entre Rios</string>
+             </void>
+             <void property="codPostal">
+              <string>7600</string>
+             </void>
+             <void property="numero">
+              <string>1215</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>3</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>10000.0</double>
+           </void>
+           <void property="serviciosAdicionales">
+            <void method="add">
+             <object class="negocio.Camara">
+              <void property="cantidad">
+               <int>3</int>
+              </void>
+             </object>
+            </void>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="negocio.MonitoreoVivienda" id="MonitoreoVivienda2">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Almirante Brown</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>1542</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>4</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>8500.0</double>
+           </void>
+           <void property="serviciosAdicionales">
+            <void method="add">
+             <object class="negocio.MovilDeAcompaniamiento">
+              <void property="cantidad">
+               <int>1</int>
+              </void>
+              <void property="entrada">
+               <object idref="GregorianCalendar2"/>
+              </void>
+              <void property="salida">
+               <object idref="GregorianCalendar3"/>
+              </void>
+             </object>
+            </void>
+            <void method="add">
+             <object class="negocio.BotonAntiPanico">
+              <void property="cantidad">
+               <int>3</int>
+              </void>
+             </object>
+            </void>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="negocio.MonitoreoComercio" id="MonitoreoComercio7">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Primera Junta</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>1682</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>5</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>10000.0</double>
+           </void>
+           <void property="serviciosAdicionales">
+            <void method="add">
+             <object class="negocio.BotonAntiPanico">
+              <void property="cantidad">
+               <int>1</int>
+              </void>
+             </object>
+            </void>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="negocio.MonitoreoVivienda" id="MonitoreoVivienda3">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Rawson</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>942</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>6</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>8500.0</double>
+           </void>
+           <void property="serviciosAdicionales">
+            <void method="add">
+             <object class="negocio.BotonAntiPanico">
+              <void property="cantidad">
+               <int>3</int>
+              </void>
+             </object>
+            </void>
+            <void method="add">
+             <object class="negocio.Camara">
+              <void property="cantidad">
+               <int>1</int>
+              </void>
+             </object>
+            </void>
+           </void>
+          </object>
+         </void>
+        </void>
+        <void property="descuento">
          <double>14300.0</double>
         </void>
         <void property="fecha">
          <object class="java.util.Date">
-          <long>1686607218653</long>
+          <long>1689205891403</long>
+         </object>
+        </void>
+        <void property="importe_bruto">
+         <double>70500.0</double>
+        </void>
+        <void property="importe_neto">
+         <double>56200.0</double>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="negocio.Factura" id="Factura6">
+        <void property="cliente">
+         <object idref="PersonaJuridica0"/>
+        </void>
+        <void property="contratos">
+         <void method="add">
+          <object class="negocio.MonitoreoComercio" id="MonitoreoComercio8">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Entre Rios</string>
+             </void>
+             <void property="codPostal">
+              <string>7600</string>
+             </void>
+             <void property="numero">
+              <string>1215</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>3</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>10000.0</double>
+           </void>
+           <void property="serviciosAdicionales">
+            <void method="add">
+             <object class="negocio.Camara">
+              <void property="cantidad">
+               <int>3</int>
+              </void>
+             </object>
+            </void>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="negocio.MonitoreoVivienda" id="MonitoreoVivienda4">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Almirante Brown</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>1542</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>4</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>8500.0</double>
+           </void>
+           <void property="serviciosAdicionales">
+            <void method="add">
+             <object class="negocio.MovilDeAcompaniamiento">
+              <void property="cantidad">
+               <int>1</int>
+              </void>
+              <void property="entrada">
+               <object idref="GregorianCalendar2"/>
+              </void>
+              <void property="salida">
+               <object idref="GregorianCalendar3"/>
+              </void>
+             </object>
+            </void>
+            <void method="add">
+             <object class="negocio.BotonAntiPanico">
+              <void property="cantidad">
+               <int>3</int>
+              </void>
+             </object>
+            </void>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="negocio.MonitoreoComercio" id="MonitoreoComercio9">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Primera Junta</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>1682</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>5</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>10000.0</double>
+           </void>
+           <void property="serviciosAdicionales">
+            <void method="add">
+             <object class="negocio.BotonAntiPanico">
+              <void property="cantidad">
+               <int>1</int>
+              </void>
+             </object>
+            </void>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="negocio.MonitoreoVivienda" id="MonitoreoVivienda5">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Rawson</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>942</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>6</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>8500.0</double>
+           </void>
+           <void property="serviciosAdicionales">
+            <void method="add">
+             <object class="negocio.BotonAntiPanico">
+              <void property="cantidad">
+               <int>3</int>
+              </void>
+             </object>
+            </void>
+            <void method="add">
+             <object class="negocio.Camara">
+              <void property="cantidad">
+               <int>1</int>
+              </void>
+             </object>
+            </void>
+           </void>
+          </object>
+         </void>
+        </void>
+        <void property="descuento">
+         <double>14300.0</double>
+        </void>
+        <void property="fecha">
+         <object class="java.util.Date">
+          <long>1691884291403</long>
+         </object>
+        </void>
+        <void property="importe_bruto">
+         <double>70500.0</double>
+        </void>
+        <void property="importe_neto">
+         <double>56200.0</double>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="negocio.Factura" id="Factura7">
+        <void property="cliente">
+         <object idref="PersonaJuridica0"/>
+        </void>
+        <void property="contratos">
+         <void method="add">
+          <object class="negocio.MonitoreoComercio" id="MonitoreoComercio10">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Entre Rios</string>
+             </void>
+             <void property="codPostal">
+              <string>7600</string>
+             </void>
+             <void property="numero">
+              <string>1215</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>3</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>10000.0</double>
+           </void>
+           <void property="serviciosAdicionales">
+            <void method="add">
+             <object class="negocio.Camara">
+              <void property="cantidad">
+               <int>3</int>
+              </void>
+             </object>
+            </void>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="negocio.MonitoreoVivienda" id="MonitoreoVivienda6">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Almirante Brown</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>1542</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>4</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>8500.0</double>
+           </void>
+           <void property="serviciosAdicionales">
+            <void method="add">
+             <object class="negocio.MovilDeAcompaniamiento">
+              <void property="cantidad">
+               <int>1</int>
+              </void>
+              <void property="entrada">
+               <object idref="GregorianCalendar2"/>
+              </void>
+              <void property="salida">
+               <object idref="GregorianCalendar3"/>
+              </void>
+             </object>
+            </void>
+            <void method="add">
+             <object class="negocio.BotonAntiPanico">
+              <void property="cantidad">
+               <int>3</int>
+              </void>
+             </object>
+            </void>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="negocio.MonitoreoComercio" id="MonitoreoComercio11">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Primera Junta</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>1682</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>5</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>10000.0</double>
+           </void>
+           <void property="serviciosAdicionales">
+            <void method="add">
+             <object class="negocio.BotonAntiPanico">
+              <void property="cantidad">
+               <int>1</int>
+              </void>
+             </object>
+            </void>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="negocio.MonitoreoVivienda" id="MonitoreoVivienda7">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Rawson</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>942</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>6</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>8500.0</double>
+           </void>
+           <void property="serviciosAdicionales">
+            <void method="add">
+             <object class="negocio.BotonAntiPanico">
+              <void property="cantidad">
+               <int>3</int>
+              </void>
+             </object>
+            </void>
+            <void method="add">
+             <object class="negocio.Camara">
+              <void property="cantidad">
+               <int>1</int>
+              </void>
+             </object>
+            </void>
+           </void>
+          </object>
+         </void>
+        </void>
+        <void property="descuento">
+         <double>14300.0</double>
+        </void>
+        <void property="fecha">
+         <object class="java.util.Date">
+          <long>1694562691403</long>
          </object>
         </void>
         <void property="importe_bruto">
@@ -359,7 +1284,7 @@
     </object>
    </void>
    <void method="add">
-    <object class="negocio.PersonaFisica" id="PersonaFisica1">
+    <object class="negocio.PersonaFisica" id="PersonaFisica4">
      <void property="dni">
       <string>35214256</string>
      </void>
@@ -418,17 +1343,17 @@
       </void>
      </void>
      <void property="estado">
-      <object class="negocio.ConContratacionesState">
+      <object class="negocio.Moroso">
        <void property="personaFisica">
-        <object idref="PersonaFisica1"/>
+        <object idref="PersonaFisica4"/>
        </void>
       </object>
      </void>
-     <void property="facturas">
+     <void id="TreeSet1" property="facturas">
       <void method="add">
-       <object class="negocio.Factura" id="Factura2">
+       <object class="negocio.Factura" id="Factura8">
         <void property="cliente">
-         <object idref="PersonaFisica1"/>
+         <object idref="PersonaFisica4"/>
         </void>
         <void property="contratos">
          <void method="add">
@@ -445,7 +1370,7 @@
           </object>
          </void>
          <void method="add">
-          <object class="negocio.MonitoreoVivienda" id="MonitoreoVivienda2">
+          <object class="negocio.MonitoreoVivienda" id="MonitoreoVivienda8">
            <void property="domicilio">
             <object idref="Domicilio7"/>
            </void>
@@ -467,7 +1392,7 @@
           </object>
          </void>
          <void method="add">
-          <object class="negocio.MonitoreoVivienda" id="MonitoreoVivienda3">
+          <object class="negocio.MonitoreoVivienda" id="MonitoreoVivienda9">
            <void property="domicilio">
             <object idref="Domicilio8"/>
            </void>
@@ -496,7 +1421,7 @@
           </object>
          </void>
          <void method="add">
-          <object class="negocio.MonitoreoComercio" id="MonitoreoComercio3">
+          <object class="negocio.MonitoreoComercio" id="MonitoreoComercio12">
            <void property="domicilio">
             <object idref="Domicilio9"/>
            </void>
@@ -527,7 +1452,7 @@
                <int>1</int>
               </void>
               <void property="entrada">
-               <object class="java.util.GregorianCalendar">
+               <object class="java.util.GregorianCalendar" id="GregorianCalendar4">
                 <void property="time">
                  <object class="java.util.Date">
                   <long>633900000000</long>
@@ -536,7 +1461,7 @@
                </object>
               </void>
               <void property="salida">
-               <object class="java.util.GregorianCalendar">
+               <object class="java.util.GregorianCalendar" id="GregorianCalendar5">
                 <void property="time">
                  <object class="java.util.Date">
                   <long>633912480000</long>
@@ -555,7 +1480,719 @@
         </void>
         <void property="fecha">
          <object class="java.util.Date">
-          <long>1686607218723</long>
+          <long>1686613891419</long>
+         </object>
+        </void>
+        <void property="importe_bruto">
+         <double>73500.0</double>
+        </void>
+        <void property="importe_neto">
+         <double>63450.0</double>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="negocio.Factura" id="Factura9">
+        <void property="cliente">
+         <object class="negocio.PersonaFisica" id="PersonaFisica5">
+          <void property="dni">
+           <string>35214256</string>
+          </void>
+          <void property="domicilios">
+           <void method="add">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Belgrano</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>1512</string>
+             </void>
+            </object>
+           </void>
+           <void method="add">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Almirante Brown</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>1432</string>
+             </void>
+            </object>
+           </void>
+           <void method="add">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Moreno</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>8612</string>
+             </void>
+            </object>
+           </void>
+           <void method="add">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Entre Rios</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>8453</string>
+             </void>
+            </object>
+           </void>
+          </void>
+          <void property="estado">
+           <object class="negocio.ConContratacionesState" id="ConContratacionesState1">
+            <void property="personaFisica">
+             <object idref="PersonaFisica4"/>
+            </void>
+           </object>
+          </void>
+          <void property="facturas">
+           <object idref="TreeSet1"/>
+          </void>
+          <void property="nombre">
+           <string>Pepito</string>
+          </void>
+         </object>
+        </void>
+        <void property="contratos">
+         <void method="add">
+          <object class="negocio.MonitoreoComercio">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Belgrano</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>1512</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>7</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>10000.0</double>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="negocio.MonitoreoVivienda" id="MonitoreoVivienda10">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Almirante Brown</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>1432</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>8</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>8500.0</double>
+           </void>
+           <void property="serviciosAdicionales">
+            <void method="add">
+             <object class="negocio.Camara">
+              <void property="cantidad">
+               <int>3</int>
+              </void>
+             </object>
+            </void>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="negocio.MonitoreoVivienda" id="MonitoreoVivienda11">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Moreno</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>8612</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>9</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>8500.0</double>
+           </void>
+           <void property="serviciosAdicionales">
+            <void method="add">
+             <object class="negocio.Camara">
+              <void property="cantidad">
+               <int>1</int>
+              </void>
+             </object>
+            </void>
+            <void method="add">
+             <object class="negocio.BotonAntiPanico">
+              <void property="cantidad">
+               <int>1</int>
+              </void>
+             </object>
+            </void>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="negocio.MonitoreoComercio" id="MonitoreoComercio13">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Entre Rios</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>8453</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>10</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>10000.0</double>
+           </void>
+           <void property="serviciosAdicionales">
+            <void method="add">
+             <object class="negocio.Camara">
+              <void property="cantidad">
+               <int>1</int>
+              </void>
+             </object>
+            </void>
+            <void method="add">
+             <object class="negocio.BotonAntiPanico">
+              <void property="cantidad">
+               <int>6</int>
+              </void>
+             </object>
+            </void>
+            <void method="add">
+             <object class="negocio.MovilDeAcompaniamiento">
+              <void property="cantidad">
+               <int>1</int>
+              </void>
+              <void property="entrada">
+               <object idref="GregorianCalendar4"/>
+              </void>
+              <void property="salida">
+               <object idref="GregorianCalendar5"/>
+              </void>
+             </object>
+            </void>
+           </void>
+          </object>
+         </void>
+        </void>
+        <void property="descuento">
+         <double>10050.0</double>
+        </void>
+        <void property="fecha">
+         <object class="java.util.Date">
+          <long>1689205891419</long>
+         </object>
+        </void>
+        <void property="importe_bruto">
+         <double>73500.0</double>
+        </void>
+        <void property="importe_neto">
+         <double>63450.0</double>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="negocio.Factura" id="Factura10">
+        <void property="cliente">
+         <object class="negocio.PersonaFisica" id="PersonaFisica6">
+          <void property="dni">
+           <string>35214256</string>
+          </void>
+          <void property="domicilios">
+           <void method="add">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Belgrano</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>1512</string>
+             </void>
+            </object>
+           </void>
+           <void method="add">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Almirante Brown</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>1432</string>
+             </void>
+            </object>
+           </void>
+           <void method="add">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Moreno</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>8612</string>
+             </void>
+            </object>
+           </void>
+           <void method="add">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Entre Rios</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>8453</string>
+             </void>
+            </object>
+           </void>
+          </void>
+          <void property="estado">
+           <object idref="ConContratacionesState1"/>
+          </void>
+          <void property="facturas">
+           <object idref="TreeSet1"/>
+          </void>
+          <void property="nombre">
+           <string>Pepito</string>
+          </void>
+         </object>
+        </void>
+        <void property="contratos">
+         <void method="add">
+          <object class="negocio.MonitoreoComercio">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Belgrano</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>1512</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>7</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>10000.0</double>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="negocio.MonitoreoVivienda" id="MonitoreoVivienda12">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Almirante Brown</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>1432</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>8</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>8500.0</double>
+           </void>
+           <void property="serviciosAdicionales">
+            <void method="add">
+             <object class="negocio.Camara">
+              <void property="cantidad">
+               <int>3</int>
+              </void>
+             </object>
+            </void>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="negocio.MonitoreoVivienda" id="MonitoreoVivienda13">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Moreno</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>8612</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>9</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>8500.0</double>
+           </void>
+           <void property="serviciosAdicionales">
+            <void method="add">
+             <object class="negocio.Camara">
+              <void property="cantidad">
+               <int>1</int>
+              </void>
+             </object>
+            </void>
+            <void method="add">
+             <object class="negocio.BotonAntiPanico">
+              <void property="cantidad">
+               <int>1</int>
+              </void>
+             </object>
+            </void>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="negocio.MonitoreoComercio" id="MonitoreoComercio14">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Entre Rios</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>8453</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>10</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>10000.0</double>
+           </void>
+           <void property="serviciosAdicionales">
+            <void method="add">
+             <object class="negocio.Camara">
+              <void property="cantidad">
+               <int>1</int>
+              </void>
+             </object>
+            </void>
+            <void method="add">
+             <object class="negocio.BotonAntiPanico">
+              <void property="cantidad">
+               <int>6</int>
+              </void>
+             </object>
+            </void>
+            <void method="add">
+             <object class="negocio.MovilDeAcompaniamiento">
+              <void property="cantidad">
+               <int>1</int>
+              </void>
+              <void property="entrada">
+               <object idref="GregorianCalendar4"/>
+              </void>
+              <void property="salida">
+               <object idref="GregorianCalendar5"/>
+              </void>
+             </object>
+            </void>
+           </void>
+          </object>
+         </void>
+        </void>
+        <void property="descuento">
+         <double>10050.0</double>
+        </void>
+        <void property="fecha">
+         <object class="java.util.Date">
+          <long>1691884291419</long>
+         </object>
+        </void>
+        <void property="importe_bruto">
+         <double>73500.0</double>
+        </void>
+        <void property="importe_neto">
+         <double>63450.0</double>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="negocio.Factura" id="Factura11">
+        <void property="cliente">
+         <object class="negocio.PersonaFisica" id="PersonaFisica7">
+          <void property="dni">
+           <string>35214256</string>
+          </void>
+          <void property="domicilios">
+           <void method="add">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Belgrano</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>1512</string>
+             </void>
+            </object>
+           </void>
+           <void method="add">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Almirante Brown</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>1432</string>
+             </void>
+            </object>
+           </void>
+           <void method="add">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Moreno</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>8612</string>
+             </void>
+            </object>
+           </void>
+           <void method="add">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Entre Rios</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>8453</string>
+             </void>
+            </object>
+           </void>
+          </void>
+          <void property="estado">
+           <object idref="ConContratacionesState1"/>
+          </void>
+          <void property="facturas">
+           <object idref="TreeSet1"/>
+          </void>
+          <void property="nombre">
+           <string>Pepito</string>
+          </void>
+         </object>
+        </void>
+        <void property="contratos">
+         <void method="add">
+          <object class="negocio.MonitoreoComercio">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Belgrano</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>1512</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>7</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>10000.0</double>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="negocio.MonitoreoVivienda" id="MonitoreoVivienda14">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Almirante Brown</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>1432</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>8</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>8500.0</double>
+           </void>
+           <void property="serviciosAdicionales">
+            <void method="add">
+             <object class="negocio.Camara">
+              <void property="cantidad">
+               <int>3</int>
+              </void>
+             </object>
+            </void>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="negocio.MonitoreoVivienda" id="MonitoreoVivienda15">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Moreno</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>8612</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>9</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>8500.0</double>
+           </void>
+           <void property="serviciosAdicionales">
+            <void method="add">
+             <object class="negocio.Camara">
+              <void property="cantidad">
+               <int>1</int>
+              </void>
+             </object>
+            </void>
+            <void method="add">
+             <object class="negocio.BotonAntiPanico">
+              <void property="cantidad">
+               <int>1</int>
+              </void>
+             </object>
+            </void>
+           </void>
+          </object>
+         </void>
+         <void method="add">
+          <object class="negocio.MonitoreoComercio" id="MonitoreoComercio15">
+           <void property="domicilio">
+            <object class="negocio.Domicilio">
+             <void property="calle">
+              <string>Entre Rios</string>
+             </void>
+             <void property="codPostal">
+              <string>7602</string>
+             </void>
+             <void property="numero">
+              <string>8453</string>
+             </void>
+            </object>
+           </void>
+           <void property="id">
+            <int>10</int>
+           </void>
+           <void property="precioDelServicio">
+            <double>10000.0</double>
+           </void>
+           <void property="serviciosAdicionales">
+            <void method="add">
+             <object class="negocio.Camara">
+              <void property="cantidad">
+               <int>1</int>
+              </void>
+             </object>
+            </void>
+            <void method="add">
+             <object class="negocio.BotonAntiPanico">
+              <void property="cantidad">
+               <int>6</int>
+              </void>
+             </object>
+            </void>
+            <void method="add">
+             <object class="negocio.MovilDeAcompaniamiento">
+              <void property="cantidad">
+               <int>1</int>
+              </void>
+              <void property="entrada">
+               <object idref="GregorianCalendar4"/>
+              </void>
+              <void property="salida">
+               <object idref="GregorianCalendar5"/>
+              </void>
+             </object>
+            </void>
+           </void>
+          </object>
+         </void>
+        </void>
+        <void property="descuento">
+         <double>10050.0</double>
+        </void>
+        <void property="fecha">
+         <object class="java.util.Date">
+          <long>1694562691419</long>
          </object>
         </void>
         <void property="importe_bruto">

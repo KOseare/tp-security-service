@@ -31,13 +31,13 @@ public class Moroso implements States {
     }
 
     @Override
-    public void agregarContrato(Contratacion contrato) {
-        // no puede
+    public void agregarContrato(Contratacion contrato)throws EstadoException {
+        throw new EstadoException("no puede agregar Contrato con estado Moroso");
     }
 
     @Override
-    public void darBajaServicio(Contratacion contrato) {
-        // no puede
+    public void darBajaServicio(Contratacion contrato)throws EstadoException {
+        throw new EstadoException("no puede dar baja al contrato con estado Moroso");
     }
 
     @Override

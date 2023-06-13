@@ -387,7 +387,8 @@ public class VistaSistema extends javax.swing.JFrame {
             }
             boolean resp = (!it.hasNext() || it.next().isPagado())&&!getFacturaSeleccionada().isPagado();
             this.botonFactura.setEnabled(resp);
-
+            this.botonBajaContratacion.setEnabled(resp);
+            this.botonContratacion.setEnabled(resp);
         }
     }
 

@@ -41,7 +41,7 @@ public class DialogPagarFactura extends JDialog {
         setModalityType(ModalityType.APPLICATION_MODAL);
         setTitle("Pagar Factura");
         setAlwaysOnTop(true);
-        setBounds(100, 100, 450, 300);
+        setBounds(100, 100, 450, 400);
         getContentPane().setLayout(new BorderLayout());
         contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
         getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -57,9 +57,9 @@ public class DialogPagarFactura extends JDialog {
             {
                 //datos de la factura
                 detalle = new JTextArea();
+                detalle.setSize(200, 300);
                 detalle.setEditable(false);
                 detalle.setText(factura.detalle());
-                detalle.setPreferredSize(new Dimension(200, 200));
                 panel.add(detalle);
                 detalle.setColumns(10);
 

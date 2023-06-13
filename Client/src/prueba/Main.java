@@ -1,16 +1,12 @@
 package prueba;
 
+import java.io.IOException;
+import java.time.LocalTime;
+import java.util.GregorianCalendar;
+
 import datos.PersistenciaXML;
 import datos.SistemaSeguridadDTO;
 import datos.UtilSerializacionSistema;
-
-
-import java.io.IOException;
-
-import java.util.GregorianCalendar;
-
-import javax.swing.WindowConstants;
-
 import negocio.BotonAntiPanico;
 import negocio.Camara;
 import negocio.Contratacion;
@@ -27,9 +23,13 @@ import negocio.Promocion;
 import negocio.SistemaSeguridad;
 import negocio.Tecnico;
 
+import negocio.excepciones.EstadoException;
+
 import presentacion.MainControlador;
 import presentacion.VistaLogin;
 import presentacion.VistaSistema;
+
+import javax.swing.*;
 
 public class Main {
 
@@ -37,8 +37,12 @@ public class Main {
 
 
         PersistenciaXML idao = new PersistenciaXML();
-
-        //initTestData(SistemaSeguridad.getSistema());
+        /*
+        try {
+            initTestData(SistemaSeguridad.getSistema());
+        } catch (EstadoException e) {
+            System.out.println(e.getMessage());
+        }*/
         try {
             idao.abrirInput("sistemaSeguridad.xml");
             SistemaSeguridadDTO sistemaSeguridadDTO = (SistemaSeguridadDTO) idao.leer();
@@ -49,7 +53,11 @@ public class Main {
         } catch (IOException e) {
             // TODO Auto-generated catch block
             System.out.println("Exception " + e.getMessage());
-            initTestData(SistemaSeguridad.getSistema());
+            try {
+                initTestData(SistemaSeguridad.getSistema());
+            } catch (EstadoException f) {
+                System.out.println(f.getMessage());
+            }
         } catch (ClassNotFoundException e) {
             System.out.println("Exception " + e.getMessage());
         }
@@ -62,7 +70,7 @@ public class Main {
     }
 
 
-    public static void initTestData(SistemaSeguridad sistema) {
+    public static void initTestData(SistemaSeguridad sistema) throws EstadoException {
         Promocion dorada = new Dorada();
         Promocion platino = new Platino();
 
