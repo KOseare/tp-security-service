@@ -8,21 +8,11 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import negocio.Domicilio;
-import negocio.Persona;
-import negocio.PersonaFisica;
-import negocio.PersonaJuridica;
-import negocio.ServicioAdicional;
-import negocio.SistemaSeguridad;
+import negocio.*;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
-import negocio.Cheque;
-import negocio.Contratacion;
-import negocio.Efectivo;
-import negocio.Tarjeta;
 
 import negocio.excepciones.SaldoInsuficienteExeception;
 
@@ -142,6 +132,7 @@ public class MainControlador implements ActionListener, ListSelectionListener {
         // Actions Nueva Contratacion --------------------------------
         else if (e.getActionCommand().equals("CrearNuevaContratacion")) {
             Persona p = vista.getAbonadoSeleccionado();
+
             String tipoContratacion = vista.getTipoContratacion();
             Domicilio d = vista.getDomicilioContratacion();
             boolean camara = vista.getCamaraSelectedContratacion();
@@ -174,7 +165,6 @@ public class MainControlador implements ActionListener, ListSelectionListener {
     public void abrirDialogFactura() {
         vista.abrirDialogFactura();
     }
-
 
 }
 
